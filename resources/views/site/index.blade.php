@@ -65,7 +65,7 @@
 
             <nav class="nav-menu d-none d-lg-block">
                 <ul>
-                    <li class="active"><a href="/event">Головна2222</a></li>
+                    <li class="active"><a href="/event">Головна</a></li>
                     @foreach ($seting['menus'] as $menu)
                         <li><a href="{{ $menu->path }}">{{ $menu->name }}</a></li>
                     @endforeach
