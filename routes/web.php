@@ -113,7 +113,7 @@ Route::get('/rezonline/delet/{cid}/{id}', 'RezOnlineControoler@destroy')->name('
 // Route::post('/atlets2', ['uses' => 'SiteOnlineController@atlets2', 'as' => 'atlets2']);
 Route::post('/atlets2', 'SiteOnlineController@atlets2')->name('atlets2');
 
-// Route::post('/atlets2', 'SiteOnlineController@atlets2')->name('homes');
+// Route::post('/atlets2', 'SiteOnlineController@atlets2')->name('homes');lllllllllllllllllllllllllllllllgit
 
 
 
