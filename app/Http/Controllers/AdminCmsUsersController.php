@@ -42,7 +42,7 @@ class AdminCmsUsersController extends \crocodicstudio\crudbooster\controllers\CB
 				
 	}
 
-	public function getProfile() {			
+	public function getProfile() {		 	
 
 		$this->button_addmore = FALSE;
 		$this->button_cancel  = FALSE;
