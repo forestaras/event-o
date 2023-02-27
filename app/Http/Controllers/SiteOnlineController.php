@@ -345,7 +345,7 @@ class SiteOnlineController extends \crocodicstudio\crudbooster\controllers\CBCon
 			//Змагання спортсмена
 
 		}
-		$events = array_sort($events, 'date', SORT_DESC);
+		// $events = array_sort($events, 'date', SORT_DESC);
 
 
 

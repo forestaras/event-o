@@ -5,6 +5,7 @@ use App\Http\Controllers\SiteOnlineController;
 use App\Http\Controllers\ProtocolController;
 use App\Http\Controllers\LiveRezultsController;
 use App\Http\Controllers\RezultController;
+use App\Http\Controllers\AdminRegisterController;
 use App\Http\Controllers\TestController;
 
 /*
@@ -74,15 +75,21 @@ Route::prefix('online')->group(function () {
 
 
 Route::get('/lives/{cid}/{cls}', [SiteOnlineController::class, 'live'])->name('live');
+Route::get('/calendar2', [SiteEventController::class,'calendar'])->name('calendar2'); //Календар
+
+
+
+
+Route::get('/online/showpeople/{name}', [SiteOnlineController::class,'showpeople'])->name('showpeople');
 Route::get('/atlets', 'SiteOnlineController@atlets')->name('atlets');
 
 
 
 // Route::get('/autocomplete2', 'TestController@autocomplete2')->name('homes');
 // Route::get('/autocomplete3', 'TestController@autocomplete3')->name('homes');
-Route::post('/admin/registers', 'AdminCmsRegisterUsers@add')->name('homes');
 //Роути експорту даних
-Route::get('/event/registers/exportmeos/{id}', 'AdminRegisterController@exportmeos')->name('homes');
+Route::get('/event/registers/exportmeos/{id}', [AdminRegisterController::class,'exportmeos'])->name('exportmeos');
+Route::post('/admin/registers', [AdminCmsRegisterUsers::class,'add'])->name('homes');
 // Route::get('/autocomplete2', 'TestController@index')->name('homes');/
 Route::get('/about', 'AdminPageController@index_page')->name('about');
 
@@ -90,13 +97,12 @@ Route::get('/about', 'AdminPageController@index_page')->name('about');
 
 
 // Route::get('/online', 'SiteOnlineController@indexonline')->name('online');
-Route::get('/calendar2', 'SiteEventController@calendar')->name('calendar2'); //Календар
+// Route::get('/calendar2', 'SiteEventController@calendar')->name('calendar2'); //Календар
 // Route::get('/online/rezult/{id}', 'SiteOnlineController@showrezult')->name('rezult');
 // Route::get('/online/rezult_com/{id}', 'SiteOnlineController@comrezult')->name('rezult_com');   //jnnnnnnnnnnnnnnnjjjjjjjjjjjjjj
 // Route::get('/online/startlist/{id}', 'SiteOnlineController@showstartlist')->name('startlist');
 // Route::get('/online/split/{id}', 'SiteOnlineController@showsplit')->name('split');
 Route::get('/online/showrezcom/{id}', 'SiteOnlineController@showrezcom')->name('showrezcom'); //Результти команди
-Route::get('/online/showpeople/{name}', 'SiteOnlineController@showpeople')->name('showpeople');
 Route::get('/rogeining/{id}', 'SiteOnlineController@rogeining')->name('rogeining');
 Route::post('someurl', 'CSVController@someMethod');
 Route::get('/live/{id}', 'liveRezultsController@show')->name('live');
