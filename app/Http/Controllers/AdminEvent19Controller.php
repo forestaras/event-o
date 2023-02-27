@@ -8,7 +8,7 @@ use CRUDBooster;
 use Cookie;
 
 class AdminEvent19Controller extends \crocodicstudio\crudbooster\controllers\CBController {
-
+ 
 	public function cbInit() {
 
 			# START CONFIGURATION DO NOT REMOVE THIS LINE
@@ -18,7 +18,7 @@ class AdminEvent19Controller extends \crocodicstudio\crudbooster\controllers\CBC
 		$this->global_privilege = false;
 		$this->button_table_action = true;
 		$this->button_bulk_action = false;
-		$this->button_action_style = "button_icon";
+		$this->button_action_style = "button_icon"; 
 		$this->button_add = false;
 		$this->button_edit = false;
 		$this->button_delete = true;
