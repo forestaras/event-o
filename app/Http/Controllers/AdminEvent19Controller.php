@@ -7,7 +7,7 @@ use DB;
 use CRUDBooster;
 use Cookie;
 
-class AdminEvent19Controller extends \crocodicstudio\crudbooster\controllers\CBController {
+class AdminEvent19Controller extends \crocodicstudio\crudbooster\controllers\CBController { 
  
 	public function cbInit() {
 
