@@ -54,7 +54,7 @@ class AdminEvent19Controller extends \crocodicstudio\crudbooster\controllers\CBC
 		// $this->col[] = ["label"=>"Лого","name"=>"logo","image"=>true];
 			# END COLUMNS DO NOT REMOVE THIS LINE
 
-			# START FORM DO NOT REMOVE THIS LINE
+			# START FORM DO NOT REMOVE THIS LINE  
 		$this->form = [];
 		$this->form[] = ['label'=>'Назва','name'=>'title','type'=>'text','validation'=>'required|string|min:3','width'=>'col-sm-10'];
 		$this->form[] = ['label'=>'Локація','name'=>'location','type'=>'text','validation'=>'required|string|min:3|max:70','width'=>'col-sm-10'];
