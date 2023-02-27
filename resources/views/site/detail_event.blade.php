@@ -175,7 +175,7 @@
                                     <tr>
                                         <td>{{ $online->name }}</td>
                                         <td>{{ $online->datestart }}</td>
-                                        <td>http://evento.zzz.com.ua/public/live/update.php</td>
+                                        <td>https://event-o.net/public/live/update.php</td>
                                         <td>{{ $online->id }}</td>
                                         <td>{{ $online->cod }}</td>
                                         <td><a class="btn btn-warning btn-xs"
