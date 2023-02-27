@@ -3,7 +3,7 @@
 // MySQL server configuration
 define("MYSQL_HOSTNAME", "Localhost");
 define("MYSQL_USERNAME", "root");
-define("MYSQL_DBNAME", "event_o2");
+define("MYSQL_DBNAME", "event_o2");  
 define("MYSQL_PASSWORD", "root");
 
 define("MEOS_PASSWORD", "meos");
