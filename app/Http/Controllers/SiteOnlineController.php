@@ -637,7 +637,7 @@ class SiteOnlineController extends \crocodicstudio\crudbooster\controllers\CBCon
 						]; //записує в масив результат на КП
 						$popsplit = $mopsplit->rt;
 						$z = min_rt_peregon($allsplit, $mopsplit->ctrl, $splitperegon);
-						echo $splitperegon;
+						// echo $splitperegon;
 
 
 						$x = $x + 1;
