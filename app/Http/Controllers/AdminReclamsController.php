@@ -40,8 +40,8 @@
 
 			# START FORM DO NOT REMOVE THIS LINE
 			$this->form = [];
-			$this->form[] = ['label'=>'Userid','name'=>'userid','type'=>'number','validation'=>'required|integer|min:0','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Oblid','name'=>'oblid','type'=>'number','validation'=>'required|integer|min:0','width'=>'col-sm-10'];
+			$this->form[] = ['label'=>'Userid','name'=>'userid','type'=>'hidden','validation'=>'required|integer|min:0','width'=>'col-sm-10'];
+			$this->form[] = ['label'=>'Oblid','name'=>'oblid','type'=>'hidden','validation'=>'required|integer|min:0','width'=>'col-sm-10'];
 			$this->form[] = ['label'=>'Activ','name'=>'activ','type'=>'checkbox','width'=>'col-sm-10','dataenum'=>'1'];
 			$this->form[] = ['label'=>'Data Finish','name'=>'data_finish','type'=>'datetime','validation'=>'required|string|min:5|max:5000','width'=>'col-sm-10'];
 			$this->form[] = ['label'=>'Img','name'=>'img','type'=>'upload','width'=>'col-sm-10'];
@@ -56,7 +56,7 @@
 			//$this->form[] = ['label'=>'Oblid','name'=>'oblid','type'=>'number','validation'=>'required|integer|min:0','width'=>'col-sm-10'];
 			//$this->form[] = ['label'=>'Activ','name'=>'activ','type'=>'checkbox','width'=>'col-sm-10','dataenum'=>'1'];
 			//$this->form[] = ['label'=>'Data Finish','name'=>'data_finish','type'=>'datetime','validation'=>'required|string|min:5|max:5000','width'=>'col-sm-10'];
-			//$this->form[] = ['label'=>'Img','name'=>'img','type'=>'upload','validation'=>'required|max:5000','width'=>'col-sm-10'];
+			//$this->form[] = ['label'=>'Img','name'=>'img','type'=>'upload','width'=>'col-sm-10'];
 			//$this->form[] = ['label'=>'Text','name'=>'text','type'=>'wysiwyg','validation'=>'required|string|min:5|max:5000','width'=>'col-sm-10'];
 			//$this->form[] = ['label'=>'Пріорітет','name'=>'prioritet','type'=>'number','width'=>'col-sm-9'];
 			//$this->form[] = ['label'=>'силка','name'=>'url','type'=>'text','width'=>'col-sm-9'];
@@ -268,7 +268,8 @@
 	    |
 	    */
 	    public function hook_before_add(&$postdata) {        
-	        //Your code here
+	        $postdata['userid'] = CRUDBooster::myId(); 
+	        $postdata['oblid'] = 1; 
 
 	    }
 

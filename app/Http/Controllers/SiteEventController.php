@@ -75,15 +75,13 @@ class SiteEventController extends \crocodicstudio\crudbooster\controllers\CBCont
         $mountstart = date("m");
         if ($_GET['yerstart'] != 0) {
             $yerstart = $_GET['yerstart'];
-
         }
         if ($_GET['datastart'] != 0) {
             $mountstart = $_GET['datastart'];
         }
-        if ($_GET['filter']=='all') {
+        if ($_GET['filter'] == 'all' ) {
             $events = Event::where('activ', 1)->orderBy('datastart', 'DESC')->get(); // Дані змагання
-        }
-        else {
+        } else {
             $events = Event::where('activ', 1)->where('datastart', 'like', $yerstart . '-' . $mountstart . '-' . '%')->orderBy('datastart', 'DESC')->get(); // Дані змагання
         }
 
@@ -91,7 +89,7 @@ class SiteEventController extends \crocodicstudio\crudbooster\controllers\CBCont
         foreach ($events as $event) {
             $event->registersetings = Event::find($event->id)->registerseting;
             $event->online = Event::find($event->id)->online;
-            $obl=Event::find($event->id)->obl;
+            $obl = Event::find($event->id)->obl;
             foreach ($event->online as $eventr) {
                 $eventr->rez = Online::find($eventr->id)->mopcompetition;
             }
@@ -111,7 +109,7 @@ class SiteEventController extends \crocodicstudio\crudbooster\controllers\CBCont
             }
             $event->obltitle = $obl->title; //Міняємо ід на область
             $event->logoobl = $obl->flag; //Міняємо ід на область
-            $event = $events->sortBy('datastart');           
+            $event = $events->sortBy('datastart');
         }
         return view('site.tableevent', compact('events', 'seting'));
     }
@@ -123,10 +121,10 @@ class SiteEventController extends \crocodicstudio\crudbooster\controllers\CBCont
 
     public function show($id)
     {
-        Statistic::add(); 
+        Statistic::add();
         $seting = SetingController::seting();                    // Настройки меню і назва сайту
         $event = Event::find($id);
-        
+
         // $user=DB::table('cms_users')->where('id',CRUDBooster::myId())->first();	
         $event->datastart = date_format(date_create($event->datastart), 'd.m.Y');   // Дані  
         $event->obl = Event::find($id)->obl;
