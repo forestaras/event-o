@@ -18,19 +18,26 @@
 include_once("functions.php");
 $link = ConnectToDB();
 $conn = new mysqli($servername, $username, $password, $dbname);
-
 // Extract headers
 $password = '';
 $cmpId = '';
 foreach ($_SERVER as $header => $value) {
   if (strcasecmp($header, "http_competition") == 0)
-    $cmpId = (int)$value;
+  $cmpId = (int)$value;
   if (strcasecmp($header, "http_pwd") == 0)
-    $password = $value;
+  $password = $value;
   // Check connection
-if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
-}
+  if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+  }
+
+
+
+//   $url = 'telegran_sl.php';
+// $content = file_get_contents($url);
+
+
+
 $sql = "SELECT id, cod FROM online WHERE id='$cmpId'and cod='$password'";
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
@@ -51,7 +58,8 @@ if ($password != $pass) {
   returnStatus('BADPWD');
 }
 
-$data = file_get_contents("php://input"); 
+$data = file_get_contents("php://input");
+
 
 if ($data[0] == 'P') { //Zip starts with 'PK'
   returnStatus('NOZIP'); // Zip not supported
@@ -80,5 +88,8 @@ foreach ($update->children() as $d) {
 }
 
 returnStatus('OK');
+
+
+
 
 ?>

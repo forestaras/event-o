@@ -1,4 +1,4 @@
-  <div style="overflow-x:auto;">
+  {{-- <div style="overflow-x:auto;"> --}}
       <table class='table table-striped table-bordered' >
           <thead>
               <tr>
@@ -50,7 +50,7 @@
                       @if ($registerseting->trener)
                           <td>{{ $register->trener }}</td>
                       @endif
-                      @if ($registerseting->si)
+                      @if ($registerseting->si) 
                           <td>{{ $register->si }}</td>
                       @endif
                       @if ($registerseting->dni)
@@ -63,19 +63,19 @@
           
           <a class='btn btn-success btn-sm' href='?editid={{$register->id}}&registerid={{$registerseting->id}}'>Редагувати</a>
           @endif --}}
-                          @if ($show == 'admin' or CRUDBooster::isUpdate() && $button_edit)
+                          {{-- @if (or $show == 'admin' or CRUDBooster::isUpdate() && $button_edit) --}}
                               {{-- <a class='btn btn-success btn-sm' href='{{CRUDBooster::mainpath("edit/$register->id")}}'>Edit</a> --}}
                               <a class='btn btn-success btn-sm'
                                   href='?editid={{ $register->id }}&registerid={{ $registerseting->id }}&show={{ $_GET['show'] }}'>Редагувати</a>
-                          @endif
+                          {{-- @endif --}}
 
-                          @if (CRUDBooster::isDelete() && $button_edit)
+                          {{-- @if ($show == 'admin' or CRUDBooster::isDelete() && $button_edit) --}}
                               <a class='btn btn-danger btn-sm'
                                   href='{{ CRUDBooster::mainpath("delete/$register->id") }}'>Видалити</a>
-                          @endif
+                          {{-- @endif --}}
                       </td>
                   </tr>
               @endforeach
           </tbody>
       </table>
-  </div>
+  {{-- </div> --}}

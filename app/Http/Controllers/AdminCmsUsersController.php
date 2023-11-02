@@ -31,7 +31,7 @@ class AdminCmsUsersController extends CBController {
 		$this->form = array(); 		
 		$this->form[] = array("label"=>"Імя","name"=>"name",'required'=>true,'validation'=>'required|alpha_spaces|min:3');
 		$this->form[] = array("label"=>"Email","name"=>"email",'required'=>true,'type'=>'email','validation'=>'required|email|unique:cms_users,email,'.CRUDBooster::getCurrentId());		
-		$this->form[] = array("label"=>"Фото","name"=>"photo","type"=>"upload","help"=>"Recommended resolution is 200x200px",'required'=>true,'validation'=>'required|image|max:1000','resize_width'=>90,'resize_height'=>90);											
+		$this->form[] = array("label"=>"Фото","name"=>"photo","type"=>"upload","help"=>"Recommended resolution is 200x200px",'validation'=>'image|max:1000');											
 		$this->form[] = array("label"=>"Privilege","name"=>"id_cms_privileges","type"=>"select","datatable"=>"cms_privileges,name",'required'=>true);	
 		// $this->form[] = ['label'=>'Спорсмен','name'=>'peopleid','type'=>'select2','width'=>'col-sm-10','datatable'=>'people,name'];					
 		// $this->form[] = ['label'=>'Спорсмен','name'=>'peopleid','type'=>'select2','width'=>'col-sm-10','datatable'=>'club,name'];					

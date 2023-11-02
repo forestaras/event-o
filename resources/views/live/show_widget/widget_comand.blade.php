@@ -1,9 +1,12 @@
+
 @php
-    $clubs = App\Http\Controllers\LiveRezultsController::widget_comand($event->cid);
+    $clubs = App\Http\Controllers\LiveRezultsController::widget_comand($online->id);
 @endphp
-<div class="col-md-6">
+
+
+<div class="col-md-12">
     <!-- USERS LIST -->
-    <div class="card">
+    <div class="card card-primary">
         <div class="card-header">
             <h3 class="card-title">
                 <font style="vertical-align: inherit;">
@@ -23,7 +26,7 @@
                 <button type="button" class="btn btn-tool" data-card-widget="remove">
                     <i class="fas fa-times"></i>
                 </button>
-                <a href="{{url('/livess/comand/'.$event->cid)}}"><button type="button" class="btn btn-tool">
+                <a href="{{url('/livess/comand/'.$online->id)}}"><button type="button" class="btn btn-tool">
                   <i class="fas fa-expand"></i>
               </button> </a>
             </div>
@@ -60,7 +63,7 @@
 
         <!-- /.card-body -->
         <div class="card-footer text-center">
-            <a href="{{url('/livess/comand/'.$event->cid)}}">
+            <a href="{{url('/livess/comand/'.$online->id)}}">
                 <font style="vertical-align: inherit;">
                     <font style="vertical-align: inherit;">Перейти до командних результатів</font>
                 </font>

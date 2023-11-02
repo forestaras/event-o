@@ -204,9 +204,9 @@ function formatResult($result) {
 function selectRadio($link, $cls) {
   global $cmpId, $PHP_SELF;
   $radio = '';
-  $sql = "SELECT leg, ctrl, mopControl.name FROM mopClassControl, mopControl ".
-         "WHERE mopControl.cid=? AND mopClassControl.cid=? ".
-         "AND mopClassControl.id=? AND mopClassControl.ctrl=mopControl.id ORDER BY leg ASC, ord ASC";
+  $sql = "SELECT leg, ctrl, mopcontrol.name FROM mopclasscontrol, mopcontrol ".
+         "WHERE mopcontrol.cid=? AND mopclasscontrol.cid=? ".
+         "AND mopclasscontrol.id=? AND mopclasscontrol.ctrl=mopcontrol.id ORDER BY leg ASC, ord ASC";
   
   $stmt = $link->prepare($sql);
   $stmt->bind_param("iii", $cmpId, $cmpId, $cls);
@@ -235,9 +235,9 @@ function selectRadio($link, $cls) {
 function selectLegRadio($link, $cls, $leg, $ord) {
   global $cmpId, $PHP_SELF;
   $radio = '';
-  $sql = "SELECT ctrl, mopControl.name FROM mopClassControl, mopControl ".
-         "WHERE mopControl.cid=? AND mopClassControl.cid=? ".
-         "AND mopClassControl.id=? AND mopClassControl.ctrl=mopControl.id AND leg=? AND ord=?";
+  $sql = "SELECT ctrl, mopcontrol.name FROM mopclasscontrol, mopcontrol ".
+         "WHERE mopcontrol.cid=? AND mopclasscontrol.cid=? ".
+         "AND mopclasscontrol.id=? AND mopclasscontrol.ctrl=mopcontrol.id AND leg=? AND ord=?";
          
   $stmt = $link->prepare($sql);
   $stmt->bind_param("iiiii", $cmpId, $cmpId, $cls, $leg, $ord);
@@ -299,8 +299,8 @@ function updateLinkTable($link, $table, $cid, $id, $fieldName, $encoded) {
 
 /** Remove all data from a table related to an event. */
 function clearCompetition($link, $cid) {
-   $tables = array(0=>"mopControl", "mopClass", "mopOrganization", "mopCompetitor",
-                      "mopTeam", "mopTeamMember", "mopClassControl", "mopRadio");
+   $tables = array(0=>"mopcontrol", "mopclass", "moporganization", "mopcompetitor",
+                      "mopteam", "mopteammember", "mopclasscontrol", "mopradio");
                       
    foreach($tables as $table) {
      $sql = "DELETE FROM $table WHERE cid=$cid";
@@ -316,7 +316,7 @@ function processCompetition($link, $cid, $cmp) {
   $homepage = $link->real_escape_string($cmp['homepage']);
   
   $sqlupdate = "name='$name', date='$date', organizer='$organizer', homepage='$homepage'";
-  updateTable($link, "mopCompetition", $cid, 1, $sqlupdate);
+  updateTable($link, "mopcompetition", $cid, 1, $sqlupdate);
 }
 
 /** Update control table */
@@ -324,7 +324,7 @@ function processControl($link, $cid, $ctrl) {
   $id = $link->real_escape_string($ctrl['id']);
   $name = $link->real_escape_string($ctrl);
   $sqlupdate = "name='$name'";
-  updateTable($link, "mopControl", $cid, $id, $sqlupdate);
+  updateTable($link, "mopcontrol", $cid, $id, $sqlupdate);
 }
 
 /** Update class table */
@@ -333,11 +333,11 @@ function processClass($link, $cid, $cls) {
   $ord = $link->real_escape_string($cls['ord']);
   $name = $link->real_escape_string($cls);
   $sqlupdate = "name='$name', ord='$ord'";
-  updateTable($link, "mopClass", $cid, $id, $sqlupdate);
+  updateTable($link, "mopclass", $cid, $id, $sqlupdate);
     
   if (isset($cls['radio'])) {
     $radio = $link->real_escape_string($cls['radio']);
-    updateLinkTable($link, "mopClassControl", $cid, $id, "ctrl", $radio);    
+    updateLinkTable($link, "mopclasscontrol", $cid, $id, "ctrl", $radio);    
   }
 }
 
@@ -346,14 +346,14 @@ function processOrganization($link, $cid, $org) {
   $id = $link->real_escape_string($org['id']);
   
   if ($org['delete'] == 'true') { // MOP2.0 support
-    $sql = "DELETE FROM mopOrganization WHERE cid='$cid' AND id='$id'";  
+    $sql = "DELETE FROM moporganization WHERE cid='$cid' AND id='$id'";  
     $link->query($sql);
     return;
   }
   
   $name = $link->real_escape_string($org);
   $sqlupdate = "name='$name'";
-  updateTable($link, "mopOrganization", $cid, $id, $sqlupdate);
+  updateTable($link, "moporganization", $cid, $id, $sqlupdate);
 }
 
 /** Update competitor table */
@@ -362,7 +362,7 @@ function processCompetitor($link, $cid, $cmp) {
   $id = $link->real_escape_string($cmp['id']);
   
   if ($cmp['delete'] == 'true') { // MOP2.0 support
-    $sql = "DELETE FROM mopCompetitor WHERE cid='$cid' AND id='$id'";  
+    $sql = "DELETE FROM mopcompetitor WHERE cid='$cid' AND id='$id'";  
     $link->query($sql);
     return;
   }
@@ -383,13 +383,13 @@ function processCompetitor($link, $cid, $cmp) {
     $sqlupdate.=", it=$it, tstat=$tstat";
   }
 
-  updateTable($link, "mopCompetitor", $cid, $id, $sqlupdate);  
+  updateTable($link, "mopcompetitor", $cid, $id, $sqlupdate);  
   if (isset($cmp->radio)) {
-    $sql = "DELETE FROM mopRadio WHERE cid='$cid' AND id='$id'";
+    $sql = "DELETE FROM mopradio WHERE cid='$cid' AND id='$id'";
     $link->query($sql);
     $radios = explode(";", $cmp->radio);
 
-    $sql = "REPLACE INTO mopRadio SET cid=?, id=?, ctrl=?, rt=?"; 
+    $sql = "REPLACE INTO mopradio SET cid=?, id=?, ctrl=?, rt=?"; 
     $stmt = $link->prepare($sql);
     $stmt->bind_param("iiii", $cid, $id, $radioId, $radioTime);
    
@@ -408,7 +408,7 @@ function processTeam($link, $cid, $team) {
   $id = $link->real_escape_string($team['id']);
   
   if ($team['delete'] == 'true') { // MOP2.0 support
-    $sql = "DELETE FROM mopTeam WHERE cid='$cid' AND id='$id'";  
+    $sql = "DELETE FROM mopteam WHERE cid='$cid' AND id='$id'";  
     $link->query($sql);
     return;
   }
@@ -422,16 +422,19 @@ function processTeam($link, $cid, $team) {
   $rt = (int)$base['rt'];
   
   $sqlupdate = "name='$name', org=$org, cls=$cls, stat=$stat, st=$st, rt=$rt";
-  updateTable($link, "mopTeam", $cid, $id, $sqlupdate);
+  updateTable($link, "mopteam", $cid, $id, $sqlupdate);
   
   if (isset($team->r)) {
-    updateLinkTable($link, "mopTeamMember", $cid, $id, "rid", $team->r);
+    updateLinkTable($link, "mopteammember", $cid, $id, "rid", $team->r);
   }
 }
 
 /** MOP return code. */
 function returnStatus($stat) {
-  die('<?xml version="1.0"?><MOPStatus status="'.$stat.'"></MOPStatus>');
+//  $url = 'http://127.0.0.1:8000/telegram/';
+//  $content=file_get_contents($url);
+ die('<?xml version="1.0"?><MOPStatus status="'.$stat.'"></MOPStatus>');
+
 }
 
 ?>

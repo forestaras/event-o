@@ -8,6 +8,8 @@
 @foreach ($reclams as $reclam)
 {!! $reclam->text !!}
 <div class="d-flex align-items-center" data-aos="fade-right" data-aos-delay="100">
-    <img src="{{ asset($reclam->img) }}" class="img-fluid" alt="">
+    <a href="{{$reclam->url}}"><img src="{{ asset($reclam->img) }}" class="img-fluid" alt=""></a>
+    
 </div>
 @endforeach
+<br>

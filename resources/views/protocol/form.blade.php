@@ -62,7 +62,7 @@
             {!! $errors->first('gsu', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group">
-            {{ Form::label('Контрольний час') }}
+            {{ Form::label('Контрольний час') }} 
             {{ Form::text('con', $protocol->con, ['class' => 'form-control' . ($errors->has('con') ? ' is-invalid' : ''), 'placeholder' => '1:30:00']) }}
             {!! $errors->first('con', '<div class="invalid-feedback">:message</div>') !!}
         </div>
@@ -99,6 +99,32 @@
             {{ Form::label('Скопіюйте сюди протокол з меоs') }}
             {{ Form::textarea('prot', $protocol->prot, ['class' => 'form-control' . ($errors->has('prot') ? ' is-invalid' : ''), 'placeholder' => 'Вставте протокол']) }}
             {!! $errors->first('prot', '<div class="invalid-feedback">:message</div>') !!}
+        </div>
+        {{ Form::label('Виберіть роля для відображення') }}
+        <div class="form-group">
+            {{ Form::label('Рік народження') }}      
+            {{ Form::select('pol_rik',array('1' => 'ВКЛ','0' => 'ВИКЛ'), $protocol->pol_rik, ['class' => 'form-control' . ($errors->has('pol_rik') ? ' is-invalid' : '')]) }}
+            {!! $errors->first('pol_rik', '<div class="invalid-feedback">:message</div>') !!}
+        </div>
+        <div class="form-group">
+            {{ Form::label('Команда') }}      
+            {{ Form::select('pol_com',array('1' => 'ВКЛ','0' => 'ВИКЛ'), $protocol->pol_com, ['class' => 'form-control' . ($errors->has('pol_com') ? ' is-invalid' : '')]) }}
+            {!! $errors->first('pol_com', '<div class="invalid-feedback">:message</div>') !!}
+        </div>
+        <div class="form-group">
+            {{ Form::label('Тренер') }}      
+            {{ Form::select('pol_tren',array('1' => 'ВКЛ','0' => 'ВИКЛ'), $protocol->pol_tren, ['class' => 'form-control' . ($errors->has('pol_tren') ? ' is-invalid' : '')]) }}
+            {!! $errors->first('pol_tren', '<div class="invalid-feedback">:message</div>') !!}
+        </div>
+        <div class="form-group">
+            {{ Form::label('Розряд') }}      
+            {{ Form::select('pol_roz',array('1' => 'ВКЛ','0' => 'ВИКЛ'), $protocol->pol_roz, ['class' => 'form-control' . ($errors->has('pol_roz') ? ' is-invalid' : '')]) }}
+            {!! $errors->first('pol_roz', '<div class="invalid-feedback">:message</div>') !!}
+        </div>
+        <div class="form-group">
+            {{ Form::label('Виконаний розряд') }}      
+            {{ Form::select('pol_roz_vik',array('1' => 'ВКЛ','0' => 'ВИКЛ'), $protocol->pol_roz_vik, ['class' => 'form-control' . ($errors->has('pol_roz_vik') ? ' is-invalid' : '')]) }}
+            {!! $errors->first('pol_roz_vik', '<div class="invalid-feedback">:message</div>') !!}
         </div>
 
     </div>

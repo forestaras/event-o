@@ -1,12 +1,34 @@
 @extends('live.includ.index')
-@section('map_site')
-<li class="breadcrumb-item"><a href="{{url('/livess/')}}">головна</a>/<a href="{{url('/livess/show/'.$event->cid)}}">{{$event->name}}</a>/Результати командні</li>
+@section('title')
+---{{ $event->name }}---Командні
 @endsection
-@section('content')
-    <div class="col-md-8">
-        <div class="card card-primary card-outline card-outline-tabs">
+@section('page')
+    Командні результати
+    <h2 class="card-title">{{ $eventseting->title }} <b>командні результати <a
+        href="{{ url('/event/' . $online->eventid) }}?g={{ $online->id }}">{{ $online->name }}
+        @if (!$online->name)
+            {{ $event->name }}
+        @endif
+    </a></b></h2>
+@endsection
 
-            <div class="card-header p-0 border-bottom-0 row">
+@section('map_site')
+<li class="breadcrumb-item">
+    <a href="{{ url('/') }}">Головна</a>/
+    <a href="{{ url('/event/' . $eventseting->id) }}">{{ $eventseting->title }}</a>/
+    <a href="{{ url('/event/' . $online->eventid) }}?g={{ $online->id }}">{{ $online->name }}</a>/
+    Командні результати
+</li>
+@endsection
+
+@section('content')
+<div class="col-md-9">
+    <div class="card card-primary card-outline card-outline-tabs">
+        
+        <div class="card-header">
+            <div>
+
+            </div>
                 <div class="col-12">
                     <ul class="nav nav-tabs" id="custom-tabs-four-tab" role="tablist">
                         <li class="nav-item">

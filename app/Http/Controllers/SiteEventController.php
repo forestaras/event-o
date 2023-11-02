@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
+use App\Models\Mopclass;
 use App\Models\Mopcompetition;
 use App\Models\Online;
+use App\Models\Register;
 use App\Models\Registerseting;
 
 use CRUDBooster;
@@ -67,7 +69,58 @@ class SiteEventController extends \crocodicstudio\crudbooster\controllers\CBCont
 
 
 
-    public function index()
+    public function index(Request $request)
+    {
+        $seting = SetingController::seting();
+        Statistic::add();  //для статистики
+        $yerstart = date("Y");
+        $mountstart = date("m");
+        $query = Request('query');
+        if ($_GET['yerstart'] != 0) {
+            $yerstart = $_GET['yerstart'];
+        }
+        if ($_GET['datastart'] != 0) {
+            $mountstart = $_GET['datastart'];
+        }
+        if ($query) {
+            $events = Event::where('title', 'like', "%$query%")->orderBy('datastart', 'DESC')->get(); // Дані змагання
+        }
+        elseif ($_GET['filter'] == 'all') {
+            $events = Event::where('activ', 1)->orderBy('datastart', 'DESC')->get(); // Дані змагання
+        } else {
+            $events = Event::where('activ', 1)->where('datastart', 'like', $yerstart . '-' . $mountstart . '-' . '%')->orderBy('datastart', 'DESC')->get(); // Дані змагання
+        }
+
+
+        foreach ($events as $event) {
+            $event->registersetings = Event::find($event->id)->registerseting;
+            $event->online = Event::find($event->id)->online;
+            $obl = Event::find($event->id)->obl;
+            foreach ($event->online as $eventr) {
+                $eventr->rez = Online::find($eventr->id)->mopcompetition;
+            }
+            $event->data = date_format(date_create($event->datastart), "d.m.Y");
+            if ($event->datafinish != 0) {
+                $m1 = date_format(date_create($event->datafinish), "m");
+                $m2 = date_format(date_create($event->datastart), "m");
+
+                if ($m1 != $m2) {
+                    $event->data = date_format(date_create($event->datastart), "d.m-") . date_format(date_create($event->datafinish), "d.m.Y");
+                }
+                if ($m1 == $m2) {
+                    $event->data = date_format(date_create($event->datastart), "d-") . date_format(date_create($event->datafinish), "d.m.Y");
+                }
+            } else {
+                $event->data = date_format(date_create($event->datastart), "d.m.Y");
+            }
+            $event->obltitle = $obl->title; //Міняємо ід на область
+            $event->logoobl = $obl->flag; //Міняємо ід на область
+            $event = $events->sortBy('datastart');
+        }
+        return view('live.page.index', compact('events', 'seting'));
+    }
+
+    public function index2()
     {
         $seting = SetingController::seting();
         Statistic::add();  //для статистики
@@ -79,7 +132,7 @@ class SiteEventController extends \crocodicstudio\crudbooster\controllers\CBCont
         if ($_GET['datastart'] != 0) {
             $mountstart = $_GET['datastart'];
         }
-        if ($_GET['filter'] == 'all' ) {
+        if ($_GET['filter'] == 'all') {
             $events = Event::where('activ', 1)->orderBy('datastart', 'DESC')->get(); // Дані змагання
         } else {
             $events = Event::where('activ', 1)->where('datastart', 'like', $yerstart . '-' . $mountstart . '-' . '%')->orderBy('datastart', 'DESC')->get(); // Дані змагання
@@ -125,6 +178,61 @@ class SiteEventController extends \crocodicstudio\crudbooster\controllers\CBCont
         $seting = SetingController::seting();                    // Настройки меню і назва сайту
         $event = Event::find($id);
 
+        $user=DB::table('cms_users')->where('id',CRUDBooster::myId())->first();	
+        $event->datastart = date_format(date_create($event->datastart), 'd.m.Y');   // Дані  
+        $event->obl = Event::find($id)->obl;
+        $event->club = Event::find($id)->club;
+        $event->registersetings = Event::find($event->id)->registerseting; //Дані про реєстрацію
+        
+        foreach ($event->registersetings as $regid) {
+            $regid->count = Registerseting::find($regid->id)->register->count();
+            $regid->club=Register::where('eventid',$regid->id)->pluck('club')->unique()->values()->all();
+            $regid->grups=explode(" ", $regid->grup);
+        }
+        $event->link = Event::find($id)->evendop; //Дані про реєстрацію
+        $onlines = Event::find($id)->online;
+        foreach ($onlines as $online) {
+            $online->ooo = DB::table('mopcompetition')->where('cid', $online->id)->first(); //meos competition
+            $online->peoples = DB::table('mopcompetitor')->where('cid', $online->id)->get(); //перевіряє чи є стартові
+            $online->grups = Mopclass::where('cid', $online->id)->get();
+            // $seting = Online::where('id', $id)->first();
+            // $online->seting=$seting;
+            foreach($online->grups as $grup){ 
+                $count_start=$online->peoples->where('cls',$grup->id)->where('st', '>', 0)->count();
+                if ($count_start>=1) {
+                  $grup->start=1;
+                }          
+                $count_rezult=$online->peoples->where('cls',$grup->id)->where('rt', '>', 0)->count();
+                if ($count_rezult>=1) {
+                  $grup->rezult=1;
+                }       
+
+                // $count_split=$online->peoples->where('cls',$grup->id)->where('rt', '>', 0)->count();
+                // if ($count_rezult>=1) {
+                //   $grup->rezult=1;
+                // }             
+                
+
+            }
+            $online->splits = DB::table('mopradio')->where('cid', $online->id)->where('rt', '>', 0)->first(); //перевіряє чи є фінішні
+            if ($online->ooo) {
+                $rez = 1;
+            }
+        }
+        $event->onlines = $onlines; //Дані про реєстрацію
+        $event->rez = $rez; //Дані про результати
+
+
+
+        return view('live.page.event_show', compact('event', 'seting'));
+    }
+
+    public function show2($id)
+    {
+        Statistic::add();
+        $seting = SetingController::seting();                    // Настройки меню і назва сайту
+        $event = Event::find($id);
+
         // $user=DB::table('cms_users')->where('id',CRUDBooster::myId())->first();	
         $event->datastart = date_format(date_create($event->datastart), 'd.m.Y');   // Дані  
         $event->obl = Event::find($id)->obl;
@@ -156,42 +264,16 @@ class SiteEventController extends \crocodicstudio\crudbooster\controllers\CBCont
 
 
 
+
+
+
     public function registerevent($registerid)
     {
-        Statistic::add();  //для статистики
-
-        $seting = SetingController::seting();
         $registerseting = DB::table('registerseting')->where('id', $registerid)->first();
-
-        $event = DB::table('register')->where('eventid', $registerid)->get();
-        foreach ($event as $ev) {
-            $x = $x + 1;
-            $grup[] = $ev->grup;
-            $obl[] = $ev->obl;
-            $club[] = $ev->club;
-        }
-
-
-        if ($obl) {
-            sort($obl);
-            $event->obl = array_unique($obl);
-        }
-        if ($club) {
-            sort($club);
-            $event->club = array_unique($club);
-        }
-
-        $event->grup = explode(' ', $registerseting->grup);
-
-
-
-
-
-
-
-        $event->countreg = $x; // кількість зареєстрованих
-
-        return view('site.show_register', compact('seting', 'event', 'registerseting'));
+        $registers = DB::table('register')->where('eventid', $registerid)->get();
+        $registerseting->grups=explode(' ', $registerseting->grup);
+        $registerseting->dnis=explode(' ', $registerseting->dni);
+        return view('live.register.register_event', compact( 'registers', 'registerseting'));
     }
 
 
@@ -256,6 +338,6 @@ class SiteEventController extends \crocodicstudio\crudbooster\controllers\CBCont
 
         }
 
-        return view('site.calendar', compact('seting', 'event', 'obls', 'obltitle'));
+        return view('live.page.calendar', compact('seting', 'event', 'obls', 'obltitle'));
     }
 }

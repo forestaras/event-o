@@ -3,11 +3,11 @@
 @endphp
 <div class="col-md-6">
     <!-- USERS LIST -->
-    <div class="card">
+    <div class="card card-primary">
         <div class="card-header">
             <h3 class="card-title">
                 <font style="vertical-align: inherit;">
-                    <font style="vertical-align: inherit;">Результати</font>
+                    <a href="{{url('/livess/rezult/'.$event->cid)}}"<font style="vertical-align: inherit;">Результати <small class="badge badge-success"><i class="fas fa-compass"></i> {{$event->count_rez}}/{{$event->count_all}}</small></font></a>
                 </font>
             </h3>
             <div class="card-tools">
@@ -23,12 +23,12 @@
                 </button> </a>
                             
 
-                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                {{-- <button type="button" class="btn btn-tool" data-card-widget="collapse">
                     <i class="fas fa-minus"></i>
                 </button>
                 <button type="button" class="btn btn-tool" data-card-widget="remove">
                     <i class="fas fa-times"></i>
-                </button>
+                </button> --}}
             </div>
         </div>
         <!-- /.card-header -->
@@ -46,7 +46,7 @@
                                     <a href="{{url('/livess/rezult/'.$grup->cid.'#'.$grup->name)}}">{{ $grup->name }}</a>|
                                 @endforeach
                             </font>
-                        </font>
+                        </font> 
                     </span>
                     {{-- <span class="direct-chat-timestamp float-right">
                             <font style="vertical-align: inherit;">
@@ -69,13 +69,13 @@
         </div>
 
         <!-- /.card-body -->
-        <div class="card-footer text-center">
-            <a href="{{url('/livess/rezult/'.$event->cid)}}">
-                <font style="vertical-align: inherit;">
-                    <font style="vertical-align: inherit;">Перейти на сторінку результатів</font>
-                </font>
-            </a>
-        </div>
+        {{-- <div class="card-footer text-center">
+            
+   
+                    <a href="{{url('/livess/rezult/'.$event->cid)}}" class="btn btn-primary btn-block"><b>Перейти на сторінку результатів</b></a>
+                   
+            
+        </div> --}}
         <!-- /.card-footer -->
     </div>
     <!--/.card -->

@@ -1,0 +1,47 @@
+[
+    {
+        "type": "File",
+        "name": "d:\\OpenServer\\domains\\event_o2\\routes\\web.php",
+        "parent_id": null,
+        "fsPath": "d:\\OpenServer\\domains\\event_o2\\routes\\web.php",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "qtxbIgjPUlAMvpCz"
+    },
+    {
+        "type": "File",
+        "name": "d:\\OpenServer\\domains\\event_o2\\app\\Http\\Controllers\\SiteEventController.php",
+        "parent_id": null,
+        "fsPath": "d:\\OpenServer\\domains\\event_o2\\app\\Http\\Controllers\\SiteEventController.php",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "5eSndFhDWPHMBGfL"
+    },
+    {
+        "type": "File",
+        "name": "d:\\OpenServer\\domains\\event_o2\\app\\Http\\Controllers\\RezultController.php",
+        "parent_id": null,
+        "fsPath": "d:\\OpenServer\\domains\\event_o2\\app\\Http\\Controllers\\RezultController.php",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "yStcRzIBZYboGWar"
+    },
+    {
+        "type": "Directory",
+        "name": "d:\\OpenServer\\domains\\event_o2\\resources\\views\\live",
+        "parent_id": null,
+        "fsPath": "d:\\OpenServer\\domains\\event_o2\\resources\\views\\live",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "Cu4gxzBSGZWDK5YP"
+    },
+    {
+        "type": "File",
+        "name": "d:\\OpenServer\\domains\\event_o2\\app\\Http\\Controllers\\LiveRezultsController.php",
+        "parent_id": null,
+        "fsPath": "d:\\OpenServer\\domains\\event_o2\\app\\Http\\Controllers\\LiveRezultsController.php",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "gWl50q7FxMUfhrm3"
+    }
+]

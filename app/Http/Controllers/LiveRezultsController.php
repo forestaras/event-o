@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Event;
+use CRUDBooster;
 use App\Models\Mopclass;
 use App\Models\Mopcompetition;
 use App\Models\Mopcompetitor;
@@ -29,7 +31,8 @@ class LiveRezultsController extends Controller
         $events = Mopcompetition::get()->sortByDesc('date');
         $events->count = Mopcompetition::get()->count();
         foreach ($events as $event) {
-            $event->name = mb_strimwidth($event->name, 0, 30, "...");
+            $event->online=Online::where('id',$event->cid)->first();
+            $event->name = mb_strimwidth($event->name, 0, 30, "..."); 
             if ($event->date > $d) {
                 $event->color = 'badge-info';
                 $event->status = 'Відбудеться';
@@ -48,13 +51,23 @@ class LiveRezultsController extends Controller
     {
         $event = Mopcompetition::where('cid', $id)->first();
         $rez = Mopcompetitor::where('cid', $id)->get()->sortByDesc('timestamp');
+        if ($rez->count()>0) {
         $split = Mopcontrol::where('cid', $id)->get()->sortByDesc('id');
         $split_count =  $split->count();
         $time_max = $rez->max('timestamp');
         $time_now = Date('Y-m-d H:i:s', strtotime('+2 hours'));
         $count_all = $rez->count();
         $count_finish = $rez->where('stat', '>', 0)->count();
-        $prots = 100 / $count_all * $count_finish;
+        $prots = 100 / $count_all * $count_finish;  
+        }
+        $seting = Online::where('id', $id)->first();
+        $event->seting=$seting;
+        $event->count_all=$count_all;
+        $event->count_rez=$rez->where('stat',1)->count();
+        $event->club=Moporganization::where('cid', $id)->get()->count();
+
+        
+        
 
         if ($time_now < $time_max) {
             $event->live = 'ОНЛАЙН';
@@ -65,6 +78,9 @@ class LiveRezultsController extends Controller
 
         if ($split_count > 4) {
             $event->split = 'Спліти';
+        }
+        if ($split_count > 4) {
+            $event->com_rez = '1';
         }
 
 
@@ -92,22 +108,14 @@ class LiveRezultsController extends Controller
 
 
 
-    static function meny()
+
+
+    static function seting()
     {
-        $meny = collect([
-            ['title' => 'Головна', 'http', 'dfsfd'],
-            ['title' => 'Список', 'http' => 'sdfsdg'],
-            ['title' => 'Про', 'http' => 'sdfsdg'],
-        ]);
+        $seting = SetingController::seting();
 
-        return $meny;
+        return $seting;
     }
-
-    // static function url()
-    // {
-    //     if
-    //     return $url;
-    // }
 
     static function dani()
     {
@@ -126,7 +134,7 @@ class LiveRezultsController extends Controller
 
     static function reclam()
     {
-        $reclams = Reclam::where('activ', '>', 0)->where('data_finish', '>', date('Y-m-d H:i:s'))->paginate(3)->sortByDesc('prioritet');
+        $reclams = Reclam::where('activ', '>', 0)->where('partneri','<',1)->where('data_finish', '>', date('Y-m-d H:i:s'))->paginate(3)->sortByDesc('prioritet');
         return $reclams;
     }
 
@@ -153,6 +161,8 @@ class LiveRezultsController extends Controller
         // }
         return $events;
     }
+
+
 
     //////////
 
@@ -252,6 +262,14 @@ class LiveRezultsController extends Controller
 
     //Віджети
 
+    static function widget_partneri()
+    {
+        $partneri = Reclam::where('activ', '>', 0)->where('partneri', '>', 0)->where('data_finish', '>', date('Y-m-d H:i:s'))->paginate(3)->sortByDesc('prioritet');
+        return $partneri;
+
+        
+    }
+
     static function widget_rezult($id)
     {
         $grups = Mopclass::where('cid', $id)->get();
@@ -259,7 +277,67 @@ class LiveRezultsController extends Controller
         return $grups;
     }
 
+    // static function widget_split($id)
+    // {
+    //     $grups = Mopclass::where('cid', $id)->get();
+    //     $peopless = Mopcompetitor::where('cid', $id)->get()->sortByDesc('timestamp');
+    //     foreach ($. as $key => $value) {
+    //         # code...
+    //     }
+
+    //     return $grups;
+    // }
+
+    
+
     static function widget_comand($id)
+    {
+        $event = Moporganization::where('cid', $id)->first();
+        $online = Online::where('id',$id)->first();
+		$eventseting=Event::where('id',$online->eventid)->first();
+        $peopless = Mopcompetitor::where('cid', $id)->get();
+        $grups = Mopclass::where('cid', $id)->get();
+        $clubs = Moporganization::where('cid', $id)->get();
+        $clubs_count = $clubs->count();
+        $zalik=$online->cill;
+		$formula=$online->rezult_formula_ball;
+        foreach ($grups as $grup) {
+            $grup->best = $peopless->where('cls', $grup->id)->where('cls', $grup->id)->where('stat', 1)->min('rt');
+        }
+        foreach ($peopless as $people) {
+            if ($people->stat == 1) { 
+                $bestrt = $grups->where('id', $people->cls)->first->best;
+                if ($formula=='Б=100*(Чп/Чу)') {
+					$bali = 100 * ($bestrt->best / $people->rt);
+				}
+                $people->bali = $bali;
+                $people->best = $bestrt->best;
+            }
+        }
+        $y = 0;
+        foreach ($clubs as $club) {
+            $x = 0;
+            $people = $peopless->where('org', $club->id)->sortByDesc('bali')->take($zalik);
+            foreach ($people as $p) {
+                $x = $p->bali + $x;
+            }
+            $club->sumball = round($x, 2);
+            $club->all = $clubs->count();
+        }
+        $clubs = $clubs->sortByDesc('sumball');
+        $club_max_bal = $clubs->max('sumball');
+        $clubs = $clubs->take(4);
+        $mistse = 0;
+        foreach ($clubs as $club) {
+            $mistse = $mistse + 1;
+            $club->mistse = $mistse;
+            $club->bal_vits = 90 / $club_max_bal * $club->sumball;
+        }
+        $clubs['all'] = $clubs_count;
+        return $clubs;
+    }
+
+    static function start_cloks($id)
     {
         $event = Moporganization::where('cid', $id)->first();
         $peopless = Mopcompetitor::where('cid', $id)->get();
@@ -270,7 +348,7 @@ class LiveRezultsController extends Controller
             $grup->best = $peopless->where('cls', $grup->id)->where('cls', $grup->id)->where('stat', 1)->min('rt');
         }
         foreach ($peopless as $people) {
-            if ($people->stat == 1) {
+            if ($people->stat == 1) { 
                 $bestrt = $grups->where('id', $people->cls)->first->best;
                 $bali = 100 * ($bestrt->best / $people->rt);
                 $people->bali = $bali;

@@ -347,10 +347,10 @@ class AdminRegisterController extends \crocodicstudio\crudbooster\controllers\CB
 
 
 		$register = DB::table('register')->where('id', $id)->first();
-		
+
 		if ($register->peopleid) {
-			$club=DB::table('club')->where('title', $register->club)->first();
-			$obl=DB::table('obl')->where('title', $register->obl)->first();
+			$club = DB::table('club')->where('title', $register->club)->first();
+			$obl = DB::table('obl')->where('title', $register->obl)->first();
 			DB::update("UPDATE people
 				SET name='$register->name', roz='$register->roz',si='$register->si',rik='$register->rik',grup='$register->grup',club='$register->club',trener='$register->trener',clubid='$club->id',oblid='$obl->id'
 				WHERE id='$register->peopleid'");
@@ -416,17 +416,16 @@ class AdminRegisterController extends \crocodicstudio\crudbooster\controllers\CB
 			$data['show'] = 'admin';
 			if ($_GET['show'] == 'admin') {
 				$data['registers'] = DB::table('register')->where('eventid', $_GET['registerid'])->get(); // для адміна  змагань	
-				
+
 			}
 		}
 		$data['page_title'] = $data['registerseting']->title;  // Назва
-		
 
-		
+
+
 		if ($_GET['editid']) {
 			$data['readonly'] = 'readonly';
 			$data['row'] = DB::table('register')->where('id', $_GET['editid'])->first();
-		
 		}
 
 		if ($data['registerseting']->dni) $data['registerseting']->dni = explode(' ', $data['registerseting']->dni); // розділяє дні на масив
@@ -442,10 +441,52 @@ class AdminRegisterController extends \crocodicstudio\crudbooster\controllers\CB
 	function exportmeos($id)
 	{
 		$registerseting = DB::table('registerseting')->where('id', $id)->first();
-
+		// $dnis=$registerseting->dni;
+		$dnis = $_GET['g'];
+		$dniss = explode("/", $dnis);
 		if ($registerseting->userid == CRUDBooster::myId()) {
 			$registers = DB::table('register')->where('eventid', $id)->get();
+			foreach ($registers as $register) {
+				if ($_GET['c'] == 'obl') {
+					$register->club = $register->obl;
+				}
+				if ($_GET['c'] == 'all') {
+					$register->club = $register->obl . ',' . $register->club;
+				}
+				foreach ($dniss as $dni) {
+					if ($dni == $register->dni or !$dni) {
+						$register->kk = 458;
+					}
+				}
+			}
+
 			return view('site.export.meos', compact('registers'));
 		}
+	}
+
+	function pexportmeos($id)
+	{
+		// $registerseting = DB::table('registerseting')->where('id', $id)->first();
+		// $dnis=$registerseting->dni;
+		// $dnis = $_GET['g'];
+		// $dniss = explode("/", $dnis);
+		// if ($registerseting->userid == CRUDBooster::myId()) {
+		// 	$registers = DB::table('register')->where('eventid', $id)->get();
+			// foreach ($registers as $register) {
+			// 	if ($_GET['c'] == 'obl') {
+			// 		$register->club = $register->obl;
+			// 	}
+			// 	if ($_GET['c'] == 'all') {
+			// 		$register->club = $register->obl . ',' . $register->club;
+			// 	}
+			// 	foreach ($dniss as $dni) {
+			// 		if ($dni == $register->dni) {
+			// 			$register->kk = 458;
+			// 		}
+			// 	}
+			// }
+
+			return view('site.export.pmeos', compact('id'));
+		// }
 	}
 }

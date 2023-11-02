@@ -200,15 +200,24 @@
             <tr style="height: 33px">
                 <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; text-align: center; font-family: 'Arial'; font-size: 10pt;">№ п\п</td>
                 <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; text-align: center; font-family: 'Arial'; font-size: 10pt;">Прізвище, ім‘я учасника</td>
-                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; text-align: center; font-family: 'Arial'; font-size: 10pt;">Дата народження</td>
+                @if ($protocol->pol_rik)
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; text-align: center; font-family: 'Arial'; font-size: 10pt;">Дата народження</td>
+                @endif
                 {{-- <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; text-align: center; font-family: 'Arial'; font-size: 10pt;">Регіон</td> --}}
+                @if ($protocol->pol_com)
                 <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; text-align: center; font-family: 'Arial'; font-size: 10pt;">Клуб/Команда</td>
+                @endif
+                @if ($protocol->pol_tren)
                 <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; text-align: center; font-family: 'Arial'; font-size: 10pt;">Тренер</td>
+                @endif
                 <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; text-align: center; font-family: 'Arial'; font-size: 10pt;">Результат</td>
                 <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; text-align: center; font-family: 'Arial'; font-size: 10pt;">Місце</td>
+                @if ($protocol->pol_roz)
                 <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; text-align: center; font-family: 'Arial'; font-size: 10pt;">Кваліф.</td>
+                @endif
+                @if ($protocol->pol_roz_vik)
                 <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; text-align: center; font-family: 'Arial'; font-size: 10pt;">Вик. розр.</td>
-                
+                @endif
                 @if ($protocol->formula)
                 <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; text-align: center; font-family: 'Arial'; font-size: 10pt;">Очки</td>
                 @endif
@@ -218,14 +227,14 @@
             <tr style="height: 18px">
                 <td class="s0">{{$rezult->mistse}}</td>
                 <td class="s7">{{$rezult->name}}</td>
-                <td class="s0">{{$rezult->rik}}</td>
+                @if ($protocol->pol_rik)<td class="s0">{{$rezult->rik}}</td>@endif
                 {{-- <td class="s7"> </td> --}}
-                <td class="s7">{{$rezult->comanda}}</td>
-                <td class="s7">{{$rezult->trener}}</td>
+                @if ($protocol->pol_com)<td class="s7">{{$rezult->comanda}}</td>@endif
+                @if ($protocol->pol_tren)<td class="s7">{{$rezult->trener}}</td>@endif
                 <td class="s0">{{$rezult->timerez}}</td>
                 <td class="s0">{{ $rezult->mistse2}}</td>
-                <td class="s0">{{ $rezult->roz}}</td>
-                <td class="s0">{{ $rezult->vikroz}}</td>
+                @if ($protocol->pol_roz)<td class="s0">{{ $rezult->roz}}</td>@endif
+                @if ($protocol->pol_roz_vik)<td class="s0">{{ $rezult->vikroz}}</td>@endif
                 @if ($protocol->formula)
                     <td class="s0">{{ $rezult->ball}}</td>
                 @endif
