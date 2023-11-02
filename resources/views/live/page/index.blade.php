@@ -105,7 +105,7 @@
                                  @endif
                                  @if ($event->rez!==NULL)
                                  <a href="{{$event->rez}}"target="blanc" title="Резул ати"><i class="fas fa-th-list fa-1x"></i> </a>
-                                 @endif
+                                 @endif 
                                  @foreach ($event->registersetings as $registerseting)
                                  {{-- @if ()
                                      
