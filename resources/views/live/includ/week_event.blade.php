@@ -1,10 +1,10 @@
 @php
     $events = App\Http\Controllers\LiveRezultsController::week_event();
 @endphp
-<div class="card">
+<div class="card card-warning">
     <div class="card-header">
-        <h3 class="card-title">На цьому тиждні</h3>
-    </div>
+        <h3 class="card-title">Цього тижня</h3>
+    </div> 
     <!-- /.card-header -->
     <div class="card-body p-0">
         <ul class="products-list product-list-in-card pl-2 pr-2">
@@ -31,7 +31,7 @@
     </div>
     <!-- /.card-body -->
     <div class="card-footer text-center">
-        <a href="{{url('/livess')}}">Подивитись всі старти</a>
+        <a href="{{url('/livess')}}">Подивитись всі онлайни</a>
         
     </div>
     <!-- /.card-footer -->

@@ -461,6 +461,19 @@ hr {
     border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 
+.split {
+    /* margin: -1.6px; */
+    border: 0px solid rgba(0, 0, 0, 0.1);
+    width: 100%;
+}
+
+.split_td td {
+    padding: 0rem;
+    border: 0px solid #dee2e6;
+    /* border: 0px solid rgba(0, 0, 0, 0.1);
+    width: 100%; */
+}
+
 small,
 .small {
     font-size: 80%;
@@ -11004,6 +11017,7 @@ a.text-dark:focus {
     --light: #f8f9fa;
     --dark: #343a40;
 }
+
 
 /* .animation__shake {
     -webkit-animation: shake 1500ms;

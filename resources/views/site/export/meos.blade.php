@@ -1,6 +1,8 @@
 <table>
 	@foreach($registers as $people)
 
+	@if ($people->kk==458)
+		
 	
 
 	<tr>
@@ -52,6 +54,7 @@
 		<td></td>
 		<td>{{$people->dni}}</td>
 	</tr>
+	@endif
 
 	@endforeach
 </table>

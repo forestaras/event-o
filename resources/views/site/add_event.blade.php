@@ -44,6 +44,10 @@
             <label for="pwd">Дата закінчення:</label>
             <input type="date" name="datafinish" class="form-control" value="{{$dani->datafinish}}">
           </div>
+          {{-- <div class="form-group">
+            <label for="pwd">Спонсор:</label>
+            <input type="upload" name="sponsor" class="form-control" value="{{$dani->sponsor}}">
+          </div> --}}
 
           <div class="form-group">
             <label for="pwd">Локація*:</label>
