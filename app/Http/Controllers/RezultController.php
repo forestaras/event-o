@@ -12,6 +12,7 @@ use App\Models\Online;
 use App\Models\Peoples;
 
 use Illuminate\Http\Request;
+use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\DB;
 
 
@@ -557,7 +558,7 @@ class RezultController extends Controller
 			$athletes = Peoples::where('name', 'like', "%$query%")->get();
 		}
 		elseif (!$query) {
-			$athletes = Peoples::where('name', 'like', "6546465435646546")->get();
+			$athletes = Peoples::where('name', 'like', "%$query%")->get();
 		}
 
         
@@ -828,4 +829,6 @@ class RezultController extends Controller
 			return $bali;
 		}
 	}
+
+
 }

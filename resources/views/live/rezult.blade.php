@@ -18,35 +18,10 @@
     <div class="col-md-9">
         <!-- MAP & BOX PANE -->
         <div class="card card-success">
-            <div class="card-header">
-                <h2 class="card-title">{{ $eventseting->title }} <b>Результати <a
-                            href="{{ url('/event/' . $online->eventid) }}?g={{ $online->id }}">{{ $online->name }}
-                            @if (!$online->name)
-                                {{ $event->name }}
-                            @endif
-                        </a></b></h2>
-
-                <div class="card-tools">
-                    <button type="button" class="btn btn-tool">
-                        <a href="{{ url('/event/' . $online->eventid) }}?g={{ $online->id }}" title="Назад"><i
-                                class="fa fa-reply"></i></a>
-                    </button>
-                    @if ($online->split)
-                        <button type="button" class="btn btn-tool">
-                            <a href="{{ url('/livess/split/' . $event->cid) }}" title="Спліти"><i
-                                    class="fa fa-random"></i></a>
-                        </button>
-                    @endif
-                    <button type="button" class="btn btn-tool">
-                        <a href="#" onclick="parent.location.reload(); return false;" title="Оновити"><i
-                                class="fa fa-undo"></i></a>
-                    </button>
-
-
-                </div>
-            </div>
+            @include('live.includ.header_rez')
+            <br>
             {{-- <div class="col-12 col-sm-12"> --}}
-            <div class="card-body row">
+            {{-- <div class="card-body row">
                 @if ($_GET['sort'] == 'grup' or !$_GET['sort'])
                     <div class="col-md-6">
                         <button type="button" class="btn btn-primary btn-block disabled"><i class="fas fa-users"></i>
@@ -68,7 +43,8 @@
                     </div>
                 @endif
 
-            </div>
+            </div> --}}
+            @include('live.includ.header_sort')
 
             {{-- <div>
                     <button type="button" class="btn btn-block btn-success">Success</button>

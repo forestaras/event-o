@@ -6,90 +6,64 @@
     Онлайн центр
 @endsection
 @section('map_site')
-<li class="breadcrumb-item">
-    <a href="{{ url('/') }}">Головна</a>/
-    <a href="{{ url('/event/' . $eventseting->id) }}">{{ $eventseting->title }}</a>/
-    <a href="{{ url('/event/' . $online->eventid) }}?g={{ $online->id }}">{{ $online->name }}</a>/
-    Спліти
-</li>
+    <li class="breadcrumb-item">
+        <a href="{{ url('/') }}">Головна</a>/
+        <a href="{{ url('/event/' . $eventseting->id) }}">{{ $eventseting->title }}</a>/
+        <a href="{{ url('/event/' . $online->eventid) }}?g={{ $online->id }}">{{ $online->name }}</a>/
+        Спліти
+    </li>
 @endsection
 @if ($errors == 4 or $errors == 2 or $errors == 3)
     @section('content')
         <section class="content">
             @if ($errors == 3)
-            <div class="error-page">
-                <h2 class="headline text-danger">500</h2>
+                <div class="error-page">
+                    <h2 class="headline text-danger">500</h2>
 
-                <div class="error-content">
-                    <h3><i class="fas fa-exclamation-triangle text-danger"></i> УПС.пока нонлайн не був запуущений </h3>
+                    <div class="error-content">
+                        <h3><i class="fas fa-exclamation-triangle text-danger"></i> УПС.пока нонлайн не був запуущений </h3>
 
-                    <p>
-                        Онлайн спліти не були запущені.
-                        <a href="{{ url('/livess/show/' . $event->cid) }}">Вернутися назад.</a> 
-                        <a href=" ">Оновити сторінку.</a> 
-                    </p>
+                        <p>
+                            Онлайн спліти не були запущені.
+                            <a href="{{ url('/livess/show/' . $event->cid) }}">Вернутися назад.</a>
+                            <a href=" ">Оновити сторінку.</a>
+                        </p>
 
 
+                    </div>
                 </div>
-            </div>
             @endif
             @if ($errors == 2)
-            <div class="error-page">
-                <h2 class="headline text-danger">!!!</h2>
+                <div class="error-page">
+                    <h2 class="headline text-danger">!!!</h2>
 
-                <div class="error-content">
-                    <h3><i class="fas fa-exclamation-triangle text-danger"></i> УПС.Пока не фінішувало жодного учасника </h3>
+                    <div class="error-content">
+                        <h3><i class="fas fa-exclamation-triangle text-danger"></i> УПС.Пока не фінішувало жодного учасника
+                        </h3>
 
-                    <p>
-                        
-                        Пока не фінішувало жодного учасника або організатори не включили онлайн. <a href="{{ url('/livess/show/' . $event->cid) }}">Вернутися назад.</a> 
-                        <a href=" ">Оновити сторінку.</a> 
-                    </p>
+                        <p>
+
+                            Пока не фінішувало жодного учасника або організатори не включили онлайн. <a
+                                href="{{ url('/livess/show/' . $event->cid) }}">Вернутися назад.</a>
+                            <a href=" ">Оновити сторінку.</a>
+                        </p>
 
 
+                    </div>
                 </div>
-            </div>
             @endif
 
-            
+
             <!-- /.error-page -->
 
         </section>
-       
     @endsection
 @else
     @section('content')
         <div class="col-md-12">
             <!-- MAP & BOX PANE -->
             <div class="card card-success">
-                <div class="card-header">
-                    <h2 class="card-title">{{ $eventseting->title }} <b>Cпліти <a
-                        href="{{ url('/event/' . $online->eventid) }}?g={{ $online->id }}">{{ $online->name }}
-                        @if (!$online->name)
-                            {{ $event->name }}
-                        @endif
-                    </a></b></h2>
-
-                    <div class="card-tools">
-                        <button type="button" class="btn btn-tool">
-                            <a href="{{ url('/event/' . $online->eventid) }}?g={{ $online->id }}" title="Назад"><i
-                                    class="fa fa-reply"></i></a>
-                        </button>
-                        <button type="button" class="btn btn-tool">
-                            <a href="{{ url('/livess/rezult/' . $event->cid) }}" title="Результати"><i
-                                    class="fa fa-list"></i></a>
-                        </button>
-                        <button type="button" class="btn btn-tool">
-                            <a href="#" onclick="parent.location.reload(); return false;" title="Оновити"><i
-                                class="fa fa-undo"></i></a>
-                        </button>
-
-
-
-
-                       
-                    </div>
-                </div>
+                @include('live.includ.header_rez')
                 <style>
                     #color1 {
                         background-color: #ea7a1f;
