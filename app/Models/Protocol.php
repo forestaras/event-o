@@ -27,8 +27,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property $created_at
  * @property $updated_at
  * @property $formula
- * @property $max
- * @property $dani
+
  * 
  *
  * @package App
@@ -46,8 +45,8 @@ class Protocol extends Model
      * Attributes that should be mass-assignable.
      *
      * @var array
-     */
-    protected $fillable = ['col1','col2','col3','name1','name2','name3','namedist','inf_data','inf_local','nd','gse','gsu','con','cld','cldr','prot','formula','max','dani'];
+     */ 
+    protected $fillable = ['col1','col2','col3','name1','name2','name3','namedist','inf_data','inf_local','nd','gse','gsu','con','cld','cldr','prot','formula','max','pol_roz_vik','pol_roz','pol_com','pol_tren','pol_rik'];
 
 
 

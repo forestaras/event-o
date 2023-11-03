@@ -31,7 +31,7 @@ class ProtocolController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create() 
     {
         $protocol = new Protocol();
         return view('protocol.create', compact('protocol'));
@@ -408,7 +408,10 @@ class ProtocolController extends Controller
             $max = 1;
             foreach ($all_rezult4 as $rez) {
                 if ($rez->mistse == 9999999) {
-                    $rez->mistse == $rez->status;
+                    // $rez->mistse == $rez->status;
+                    $rez->mistse = $x;
+                    $x = $x + 1;
+                    
                 }
                 if ($grup->grup == $rez->grup and $rez->rez) {
                     $rez->mistse = $x;
@@ -427,6 +430,8 @@ class ProtocolController extends Controller
                         $y = $y + 1;
                     } else $rez->mistse2 = " ";
                 } elseif ($grup->grup == $rez->grup and $rez->statuss == 5) {
+                    // $y = $y + 1;
+
                     $rez->mistse2 = " ";
                     $rez->vikroz = " ";
                 }
@@ -487,6 +492,14 @@ class ProtocolController extends Controller
 
         return redirect()->route('protocols.index')
             ->with('success', 'Protocol deleted successfully');
+    }
+
+
+    public function export()
+    {
+        
+        // return view('protocol.export');
+        return response()->view('protocol.export')->header('Content-Type', 'text/xml');
     }
     ////////////////////////
 

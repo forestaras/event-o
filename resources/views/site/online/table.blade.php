@@ -11,7 +11,9 @@
           <div class="row content">
             <div class="col-md-6">
               <a href="?yerstart=2020">@if($_GET['yerastart']=='2020')<b>@endif 2020</b></a>|
-              <a href="?yerastart=2021">@if($_GET['yerastart']=='2021')<b>@endif 2021</b></a></div>
+              <a href="?yerstart=2021">@if($_GET['yerastart']=='2021')<b>@endif 2021</b></a>|
+              <a href="?yerstart=2022">@if($_GET['yerastart']=='2022')<b>@endif 2022</b></a>|
+              <a href="?yerastart=2023">@if($_GET['yerastart']=='2023')<b>@endif 2023</b></a></div>
             <div class="col-md-6">
               <a href="?yerstart={{$_GET['yerstart']}}&datastart=01">@if($_GET['datastart']=='01')<b>@endif січ</b></a>|
               <a href="?yerstart={{$_GET['yerstart']}}&datastart=02">@if($_GET['datastart']=='02')<b>@endif лют</b></a>|

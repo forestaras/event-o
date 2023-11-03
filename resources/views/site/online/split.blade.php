@@ -82,6 +82,7 @@
             <abbsss id="color{{$split['count_cp']}}"title="{{$split['time_vidst_rt_peregon']}}">{{$split['time_peregon']}}({{$split['count_cp']}})</abbsss><br>
             
           </td>
+          
 
             @endforeach
             <td>{{$people['finish']}}<br>

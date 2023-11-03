@@ -17,6 +17,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property $rt
  * @property $tstat
  * @property $it
+ * @property $si
  *
  * @package App
  * @mixin \Illuminate\Database\Eloquent\Builder
@@ -34,6 +35,7 @@ class Mopcompetitor extends Model
 		'rt' => 'required',
 		'tstat' => 'required',
 		'it' => 'required',
+		'si' => 'required',
     ];
 
     protected $perPage = 20;
@@ -43,7 +45,7 @@ class Mopcompetitor extends Model
      *
      * @var array
      */
-    protected $fillable = ['cid','name','org','cls','stat','st','rt','tstat','it'];
+    protected $fillable = ['cid','name','org','cls','stat','st','rt','tstat','it','si'];
     protected $table=('mopcompetitor');
 
     public function org($cid)

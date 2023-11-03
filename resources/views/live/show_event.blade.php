@@ -1,27 +1,36 @@
 @extends('live.includ.index')
+@section('title') 
+---{{ $event->name }}---
+@endsection
+@section('page')
+    Онлайн центр
+@endsection
 @section('map_site')
-<li class="breadcrumb-item"><a href="{{url('/livess/')}}">головна</a>/{{ $event->name }}</li>
+<li class="breadcrumb-item"><a href="{{url('/livess/')}}">Головна</a>/{{ $event->name }}</li>
 @endsection
 @section('content')
     {{-- {{$event->live2}}
 {{$event->timestamp}} --}}
     <div class="col-md-8">
         <!-- MAP & BOX PANE -->
-        <div class="card">
+        <div class="card card-success">
             <div class="card-header">
 
-                <h3 class="card-title">LIVE</h3>
+                <h4 class="card-title"><b>{{ $event->name }}</b></h4>
 
                 <div class="card-tools">
+                    <button type="button" class="btn btn-tool">
+                        <a href="{{url('/livess')}}" title="Назад"><i class="fa fa-reply"></i></a>                      
+                    </button>
                     <button type="button" class="btn btn-tool" data-card-widget="collapse">
                         <i class="fas fa-minus"></i>
                     </button>
-                    <button type="button" class="btn btn-tool" data-card-widget="remove">
+                    {{-- <button type="button" class="btn btn-tool" data-card-widget="remove">
                         <i class="fas fa-times"></i>
                     </button>
                     <button type="button" class="btn btn-tool" data-card-widget="maximize">
                         <i class="fas fa-expand"></i>
-                    </button>
+                    </button> --}}
                 </div>
             </div>
             <!-- /.card-header -->
@@ -33,10 +42,23 @@
 
 
 
-                        <h3 class="my-3">{{ $event->name }}</h3>
-                        <h3 class="my-3">До початку змагань залишилось 59:25:15</h3>
+                        {{-- <h3 class="my-3">{{ $event->name }}</h3> --}}
+                        <p class="my-3">
+                            {{-- Назва: {{$event->name}}<br> --}}
+                            Дата: <b>{{$event->date}}</b><br>
+                            @if ($event->organizer)
+                                Організатор: <b>{{$event->organizer}}</b><br>
+                            @endif
+                            @if ($event->homepage)
+                            <a href=" {{$event->homepage}}">сторінка змагань</a>
+                            
+                            @endif
+                            Учасників: <span class="badge bg-warning"><b>{{$event->count_all}}</b></span><br>
+                            Команд: <span class="badge bg-warning"><b>{{$event->club}}</b></span><br>
 
-                        <div class="mt-4">
+                             {{-- Організація: {{$event->organizer}}<br> --}}
+
+                        {{-- <div class="mt-4">
                             @if ($event->live == 'ОНЛАЙН')
                                 <a href="">
                                     <div class="btn btn-primary btn-lg btn-flat">
@@ -63,7 +85,7 @@
                                     </div>
                                 </a>
                             @endif
-                        </div>
+                        </div> --}}
                         {{-- <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua
                             butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terr.</p>
 
@@ -178,86 +200,28 @@
             <!-- /.card-body -->
         </div>
         <div class="row">
-            @include('live.show_widget.widget_rezult')
-            @include('live.show_widget.widget_split')
-            @include('live.show_widget.widget_comand')
-            @include('live.show_widget.widget_download')
+            @if ($event->seting->rezult )
+              @include('live.show_widget.widget_rezult')  
+            @endif
+            @if ($event->seting->split)
+             @include('live.show_widget.widget_split')
+            @endif
 
-            <div class="col-md-6">
-                <!-- USERS LIST -->
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">
-                            <font style="vertical-align: inherit;">
-                                <font style="vertical-align: inherit;">Спліти</font>
-                            </font>
-                        </h3>
+            @if ($event->seting->comandni and $event->com_rez==1)
+             @include('live.show_widget.widget_comand')
+            @endif
 
-                        <div class="card-tools">
-                            <span class="badge badge-danger">
-                                <font style="vertical-align: inherit;">
-                                    <font style="vertical-align: inherit;">9 Груп</font>
-                                </font>
-                            </span>
-                            <button type="button" class="btn btn-tool" data-card-widget="card-refresh" data-source="/" data-source-selector="#card-refresh-content">
-                                <i class="fas fa-sync-alt"></i>
-                              </button>
-                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                                <i class="fas fa-minus"></i>
-                            </button>
-                            <button type="button" class="btn btn-tool" data-card-widget="remove">
-                                <i class="fas fa-times"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <!-- /.card-header -->
+            @if ($event->seting->split)
+             @include('live.show_widget.widget_start_cloks')
+            @endif
+            
+            
+            {{-- @include('live.show_widget.widget_download') --}}
 
-                    <div class="card-body">
-                        <!-- Conversations are loaded here -->
-                        <div>
-                            <!-- Message. Default to the left -->
-                            <div class="direct-chat-msg">
-                                
-                                    <span class="direct-chat-name float-left">
-                                        <font style="vertical-align: inherit;">
-                                            <font style="vertical-align: inherit;">Ж-22222 | Ж-16 | Ж-14 | Ж-12 Ч-21 Ч-18</font>
-                                        </font>
-                                    </span>
-                                    {{-- <span class="direct-chat-timestamp float-right">
-                                        <font style="vertical-align: inherit;">
-                                            <font style="vertical-align: inherit;">23 січня 14:00</font>
-                                        </font>
-                                    </span> --}}
-                                
-
-                                <!-- /.direct-chat-text -->
-                            </div>
-                            <!-- /.direct-chat-msg -->
-
-                            <!-- Message to the right -->
-                        </div>
-                        <!--/.direct-chat-messages-->
-
-                        <!-- Contacts are loaded here -->
-
-                        <!-- /.direct-chat-pane -->
-                    </div>
-
-                    <!-- /.card-body -->
-                    <div class="card-footer text-center">
-                        <a href="javascript:">
-                            <font style="vertical-align: inherit;">
-                                <font style="vertical-align: inherit;">Переглянути всіх користувачів</font>
-                            </font>
-                        </a>
-                    </div>
-                    <!-- /.card-footer -->
-                </div>
-                <!--/.card -->
-            </div>
+            
             <!-- /.col -->
 
-            <div class="col-md-6">
+            {{-- <div class="col-md-6">
                 <!-- USERS LIST -->
                 <div class="card">
                     <div class="card-header">
@@ -348,9 +312,9 @@
                     <!-- /.card-footer -->
                 </div>
                 <!--/.card -->
-            </div>
+            </div> --}}
 
-            <div class="col-md-6">
+            {{-- <div class="col-md-6">
                 <!-- USERS LIST -->
                 <div class="card">
                     <div class="card-header">
@@ -390,7 +354,7 @@
                     <!-- /.card-footer -->
                 </div>
                 <!--/.card -->
-            </div>
+            </div> --}}
             <!-- /.col -->
         </div>
 

@@ -7,8 +7,8 @@ use DB;
 use CRUDBooster;
 use Cookie;
 
-class AdminEvent19Controller extends \crocodicstudio\crudbooster\controllers\CBController {
-
+class AdminEvent19Controller extends \crocodicstudio\crudbooster\controllers\CBController { 
+ 
 	public function cbInit() {
 
 			# START CONFIGURATION DO NOT REMOVE THIS LINE
@@ -18,7 +18,7 @@ class AdminEvent19Controller extends \crocodicstudio\crudbooster\controllers\CBC
 		$this->global_privilege = false;
 		$this->button_table_action = true;
 		$this->button_bulk_action = false;
-		$this->button_action_style = "button_icon";
+		$this->button_action_style = "button_icon"; 
 		$this->button_add = false;
 		$this->button_edit = false;
 		$this->button_delete = true;
@@ -54,7 +54,7 @@ class AdminEvent19Controller extends \crocodicstudio\crudbooster\controllers\CBC
 		// $this->col[] = ["label"=>"Лого","name"=>"logo","image"=>true];
 			# END COLUMNS DO NOT REMOVE THIS LINE
 
-			# START FORM DO NOT REMOVE THIS LINE
+			# START FORM DO NOT REMOVE THIS LINE  
 		$this->form = [];
 		$this->form[] = ['label'=>'Назва','name'=>'title','type'=>'text','validation'=>'required|string|min:3','width'=>'col-sm-10'];
 		$this->form[] = ['label'=>'Локація','name'=>'location','type'=>'text','validation'=>'required|string|min:3|max:70','width'=>'col-sm-10'];

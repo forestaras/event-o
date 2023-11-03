@@ -175,10 +175,16 @@
                                     <tr>
                                         <td>{{ $online->name }}</td>
                                         <td>{{ $online->datestart }}</td>
-                                        <td>http://evento.zzz.com.ua/public/live/update.php</td>
+                                        <td>https://event-o.net/public/live/update.php</td>
                                         <td>{{ $online->id }}</td>
                                         <td>{{ $online->cod }}</td>
-                                        <td><a class="btn btn-warning btn-xs"
+                                        <td><a target="_blank" class="btn btn-primary btn-xs"
+                                            href="/livess/start_cloks/{{ $online->id }}">
+                                            <i class="fa fa-pencil-square-o"></i> Стартовий годинник</a>
+                                            <a target="_blank" class="btn btn-primary btn-xs"
+                                            href="/admin/telegram/{{ $online->id }}/{{ $online->cod }}/60/stop">
+                                            <i class="fa fa-pencil-square-o"></i> Телеграм_Бот</a>
+                                            <a class="btn btn-warning btn-xs"
                                                 href="/admin/online/edit/{{ $online->id }}">
                                                 <i class="fa fa-pencil-square-o"></i> Редагувати</a>
                                             <a class="btn btn-danger btn-xs"
