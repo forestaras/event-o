@@ -13,12 +13,7 @@
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-    <div class="collapse navbar-collapse" id="navbarText">
-<<<<<<< HEAD
-        {{-- <ul class="navbar-nav mr-auto"> --}}
-=======
-        {{-- <ul class="navbar-nav mr-auto"> --}}  а
->>>>>>> 9d8e2279e938752c1353feca92b067f07dab3e66
+    <div class="collapse navbar-collapse" id="navbarText">   dfff
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
         <!-- Navbar Search -->
