@@ -33,7 +33,7 @@
             @if ($_GET['sort'] != 'sah' and Route::is('start'))
                 <a class="dropdown-item" href="?sort=sah#">Шахматка</a>
             @endif
-
+  
             @if ($_GET['sort'] != 'obl' and Route::is('register'))
                 <a class="dropdown-item" href="?sort=obl#">Область</a>
             @endif
