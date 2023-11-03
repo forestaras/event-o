@@ -14,7 +14,11 @@
         <span class="navbar-toggler-icon"></span>
       </button>
     <div class="collapse navbar-collapse" id="navbarText">
+<<<<<<< HEAD
         {{-- <ul class="navbar-nav mr-auto"> --}}
+=======
+        {{-- <ul class="navbar-nav mr-auto"> --}}  а
+>>>>>>> 9d8e2279e938752c1353feca92b067f07dab3e66
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
         <!-- Navbar Search -->
