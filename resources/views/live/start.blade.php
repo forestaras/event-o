@@ -18,100 +18,10 @@
     <div class="col-md-9">
         <!-- MAP & BOX PANE -->
         <div class="card card-success">
-            <div class="card-header">
-                <h2 class="card-title">{{ $eventseting->title }} <b>Стартові <a
-                            href="{{ url('/event/' . $online->eventid) }}?g={{ $online->id }}">{{ $online->name }}
-                            @if (!$online->name)
-                                {{ $event->name }}
-                            @endif
-                        </a></b></h2>
+            @include('live.includ.header_rez')
+            <br>
 
-                <div class="card-tools">
-                    <button type="button" class="btn btn-tool">
-                        <a href="{{ url('/event/' . $online->eventid) }}?g={{ $online->id }}" title="Назад"><i
-                                class="fa fa-reply"></i></a>
-                    </button>
-                    @if ($online->split)
-                        <button type="button" class="btn btn-tool">
-                            <a href="{{ url('/livess/split/' . $event->cid) }}" title="Спліти"><i
-                                    class="fa fa-random"></i></a>
-                        </button>
-                    @endif
-                    <button type="button" class="btn btn-tool">
-                        <a href="#" onclick="parent.location.reload(); return false;" title="Оновити"><i
-                                class="fa fa-undo"></i></a>
-                    </button>
-
-
-                </div>
-            </div>
-            {{-- <div class="col-12 col-sm-12"> --}}
-            <div class="card-body row">
-                @if ($_GET['sort'] == 'grup' or !$_GET['sort'])
-                    <div class="col-md-6">
-                        <button type="button" class="btn btn-primary btn-block disabled"><i class="fas fa-users"></i>
-                            Групи</button>
-                    </div>
-                    <div class="col-md-6">
-                        <a href="?sort=club"><button type="button" class="btn btn-outline-primary btn-block"><i
-                                    class="fas fa-users"></i> Клуби</button></a>
-                    </div>
-                @endif
-                @if ($_GET['sort'] == 'club')
-                    <div class="col-md-6">
-                        <a href="?sort=grup"><button type="button" class="btn btn-outline-primary btn-block"><i
-                                    class="fas fa-users"></i> Групи</button></a>
-                    </div>
-                    <div class="col-md-6">
-                        <button type="button" class="btn btn-primary btn-block disabled"><i class="fas fa-users"></i>
-                            Клуби</button>
-                    </div>
-                @endif
-
-            </div>
-            <div class="col-12 col-sm-12 col-md-12">
-                <div class=" float-left btn-group ">
-                    @if ($_GET['sort'] == 'club')
-                        <h3>Коанди</h3>
-                    @endif
-                    @if ($_GET['sort'] == 'obl')
-                        <h3>Область</h3>
-                    @endif
-                    @if ($_GET['sort'] == 'sah')
-                        <h3>Шахматка</h3>
-                    @endif
-                    @if ($_GET['sort'] == 'grup' or !$_GET['sort'])
-                        <h3>Групи</h3>
-                    @endif+
-                </div>
-
-                <div class=" float-right btn-group ">
-                    <button type="button" class="btn btn-warning">Сортувати</button>
-                    <button type="button" class="btn btn-warning dropdown-toggle dropdown-icon" data-toggle="dropdown"
-                        aria-expanded="false">
-                        <span class="sr-only">Toggle Dropdown</span>
-                    </button>
-                    <div class="dropdown-menu" role="menu" style="">
-                        @if ($_GET['sort'] != 'grup' or !$_GET['sort'])
-                        <a class="dropdown-item" href="?sort=grup#">Групи</a>
-                        @endif
-
-                        @if ($_GET['sort'] != 'club')
-                            <a class="dropdown-item" href="?sort=club#">Коанди</a>
-                        @endif
-                        {{-- @if ($_GET['sort'] != 'obl')
-                            <a class="dropdown-item" href="?sort=obl#">Область</a>
-                        @endif --}}
-
-                        @if ($_GET['sort'] != 'sah')
-                            <a class="dropdown-item" href="?sort=sah#">Шахматка</a>
-                        @endif
-
-                        <div class="dropdown-divider"></div>
-                        {{-- <a class="dropdown-item" href="#">Separated link</a> --}}
-                    </div>
-                </div>
-            </div>
+            @include('live.includ.header_sort')
 
             {{-- <div>
                     <button type="button" class="btn btn-block btn-success">Success</button>
