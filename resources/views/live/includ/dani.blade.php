@@ -1,9 +1,8 @@
-
 @php
     $dani = App\Http\Controllers\LiveRezultsController::dani();
 @endphp
-<div class="row d-xs-none" >
-    <div class="col-xs-3 col-sm-6 col-md-3">
+<div class="row">
+    <div class="col-3 col-sm-6 col-md-3">
 
         <div class="info-box">
             <span class="info-box-icon bg-info elevation-1"><i class="fas fa-compass"></i></span>
@@ -20,7 +19,7 @@
         <!-- /.info-box -->
     </div>
     <!-- /.col -->
-    <div class="col-xs-3 col-sm-6 col-md-3">
+    <div class="col-3 col-sm-6 col-md-3">
         <div class="info-box mb-3">
             <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-calendar"></i></span>
 
@@ -39,7 +38,7 @@
     <!-- fix for small devices only -->
     <div class="clearfix hidden-md-up"></div>
 
-    <div class="col-xs-3 col-sm-6 col-md-3">
+    <div class="col-3 col-sm-6 col-md-3">
 
         <div class="info-box mb-3">
             <span class="info-box-icon bg-success elevation-1"><i class="fas fa-braille"></i></span>
@@ -53,7 +52,7 @@
         <!-- /.info-box -->
     </div>
     <!-- /.col -->
-    <div class="col-xs-3 col-sm-6 col-md-3">
+    <div class="col-3 col-sm-6 col-md-3">
 
         <div class="info-box mb-3">
             <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
@@ -67,4 +66,5 @@
         </div>
         <!-- /.info-box -->
     </div>
-    <!-- /.col -->
+</div>
+<!-- /.col -->
