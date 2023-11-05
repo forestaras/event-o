@@ -81,7 +81,7 @@
                                     <th>Дата</th>
                                     <th>Назва</th>
                                     <div><th>Локація</th>
-                                    <th class="d-md-none d-lg-block">Організатор</th></div>          
+                                    <th class="d-none d-sm-block">Організатор</th></div>          
                                     <th>Область</th>
                                     <th>Більше</th>
                                   </tr>
@@ -94,7 +94,7 @@
                                 
                                 <td><a href="/event/{{$event->id}}">{{$event->title}}</a></td>      
                                 <td>{{$event->location}}</td>
-                                <td class="d-md-none d-lg-block">{{$event->org}}</td>
+                                <td class="d-none d-sm-block">{{$event->org}}</td>
                                 <td class="text-center">{{$event->obltitle}} <img src="/{{$event->logoobl}}"   height="15px"></td>
                                 <td>
                                     @if ($event->bul!==NULL)
