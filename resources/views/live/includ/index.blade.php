@@ -38,7 +38,7 @@
             <section class="content">
 
                 @if (Route::current()->getName() == 'live' or Route::current()->getName() == 'event')
-                    <div class="container-fluid d-none d-md-block">
+                    <div class="container-fluid d-none d-sm-block">
                         @include('live.includ.dani')
                     </div>
                 @endif
@@ -54,8 +54,15 @@
                             @yield('content')
                             <div class="col-md-3">
                                 @if (!str_contains($_SERVER['REQUEST_URI'], 'split'))
-                                    @include('live.includ.week_event')
-                                    @include('live.includ.reclam')
+                                    <div class="col-6">
+                                        @include('live.includ.week_event')
+                                    </div>
+                                    <div class="col-6">
+                                        @include('live.includ.reclam')
+                                    </div>
+                                    
+
+                                    
                                     @include('live.show_widget.widget_partneri')
                                 @endif
                             </div>
