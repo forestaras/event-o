@@ -52,7 +52,7 @@
                     <div class="container-fluid">
                         <div class="row">
                             @yield('content')
-                            <div class="col-md-3">
+                            <div class="col-md-3 row">
                                 @if (!str_contains($_SERVER['REQUEST_URI'], 'split'))
                                     <div class="col-6">
                                         @include('live.includ.week_event')
