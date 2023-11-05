@@ -18,7 +18,7 @@
     <ul class="navbar-nav ml-auto ">
         <!-- Navbar Search -->   
         @foreach ($seting['menus'] as $menu)
-            <li class="nav-item d-none d-sm-inline-block float-right dropdown">
+        <li class="nav-item dropdown">
                 <b><a class="nav-link" href="{{ $menu->path }}" class="nav-link active">{{ $menu->name }}</a></b>
             </li>
         @endforeach
