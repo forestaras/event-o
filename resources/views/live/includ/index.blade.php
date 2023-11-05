@@ -36,11 +36,11 @@
                 </div>
             </div>
             <section class="content">
-                {{-- <div class="container-fluid"> --}}
+                <div class="container-fluid">
                     @if (Route::current()->getName() == 'live' or Route::current()->getName() == 'event')
                         @include('live.includ.dani')
                     @endif
-                {{-- </div> --}}
+                </div>
                 <div class="row">
                     <div class="clearfix hidden-md-up"></div>
                     <div class="col-12 col-sm-12 col-md-4"></div>

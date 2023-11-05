@@ -52,7 +52,7 @@
             @endif
         </li>
         @if (!CRUDBooster::myName())
-        <li class="nav-item d-none d-sm-inline-block float-right">
+        <li class="nav-item dropdown">
             <b><a class="nav-link" href="{{ route('getLogin') }}" class="nav-link active">Увійти</a></b>
         </li>
         @endif
