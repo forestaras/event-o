@@ -13,7 +13,7 @@
                 {!! $reclam->text !!}
 
 
-                <div class="col-sm-6 col-sm-push-6">
+                <div class="col-6 col-sm-6 col-sm-push-6">
                     <a href="{{$reclam->url}}"><img src="{{ asset($reclam->img) }}" class="img-fluid" alt=""></a>
                 </div>
             @endforeach
