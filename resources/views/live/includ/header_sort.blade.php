@@ -37,10 +37,6 @@
             @if ($_GET['sort'] != 'obl' and Route::is('register'))
                 <a class="dropdown-item" href="?sort=obl#">Область</a>
             @endif
-
-
-            {{-- <div class="dropdown-divider"></div> --}}
-            {{-- <a class="dropdown-item" href="#">Separated link</a> --}}
         </div>
     </div>
 </div>
