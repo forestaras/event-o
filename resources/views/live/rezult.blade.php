@@ -93,12 +93,12 @@
                                     <table class="table table-striped table-bordered m-0">
                                         <thead class="thead-dark">
                                             <tr>
-                                                <th>Місце</th>
+                                                <th>#</th>
                                                 <th>Імя</th>
-                                                <th>Команда,клуб</th>
+                                                <th>Команда,клуб</th> 
                                                 <th>Старт</th>
                                                 <th>Рез</th>
-                                                <th>Відставання</th>
+                                                <th>Відс</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -117,7 +117,9 @@
                                                     <td><a
                                                             href="/livess/atlet/{{ $people['name'] }}">{{ $people['name'] }}</a>
                                                     </td>
-                                                    <th><a href="?sort=club#{{ $people['org'] }}">{{ $people['org'] }}</a>
+                                                    <th class="d-sm-none"><a  href="?sort=club#{{ $people['org'] }}">{{ $people['club'] }}</a>
+                                                    </th>
+                                                    <th class="d-none d-sm-table-cell"><a  href="?sort=club#{{ $people['org'] }}">{{ $people['org'] }}</a>
                                                     </th>
                                                     <td>{{ $people['start'] }}</td>
                                                     <td>{{ $people['rez_stat'] }}</td>
@@ -168,12 +170,12 @@
                                     <table class="table table-striped table-bordered m-0">
                                         <thead class="thead-dark">
                                             <tr>
-                                                <th>Місце</th>
+                                                <th>#</th>
                                                 <th>Імя</th>
                                                 <th>Група</th>
                                                 <th>Старт</th>
                                                 <th>Рез</th>
-                                                <th>Відставання</th>
+                                                <th>Відс</th>
                                             </tr>
                                         </thead>
                                         <tbody>

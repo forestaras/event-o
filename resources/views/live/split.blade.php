@@ -99,10 +99,10 @@
 
 
 
-                <table class="table table-striped table-bordered split m-0 p-0" id="kk">
+                <table class="table table-striped table-bordered split m-0 p-0" id="kk" id="myTable">
                     <thead class="thead-dark">
                         <tr>
-                            <th>Місце </th>
+                            <th >Місце </th>
                             <th>Імя</td>
                             <th>Результат</th>
                             @foreach ($mopkp as $kp)
@@ -188,6 +188,7 @@
                     </tbody>
 
                 </table>
+                
 
                 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
                 <div>
@@ -270,5 +271,12 @@
 
             </div>
         </div>
+        <script>
+            $(document).ready(function(){
+              $("#myTable tbody tr").click(function(){
+                $(this).toggleClass('table-active').siblings().removeClass('table-active');
+              });
+            });
+          </script>
     @endsection
 @endif

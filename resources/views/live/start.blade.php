@@ -94,8 +94,11 @@
                                                         <td><a
                                                                 href="/livess/atlet/{{ $people['name'] }}">{{ $people->name }}</a>
                                                         </td>
-                                                        <th><a
-                                                                href="?sort=club#{{ $people['org'] }}">{{ $people->org }}</a>
+                                                        <th class="d-sm-none"><a
+                                                            href="?sort=club#{{ $people->org }}">{{ $people->club }}</a>
+                                                    </th>
+                                                        <th class="d-none d-sm-table-cell"><a
+                                                                href="?sort=club#{{ $people->org }}">{{ $people->org }}</a>
                                                         </th>
                                                         <td>{{ $people->si }}</td>
 

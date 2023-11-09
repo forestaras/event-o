@@ -54,10 +54,10 @@
                             @yield('content')
                             <div class="col-md-3 row">
                                 @if (!str_contains($_SERVER['REQUEST_URI'], 'split'))
-                                    <div class="col-6">
+                                    <div class="col-6 col-md-12">
                                         @include('live.includ.week_event')
                                     </div>
-                                    <div class="col-6">
+                                    <div class="col-6 col-md-12" >
                                         @include('live.includ.reclam')
                                     </div>
                                     

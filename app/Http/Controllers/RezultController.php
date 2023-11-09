@@ -186,6 +186,7 @@ class RezultController extends Controller
 				'name' => $people->name,
 				'cls' => self::grupsearh($grups, $people),
 				'org' => self::clubsearh($clubs, $people),
+				'club' => mb_substr(self::clubsearh($clubs, $people), 0, 10, 'UTF-8') . '...',
 				'status' => self::statussearh($people),
 				'stat' => $people->stat,
 				'rt' => $people->rt,
@@ -235,6 +236,7 @@ class RezultController extends Controller
 			$people->cls = self::grupsearh($grups, $people);
 			$people->orgid = $people->org;
 			$people->org = self::clubsearh($clubs, $people);
+			$people->club = mb_substr($people->org, 0, 10, 'UTF-8') . '...';
 			$people->status = self::statussearh($people);
 			$people->stat = $people->stat;
 			$people->si = $people->si;
