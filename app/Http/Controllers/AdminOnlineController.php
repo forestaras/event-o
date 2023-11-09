@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
+use App\Models\Online;
 use Session;
 
 use DB;
@@ -33,15 +34,19 @@ class AdminOnlineController extends \crocodicstudio\crudbooster\controllers\CBCo
 		$this->table = "online";
 		# END CONFIGURATION DO NOT REMOVE THIS LINE
 
-		# START COLUMNS DO NOT REMOVE THIS LINE
-		$this->col = [];
-		$this->col[] = ["label" => "Eventid", "name" => "eventid"];
-		$this->col[] = ["label" => "Userid", "name" => "userid"];
-		$this->col[] = ["label" => "Name", "name" => "name"];
-		$this->col[] = ["label" => "Starovi", "name" => "starovi"];
-		$this->col[] = ["label" => "Comandni", "name" => "comandni"];
-		$this->col[] = ["label" => "Rezult", "name" => "rezult"];
-		# END COLUMNS DO NOT REMOVE THIS LINE
+			# START COLUMNS DO NOT REMOVE THIS LINE
+			$this->col = [];
+			$this->col[] = ["label"=>"Id онлайну","name"=>"eventid"];
+			$this->col[] = ["label"=>"Пароль для meos","name"=>"cod"];
+			$this->col[] = ["label"=>"Створено","name"=>"userid","join"=>"cms_users,name"];
+			$this->col[] = ["label"=>"Назва події","name"=>"name"];
+			$this->col[] = ["label"=>"Назва в meos","name"=>"id","join"=>"mopcompetition,name"];
+			$this->col[] = ["label"=>"Приєднано до події","name"=>"eventid","join"=>"event,title"];
+			$this->col[] = ["label"=>"Стартові","name"=>"starovi"];
+			$this->col[] = ["label"=>"Командні","name"=>"comandni"];
+			$this->col[] = ["label"=>"Результати","name"=>"rezult"];
+			$this->col[] = ["label"=>"Спліти","name"=>"split"];
+			# END COLUMNS DO NOT REMOVE THIS LINE
 
 			# START FORM DO NOT REMOVE THIS LINE
 			$this->form = [];
@@ -175,6 +180,8 @@ class AdminOnlineController extends \crocodicstudio\crudbooster\controllers\CBCo
 	        |
 	        */
 		$this->index_statistic = array();
+		$this->index_statistic[] = ['label'=>'Ваші події','count'=>Online::where('userid', CRUDBooster::myId())->count(),'icon'=>'fa fa-check','color'=>'success'];
+
 
 
 
@@ -273,9 +280,9 @@ class AdminOnlineController extends \crocodicstudio\crudbooster\controllers\CBCo
 	    */
 	public function hook_query_index(&$query)
 	{
-		//Your code here
+		$query->where('online.userid',CRUDBooster::myId())->orWhere('event.redactorid',CRUDBooster::myId());
 
-	}
+	} 
 
 	/*
 	    | ---------------------------------------------------------------------- 

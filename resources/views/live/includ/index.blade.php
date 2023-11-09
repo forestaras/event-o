@@ -48,7 +48,7 @@
                     <div class="col-12 col-sm-12 col-md-4"></div>
                 </div>
 
-                <section class="content">
+                <section class="content"> 
                     <div class="container-fluid">
                         <div class="row">
                             @yield('content')
@@ -57,14 +57,13 @@
                                     <div class="col-6 col-md-12">
                                         @include('live.includ.week_event')
                                     </div>
-                                    <div class="col-6 col-md-12">
+                                    <div class="col-6 col-md-12" >
                                         @include('live.includ.reclam')
                                     </div>
+                                    
 
-
-                                    <div class="col-6 col-md-12">
-                                        @include('live.show_widget.widget_partneri')
-                                    </div>
+                                    
+                                    @include('live.show_widget.widget_partneri')
                                 @endif
                             </div>
                         </div>
