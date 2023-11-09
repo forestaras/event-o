@@ -57,13 +57,14 @@
                                     <div class="col-6 col-md-12">
                                         @include('live.includ.week_event')
                                     </div>
-                                    <div class="col-6 col-md-12" >
+                                    <div class="col-6 col-md-12">
                                         @include('live.includ.reclam')
                                     </div>
-                                    
 
-                                    
-                                    @include('live.show_widget.widget_partneri')
+
+                                    <div class="col-6 col-md-12">
+                                        @include('live.show_widget.widget_partneri')
+                                    </div>
                                 @endif
                             </div>
                         </div>
