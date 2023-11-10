@@ -52,19 +52,21 @@
                     <div class="container-fluid">
                         <div class="row">
                             @yield('content')
-                            <div class="col-md-3 row">
+                            <div class="col-md-3">
+                                <div class="row">
                                 @if (!str_contains($_SERVER['REQUEST_URI'], 'split'))
                                     <div class="col-6 col-md-12">
                                         @include('live.includ.week_event')
                                     </div>
                                     <div class="col-6 col-md-12" >
-                                        @include('live.includ.reclam')
+                                        @include('live.includ.reclam') 
                                     </div>
                                     
 
                                     
                                     @include('live.show_widget.widget_partneri')
                                 @endif
+                                </div>
                             </div>
                         </div>
                     </div>

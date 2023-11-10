@@ -50,7 +50,7 @@ class AdminOnlineController extends \crocodicstudio\crudbooster\controllers\CBCo
 
 			# START FORM DO NOT REMOVE THIS LINE
 			$this->form = [];
-			$this->form[] = ['label'=>'Виберіть або створіть змагання','name'=>'eventid','type'=>'select2','width'=>'col-sm-10','datatable'=>'event,title'];
+			$this->form[] = ['label'=>'Виберіть або створіть змагання','name'=>'eventid','type'=>'select2','width'=>'col-sm-10','datatable'=>'event,title','datatable_where'=>'userid =  '. CRUDBooster::myId() . ''];
 			$this->form[] = ['label'=>'Userid','name'=>'userid','type'=>'hidden','width'=>'col-sm-10'];
 			$this->form[] = ['label'=>'Назва','name'=>'name','type'=>'text','validation'=>'required|string|min:3|max:70','width'=>'col-sm-10','placeholder'=>'You can only enter the letter only'];
 			$this->form[] = ['label'=>'Пароль','name'=>'cod','type'=>'text','validation'=>'min:4|max:32','width'=>'col-sm-10','help'=>'Minimum 4 characters. Please leave empty if you did not change the password.'];
@@ -73,7 +73,7 @@ class AdminOnlineController extends \crocodicstudio\crudbooster\controllers\CBCo
 
 			# OLD START FORM
 			//$this->form = [];
-			//$this->form[] = ['label'=>'Виберіть або створіть змагання','name'=>'eventid','type'=>'select2','width'=>'col-sm-10','datatable'=>'event,title'];
+			//$this->form[] = ['label'=>'Виберіть або створіть змагання','name'=>'eventid','type'=>'select2','width'=>'col-sm-10','datatable'=>'event,title','datatable_where'=>'user_id = '. CRUDBooster::myId() . ' '];
 			//$this->form[] = ['label'=>'Userid','name'=>'userid','type'=>'hidden','width'=>'col-sm-10'];
 			//$this->form[] = ['label'=>'Назва','name'=>'name','type'=>'text','validation'=>'required|string|min:3|max:70','width'=>'col-sm-10','placeholder'=>'You can only enter the letter only'];
 			//$this->form[] = ['label'=>'Пароль','name'=>'cod','type'=>'text','validation'=>'min:4|max:32','width'=>'col-sm-10','help'=>'Minimum 4 characters. Please leave empty if you did not change the password.'];
@@ -90,7 +90,7 @@ class AdminOnlineController extends \crocodicstudio\crudbooster\controllers\CBCo
 			//$this->form[] = ['label'=>'Спонсор','name'=>'sponsor','type'=>'upload','width'=>'col-sm-9'];
 			//$this->form[] = ['label'=>'Командні','name'=>'comandni','type'=>'header','validation'=>'required','width'=>'col-sm-9'];
 			//$this->form[] = ['label'=>'Командні результати','name'=>'comandni','type'=>'checkbox','width'=>'col-sm-10','dataenum'=>'✓'];
-			//$this->form[] = ['label'=>'Формула нарахування балів','name'=>'rezult_formula_ball','type'=>'select','validation'=>'max:255','width'=>'col-sm-10'];
+			//$this->form[] = ['label'=>'Формула нарахування балів','name'=>'rezult_formula_ball','type'=>'select','validation'=>'max:255','width'=>'col-sm-10','dataenum'=>'Б=100*(Чп/Чу)'];
 			//$this->form[] = ['label'=>'Іде в залік','name'=>'cill','type'=>'number','validation'=>'numeric','width'=>'col-sm-9'];
 			# OLD END FORM
 

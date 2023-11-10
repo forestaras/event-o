@@ -115,7 +115,7 @@
                                     <input type="text" name="query" placeholder="Введіть Прізвище Імя"
                                         class="form-control">
                                     <span class="input-group-append">
-                                        <button type="button" class="btn btn-warning">Пошук спортсмена</button>
+                                        <button type="submit" class="btn btn-warning">Пошук спортсмена</button>
                                     </span>
                                 </div>
                             </form>

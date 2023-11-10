@@ -70,7 +70,7 @@ Route::prefix('livess')->group(function () {
     Route::get('/erorrs', [RezultController::class, 'erorrs'])->name('erorrs');
     Route::get('atlet/{name}', [RezultController::class, 'atlet'])->name('atlet');
     Route::get('/search_atlet', [RezultController::class, 'search_atlet'])->name('search_atlet');
-    Route::post('/search_atlet', [RezultController::class, 'search_atlet'])->name('search_atlet');
+    Route::post('/search_atlet', [RezultController::class, 'search_atlet'])->name('search_atlet2');
     
     Route::prefix('/rezult')->group(function () {
         Route::get('/protocol_start/{id}', [RezultController::class, 'protocol_start'])->name('protocol_start');

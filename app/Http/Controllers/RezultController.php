@@ -103,6 +103,9 @@ class RezultController extends Controller
 		$event = Mopcompetition::where('cid', $id)->first();
 		$online = Online::where('id',$id)->first();
 		$eventseting=Event::where('id',$online->eventid)->first();
+		if ($event==0) {
+			return view('live.erorrs.erorrs_rezult', compact('event','online','eventseting'));
+		}
         $peopless = Mopcompetitor::where('cid', $id)->get();
         $grups = Mopclass::where('cid', $id)->get();
         $clubs = Moporganization::where('cid', $id)->get();
@@ -226,6 +229,9 @@ class RezultController extends Controller
 		$event = Mopcompetition::where('cid', $id)->first();
 		$online = Online::where('id',$id)->first();
 		$eventseting=Event::where('id',$online->eventid)->first();
+		if ($event==0) {
+			return view('live.erorrs.erorrs_rezult', compact('event','online','eventseting'));
+		}
 		$peoples = Mopcompetitor::where('cid', $id)->get();
 		$grups = Mopclass::where('cid', $id)->get();
 		$clubs = Moporganization::where('cid', $id)->get();
@@ -323,6 +329,9 @@ class RezultController extends Controller
 		$event = Mopcompetition::where('cid', $id)->first();
 		$online = Online::where('id',$id)->first();
 		$eventseting=Event::where('id',$online->eventid)->first();
+		if ($event==0) {
+			return view('live.erorrs.erorrs_rezult', compact('event','online','eventseting'));
+		}
 		$clubs = Moporganization::where('cid', $id)->get();
 		$grups = Mopclass::where('cid', $id)->where('name', $grup)->first(); // виймаємо группу     
 		$peopless = Mopcompetitor::where('cid', $id)->where('cls', $grups->id)->where('stat', '>', 0)->orderBy('stat', 'ASC')->orderBy('rt', 'ASC')->get(); // виймаємо учасників
@@ -560,7 +569,7 @@ class RezultController extends Controller
 			$athletes = Peoples::where('name', 'like', "%$query%")->get();
 		}
 		elseif (!$query) {
-			$athletes = Peoples::where('name', 'like', "%$query%")->get();
+			$athletes = Peoples::where('name', 'like', "%548445451213545435454%")->get();
 		}
 
         

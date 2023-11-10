@@ -1,6 +1,18 @@
 @extends('live.includ.index')
 @section('title')
-    ---{{ $online->name }}---Результати
+    ---{{ $online->name }}---
+    @if (Route::is('start'))
+        Стартові
+    @endif
+    @if (Route::is('rezult'))
+        Результати
+    @endif
+    @if (Route::is('comand'))
+        Командні
+    @endif
+    @if (Route::is('split'))
+        Спліти
+    @endif
 @endsection
 @section('page')
     Онлайн центр
@@ -10,21 +22,46 @@
     <li class="breadcrumb-item"><a href="{{ url('/') }}">Головна</a>/
         <a href="{{ url('/show/' . $eventseting->id) }}">{{ $eventseting->title }}</a>/
         <a href="{{ url('/livess/show/' . $online->id) }}">{{ $online->name }}</a>/
-        Результати</li>
+        @if (Route::is('start'))
+            Стартові
+        @endif
+        @if (Route::is('rezult'))
+            Результати
+        @endif
+        @if (Route::is('comand'))
+            Командні
+        @endif
+        @if (Route::is('split'))
+            Спліти
+        @endif
+    </li>
 @endsection
 @section('content')
     <div class="col-md-9">
         <!-- MAP & BOX PANE -->
         <div class="card card-success">
             <div class="card-header">
-                <h2 class="card-title">{{ $eventseting->title }}                   <b>Результати <a
-                            href="{{ url('/livess/show/' . $eventseting->cid) }}">{{ $online->name }}</a></b></h2>
+                <h2 class="card-title">{{ $eventseting->title }} <b>
+                        @if (Route::is('start'))
+                            Стартові
+                        @endif
+                        @if (Route::is('rezult'))
+                            Результати
+                        @endif
+                        @if (Route::is('comand'))
+                            Командні
+                        @endif
+                        @if (Route::is('split'))
+                            Спліти
+                        @endif <a
+                        href="{{ route('event' , $online->eventid) }}?g={{ $online->id }}">{{ $online->name }}</a>
+                    </b></h2>
 
                 <div class="card-tools">
-                
-                    
-                    
-                    
+
+
+
+
 
 
                 </div>
@@ -33,17 +70,42 @@
             <div class="card-body row">
                 <div class="error-page">
                     <h2 class="headline text-danger">!!!</h2>
-    
+
                     <div class="error-content">
-                        <h3><i class="fas fa-exclamation-triangle text-danger"></i> Результатів поки немає! </h3>
-    
+                        <h3><i class="fas fa-exclamation-triangle text-danger"></i> 
+                            @if (Route::is('start'))
+        Стартових
+    @endif
+    @if (Route::is('rezult'))
+        Результатів
+    @endif
+    @if (Route::is('comand'))
+        Командних
+    @endif
+    @if (Route::is('split'))
+        Сплітів
+    @endif поки немає! </h3>
+
                         <p>
-                            
-                            Тут зʼявляться результати змагань, одразу після того, як їх буде опубліковано організаторами! <a href="{{ url('/event/' . $online->eventid) }}?g={{$online->id}}">Вернутися назад.</a> 
-                           <a href="#" onclick="parent.location.reload(); return false;">Оновити сторінку.</a> 
+
+                            Тут зʼявляться 
+                            @if (Route::is('start'))
+                            cтартові
+                        @endif
+                        @if (Route::is('rezult'))
+                            результати
+                        @endif
+                        @if (Route::is('comand'))
+                            командні
+                        @endif
+                        @if (Route::is('split'))
+                            спліти
+                        @endif змагань, одразу після того, як їх буде опубліковано організаторами! <a
+                                href="{{ url('/event/' . $online->eventid) }}?g={{ $online->id }}">Вернутися назад.</a>
+                            <a href="#" onclick="parent.location.reload(); return false;">Оновити сторінку.</a>
                         </p>
-    
-    
+
+
                     </div>
                 </div>
 
@@ -64,7 +126,7 @@
 
             <!-- /.card-header -->
 
-            
+
             <!-- /.card-body -->
         </div>
         <!-- /.card -->

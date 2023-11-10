@@ -87,12 +87,15 @@ class SiteEventController extends \crocodicstudio\crudbooster\controllers\CBCont
         }
         elseif ($_GET['filter'] == 'all') {
             $events = Event::where('activ', 1)->orderBy('datastart', 'DESC')->get(); // Дані змагання
-        } else {
+        } 
+        elseif ($_GET['datastart'] > 0) {
+            $events = Event::where('activ', 1)->where('datastart', 'like', $yerstart . '-' . $mountstart . '-' . '%')->orderBy('datastart', 'DESC')->get(); // Дані змагання
+        }else {
             $event1 = Event::where('activ', 1)->where('datastart', 'like', $yerstart . '-' . $mountstart . '-' . '%')->orderBy('datastart', 'DESC')->get(); // Дані змагання
             $event2=Event::where('activ', 1)->where('datastart', '<', $yerstart . '-' . $mountstart . '-' . '%')->orderBy('datastart', 'DESC')->take(5)->get(); // Дані 
             $event3=Event::where('activ', 1)->where('datastart', '>', $yerstart . '-' . $mountstart . '-' . '%')->orderBy('datastart', 'DESC')->take(5)->get(); // Дані змагання
         
-            $events = $event1->merge($event2)->merge($event3);
+            $events = $event3->merge($event1)->merge($event2);
         }
 
 
