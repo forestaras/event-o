@@ -8,7 +8,9 @@
 
     <form method="GET" action="/event/registers/pexportmeos/{{$id}}">
         <label for="fname">Дні: вкажіть дні які потрібно експортувати в меос в форматі (1/2/1-3) / використовуйте як розділювач між днями</label><br>
-        <input type="text" name="g"><br>
+        <input type="text" name="g">  <input type="radio"  name="all_dey" value="all_dey"><label for="html">Всі дні</label><br>
+        <input type="radio"  name="c" value="club">
+        <label for="html">Команди по клубах</label><br>
         <input type="radio"  name="c" value="obl">
         <label for="html">Команди по областях</label><br>
         <input type="radio"  name="c" value="all">

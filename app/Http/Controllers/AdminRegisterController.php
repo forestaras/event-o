@@ -453,10 +453,18 @@ class AdminRegisterController extends \crocodicstudio\crudbooster\controllers\CB
 				if ($_GET['c'] == 'all') {
 					$register->club = $register->obl . ',' . $register->club;
 				}
+				if ($_GET['c'] == 'club') {
+					$register->club =  $register->club;
+				}
+				
 				foreach ($dniss as $dni) {
 					if ($dni == $register->dni or !$dni) {
 						$register->kk = 458;
 					}
+					elseif($_GET['all']=='all'){
+						$register->kk = 458;
+					}
+					
 				}
 			}
 
