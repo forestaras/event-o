@@ -109,22 +109,33 @@ class ProtocolController extends Controller
 
     function rang_people($i, $grup)
     {
+        $i=strtolower($i);
 
 
-
-        if ($i == '3-ю' || $i == '3-Ю' || $i == '3-ю' || $i == 'ІІІ-Ю' || $i == '3Ю' || $i == '3ю' || $i == '3-ю') {
+        
+        if (stripos($i, '3') !== false and stripos($i, 'ю') !== false) {
             $rang = 0.3;
-        } elseif ($i == '2-ю' || $i == 'III' || $i == 'ІІІ' || $i == '2ю' || $i == 'III' || $i == '2-ю') {
+        } elseif (stripos($i, '2') !== false and stripos($i, 'ю') !== false 
+        ||stripos($i, 'iii') !== false
+        ||stripos($i, 'ііі') !== false) {
             $rang = 1;
-        } elseif ($i == '1-ю' || $i == 'ІІ' || $i == '1ю' || $i == '2' || $i == 'II') {
+        } elseif (stripos($i, '1') !== false and stripos($i, 'ю') !== false 
+        ||stripos($i, 'ii') !== false
+        ||stripos($i, 'іі') !== false) {
             $rang = 3;
-        } elseif ($i == 'І' || $i == 'I' || $i == '1') {
+        } elseif 
+        (stripos($i, '1') !== false 
+        ||stripos($i, 'i') !== false
+        ||stripos($i, 'і') !== false) {
             $rang = 10;
-        } elseif ($i == 'КМСУ') {
+        } elseif (stripos($i, 'к') !== false 
+        ||stripos($i, 'k') !== false) {
             $rang = 30;
-        } elseif ($i == 'МСУ') {
+        } elseif (stripos($i, 'мс') !== false){
             $rang = 100;
-        } elseif ($i == 'б/р' || $i == '-' || $i == 0 || $i == '' || $i == 'бр' || $i == ' ' || $i == 'б-р' || $i == 'б/р' || $i == 'б/р' || $i == 'б/р') {
+        } elseif (stripos($i, 'б') !== false 
+        ||stripos($i, ' ') !== false
+        ||stripos($i, 'р') !== false) {
             $rang = 0.1;
             if (preg_replace("/[^0-9]/", "", $grup) >= 16) {
                 $rang = 0.3;
@@ -232,7 +243,7 @@ class ProtocolController extends Controller
         return $ekran;
     }
 
-    public function max_roz($roz, $max)
+    public function max_roz($roz, $max) 
     {
         if ($max == 0) {
             return $roz;
