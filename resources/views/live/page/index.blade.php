@@ -21,7 +21,7 @@
                             <input type="text" name="query" placeholder="Введіть назву змагань"
                                 class="form-control">
                             <span class="input-group-append">
-                                <button  type="submit" class="btn btn-warning">Пошук Змагань</button>
+                                <button  type="submit" class="btn btn-warning">Пошук змагань</button>
                             </span>
                         </div>
                     </form>
