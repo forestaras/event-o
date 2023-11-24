@@ -61,7 +61,7 @@
 			//$this->form[] = ['label'=>'Text','name'=>'text','type'=>'wysiwyg','validation'=>'string|min:5|max:5000','width'=>'col-sm-10'];
 			//$this->form[] = ['label'=>'Пріорітет','name'=>'prioritet','type'=>'number','width'=>'col-sm-9'];
 			//$this->form[] = ['label'=>'силка','name'=>'url','type'=>'text','width'=>'col-sm-9'];
-			//$this->form[] = ['label'=>'Партнери','name'=>'prioritet','type'=>'checkbox','width'=>'col-sm-9','dataenum'=>'✔|1'];
+			//$this->form[] = ['label'=>'Партнери','name'=>'prioritet','type'=>'checkbox','width'=>'col-sm-9','dataenum'=>'1|✔'];
 			# OLD END FORM
 
 			/* 
