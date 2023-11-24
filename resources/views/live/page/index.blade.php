@@ -15,7 +15,7 @@
         <div class="d-md-flex">
             <div class="table-responsive">
                 <div class="card-footer">
-                    <form action="{{route('event')}}" method="post">
+                    <form action="{{route('event')}}" method="post">  
                         @csrf
                         <div class="input-group">
                             <input type="text" name="query" placeholder="Введіть назву змагань"
