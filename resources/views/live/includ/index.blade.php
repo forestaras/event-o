@@ -61,10 +61,12 @@
                                     <div class="col-6 col-md-12" >
                                         @include('live.includ.reclam') 
                                     </div>
-                                    
+                                    <div class="col-6 col-md-12" >
+                                        @include('live.show_widget.widget_partneri')
+                                    </div>
 
                                     
-                                    @include('live.show_widget.widget_partneri')
+                                   
                                 @endif
                                 </div>
                             </div>
