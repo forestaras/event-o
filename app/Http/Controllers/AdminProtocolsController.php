@@ -334,7 +334,7 @@
 			if (CRUDBooster::myId() != $postdata['userid']) {
 				CRUDBooster::redirect($_SERVER['HTTP_REFERER'], "Ви не можете редагувати ці протоколи!!!<br> Ви не є власником цих протоколів!!!<br>Увійдіть або попросіть доступу в автора", "danger");
 			}      
-	        if (!$postdata['pol_rik']) $postdata['pol_rik']=NULL;
+	        if (!$postdata['pol_rik']) $postdata['pol_rik']=NULL; 
 	        if (!$postdata['pol_com']) $postdata['pol_com']=NULL;
 	        if (!$postdata['pol_tren']) $postdata['pol_tren']=NULL;
 	        if (!$postdata['pol_roz']) $postdata['pol_roz']=NULL;

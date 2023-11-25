@@ -3,7 +3,7 @@
 	use Session;
 	use Request;
 	use DB;
-	use CRUDBooster;
+	use CRUDBooster; 
 
 	class AdminReclamsController extends \crocodicstudio\crudbooster\controllers\CBController {
 
@@ -30,38 +30,38 @@
 
 			# START COLUMNS DO NOT REMOVE THIS LINE
 			$this->col = [];
-			$this->col[] = ["label"=>"Userid","name"=>"userid"];
-			$this->col[] = ["label"=>"Oblid","name"=>"oblid"];
-			$this->col[] = ["label"=>"Activ","name"=>"activ"];
-			$this->col[] = ["label"=>"Data Finish","name"=>"data_finish"];
-			$this->col[] = ["label"=>"Img","name"=>"img","image"=>true];
-			$this->col[] = ["label"=>"Text","name"=>"text"];
+			$this->col[] = ["label"=>"Активність","name"=>"activ"];
+			$this->col[] = ["label"=>"Дата закінчення","name"=>"data_finish"];
+			$this->col[] = ["label"=>"Зображення","name"=>"img","image"=>true];
+			$this->col[] = ["label"=>"Текст","name"=>"text"];
+			$this->col[] = ["label"=>"Партнери","name"=>"partneri"];
+			$this->col[] = ["label"=>"Пріорітет","name"=>"prioritet"];
 			# END COLUMNS DO NOT REMOVE THIS LINE
 
 			# START FORM DO NOT REMOVE THIS LINE
 			$this->form = [];
 			$this->form[] = ['label'=>'Userid','name'=>'userid','type'=>'hidden','validation'=>'required|integer|min:0','width'=>'col-sm-10'];
 			$this->form[] = ['label'=>'Oblid','name'=>'oblid','type'=>'hidden','validation'=>'required|integer|min:0','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Activ','name'=>'activ','type'=>'checkbox','width'=>'col-sm-10','dataenum'=>'1|✔'];
-			$this->form[] = ['label'=>'Data Finish','name'=>'data_finish','type'=>'date','validation'=>'required|string|min:5|max:5000','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Img','name'=>'img','type'=>'upload','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Text','name'=>'text','type'=>'wysiwyg','validation'=>'string|min:5|max:5000','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Пріорітет','name'=>'prioritet','type'=>'number','width'=>'col-sm-9'];
-			$this->form[] = ['label'=>'силка','name'=>'url','type'=>'text','width'=>'col-sm-9'];
-			$this->form[] = ['label'=>'Партнери','name'=>'prioritet','type'=>'checkbox','width'=>'col-sm-9','dataenum'=>'1|✔'];
+			$this->form[] = ['label'=>'Активувати','name'=>'activ','type'=>'checkbox','width'=>'col-sm-10','dataenum'=>'1|✔'];
+			$this->form[] = ['label'=>'Дата закінчення аоказу','name'=>'data_finish','type'=>'date','validation'=>'required|string|min:5|max:5000','width'=>'col-sm-10'];
+			$this->form[] = ['label'=>'Картинка','name'=>'img','type'=>'upload','width'=>'col-sm-10'];
+			$this->form[] = ['label'=>'Лінк якщо потрібно на картинку','name'=>'url','type'=>'text','width'=>'col-sm-9'];
+			$this->form[] = ['label'=>'Текст','name'=>'text','type'=>'wysiwyg','validation'=>'string|min:5|max:5000','width'=>'col-sm-10'];
+			$this->form[] = ['label'=>'Пріорітет','name'=>'prioritet','type'=>'select','width'=>'col-sm-9','dataenum'=>'1;2;3;4;5;6;7;8;9'];
+			$this->form[] = ['label'=>'Партнери','name'=>'partneri','type'=>'checkbox','width'=>'col-sm-9','dataenum'=>'1|✔'];
 			# END FORM DO NOT REMOVE THIS LINE
 
 			# OLD START FORM
 			//$this->form = [];
 			//$this->form[] = ['label'=>'Userid','name'=>'userid','type'=>'hidden','validation'=>'required|integer|min:0','width'=>'col-sm-10'];
 			//$this->form[] = ['label'=>'Oblid','name'=>'oblid','type'=>'hidden','validation'=>'required|integer|min:0','width'=>'col-sm-10'];
-			//$this->form[] = ['label'=>'Activ','name'=>'activ','type'=>'checkbox','width'=>'col-sm-10','dataenum'=>'1|✔'];
-			//$this->form[] = ['label'=>'Data Finish','name'=>'data_finish','type'=>'date','validation'=>'required|string|min:5|max:5000','width'=>'col-sm-10'];
-			//$this->form[] = ['label'=>'Img','name'=>'img','type'=>'upload','width'=>'col-sm-10'];
-			//$this->form[] = ['label'=>'Text','name'=>'text','type'=>'wysiwyg','validation'=>'string|min:5|max:5000','width'=>'col-sm-10'];
-			//$this->form[] = ['label'=>'Пріорітет','name'=>'prioritet','type'=>'number','width'=>'col-sm-9'];
-			//$this->form[] = ['label'=>'силка','name'=>'url','type'=>'text','width'=>'col-sm-9'];
-			//$this->form[] = ['label'=>'Партнери','name'=>'prioritet','type'=>'checkbox','width'=>'col-sm-9','dataenum'=>'1|✔'];
+			//$this->form[] = ['label'=>'Активувати','name'=>'activ','type'=>'checkbox','width'=>'col-sm-10','dataenum'=>'1|✔'];
+			//$this->form[] = ['label'=>'Дата закінчення аоказу','name'=>'data_finish','type'=>'date','validation'=>'required|string|min:5|max:5000','width'=>'col-sm-10'];
+			//$this->form[] = ['label'=>'Картинка','name'=>'img','type'=>'upload','width'=>'col-sm-10'];
+			//$this->form[] = ['label'=>'Лінк якщо потрібно на картинку','name'=>'url','type'=>'text','width'=>'col-sm-9'];
+			//$this->form[] = ['label'=>'Текст','name'=>'text','type'=>'wysiwyg','validation'=>'string|min:5|max:5000','width'=>'col-sm-10','dataenum'=>'1;2;3;4;5;6;7;8;9'];
+			//$this->form[] = ['label'=>'Пріорітет','name'=>'prioritet','type'=>'select','width'=>'col-sm-9'];
+			//$this->form[] = ['label'=>'Партнери','name'=>'partneri','type'=>'checkbox','width'=>'col-sm-9','dataenum'=>'1|✔'];
 			# OLD END FORM
 
 			/* 
@@ -272,6 +272,8 @@
 	    public function hook_before_add(&$postdata) {        
 	        $postdata['userid'] = CRUDBooster::myId(); 
 	        $postdata['oblid'] = 1; 
+			if (!$postdata['activ']) $postdata['activ']=0; 
+	        if (!$postdata['partneri']) $postdata['partneri']=NULL; 
 
 	    }
 
@@ -296,7 +298,9 @@
 	    | 
 	    */
 	    public function hook_before_edit(&$postdata,$id) {        
-	        //Your code here
+	        if (!$postdata['activ']) $postdata['activ']=0; 
+	        if (!$postdata['partneri']) $postdata['partneri']=NULL; 
+	        
 
 	    }
 
