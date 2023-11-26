@@ -134,7 +134,7 @@ class LiveRezultsController extends Controller
 
     static function reclam()
     {
-        $reclams = Reclam::where('activ', '>', 0)->where('partneri',NULL)->where('data_finish', '>=', date('Y-m-d'))->paginate(3)->sortByDesc('prioritet');
+        $reclams = Reclam::where('activ', '>', 0)->where('partneri',NULL)->where('data_finish', '>=', date('Y-m-d'))->paginate(3)->sortBy('prioritet');
         return $reclams;
     }
 
@@ -264,7 +264,7 @@ class LiveRezultsController extends Controller
 
     static function widget_partneri()
     {
-        $partneri = Reclam::where('activ', '>', 0)->where('partneri', '>', 0)->where('data_finish', '>=', date('Y-m-d'))->paginate(3)->sortByDesc('prioritet');
+        $partneri = Reclam::where('activ', '>', 0)->where('partneri', '>', 0)->where('data_finish', '>=', date('Y-m-d'))->paginate(3)->sortBy('prioritet');
         return $partneri;
 
     }

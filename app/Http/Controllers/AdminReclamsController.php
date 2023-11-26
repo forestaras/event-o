@@ -16,11 +16,11 @@
 			$this->global_privilege = false;
 			$this->button_table_action = true;
 			$this->button_bulk_action = true;
-			$this->button_action_style = "button_icon";
+			$this->button_action_style = "button_icon_text";
 			$this->button_add = true;
 			$this->button_edit = true;
 			$this->button_delete = true;
-			$this->button_detail = true;
+			$this->button_detail = false;
 			$this->button_show = true;
 			$this->button_filter = true;
 			$this->button_import = false;
@@ -42,26 +42,26 @@
 			$this->form = [];
 			$this->form[] = ['label'=>'Userid','name'=>'userid','type'=>'hidden','validation'=>'required|integer|min:0','width'=>'col-sm-10'];
 			$this->form[] = ['label'=>'Oblid','name'=>'oblid','type'=>'hidden','validation'=>'required|integer|min:0','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Активувати','name'=>'activ','type'=>'checkbox','width'=>'col-sm-10','dataenum'=>'1|✔'];
-			$this->form[] = ['label'=>'Дата закінчення аоказу','name'=>'data_finish','type'=>'date','validation'=>'required|string|min:5|max:5000','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Картинка','name'=>'img','type'=>'upload','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Лінк якщо потрібно на картинку','name'=>'url','type'=>'text','width'=>'col-sm-9'];
-			$this->form[] = ['label'=>'Текст','name'=>'text','type'=>'wysiwyg','validation'=>'string|min:5|max:5000','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Пріорітет','name'=>'prioritet','type'=>'select','width'=>'col-sm-9','dataenum'=>'1;2;3;4;5;6;7;8;9'];
-			$this->form[] = ['label'=>'Партнери','name'=>'partneri','type'=>'checkbox','width'=>'col-sm-9','dataenum'=>'1|✔'];
+			$this->form[] = ['label'=>'Активувати','name'=>'activ','type'=>'checkbox','width'=>'col-sm-10','dataenum'=>'1|✔','help'=>'Якщо відмічено. Рекламу або партнерів показуватиме на сайті'];
+			$this->form[] = ['label'=>'Дата закінчення показу','name'=>'data_finish','type'=>'date','validation'=>'required|string|min:5|max:5000','width'=>'col-sm-10','help'=>'Дата після якої рекламу або партнерів перестане показувати на сайті. ОБОВЯЗКОВЕ ДО ЗАПОВНЕННЯ'];
+			$this->form[] = ['label'=>'Картинка','name'=>'img','type'=>'upload','width'=>'col-sm-10','help'=>'Зображення  для показу'];
+			$this->form[] = ['label'=>'Лінк якщо потрібно на картинку','name'=>'url','type'=>'text','width'=>'col-sm-9','help'=>'Лінка на яку переходитиме після нажаття на зображення'];
+			$this->form[] = ['label'=>'Текст','name'=>'text','type'=>'wysiwyg','validation'=>'string|max:5000','width'=>'col-sm-10','help'=>'Альтернативгний текст замість зображення'];
+			$this->form[] = ['label'=>'Пріорітет','name'=>'prioritet','type'=>'select','width'=>'col-sm-9','dataenum'=>'1;2;3;4;5;6;7;8;9','help'=>'Пріорітет почерговість відображення партнерів або рекоами.Менший номер зверху.'];
+			$this->form[] = ['label'=>'Партнери','name'=>'partneri','type'=>'checkbox','width'=>'col-sm-9','dataenum'=>'1|✔','help'=>'Якщо відмічено рекламу буде перенесено до партнерів'];
 			# END FORM DO NOT REMOVE THIS LINE
 
 			# OLD START FORM
 			//$this->form = [];
 			//$this->form[] = ['label'=>'Userid','name'=>'userid','type'=>'hidden','validation'=>'required|integer|min:0','width'=>'col-sm-10'];
 			//$this->form[] = ['label'=>'Oblid','name'=>'oblid','type'=>'hidden','validation'=>'required|integer|min:0','width'=>'col-sm-10'];
-			//$this->form[] = ['label'=>'Активувати','name'=>'activ','type'=>'checkbox','width'=>'col-sm-10','dataenum'=>'1|✔'];
-			//$this->form[] = ['label'=>'Дата закінчення аоказу','name'=>'data_finish','type'=>'date','validation'=>'required|string|min:5|max:5000','width'=>'col-sm-10'];
-			//$this->form[] = ['label'=>'Картинка','name'=>'img','type'=>'upload','width'=>'col-sm-10'];
-			//$this->form[] = ['label'=>'Лінк якщо потрібно на картинку','name'=>'url','type'=>'text','width'=>'col-sm-9'];
-			//$this->form[] = ['label'=>'Текст','name'=>'text','type'=>'wysiwyg','validation'=>'string|min:5|max:5000','width'=>'col-sm-10','dataenum'=>'1;2;3;4;5;6;7;8;9'];
-			//$this->form[] = ['label'=>'Пріорітет','name'=>'prioritet','type'=>'select','width'=>'col-sm-9'];
-			//$this->form[] = ['label'=>'Партнери','name'=>'partneri','type'=>'checkbox','width'=>'col-sm-9','dataenum'=>'1|✔'];
+			//$this->form[] = ['label'=>'Активувати','name'=>'activ','type'=>'checkbox','width'=>'col-sm-10','dataenum'=>'1|✔','help'=>'Якщо відмічено. Рекламу або партнерів показуватиме на сайті'];
+			//$this->form[] = ['label'=>'Дата закінчення показу','name'=>'data_finish','type'=>'date','validation'=>'required|string|min:5|max:5000','width'=>'col-sm-10','help'=>'Дата після якої рекламу або партнерів перестане показувати на сайті. ОБОВЯЗКОВЕ ДО ЗАПОВНЕННЯ'];
+			//$this->form[] = ['label'=>'Картинка','name'=>'img','type'=>'upload','width'=>'col-sm-10','help'=>'Зображення  для показу'];
+			//$this->form[] = ['label'=>'Лінк якщо потрібно на картинку','name'=>'url','type'=>'text','width'=>'col-sm-9','help'=>'Лінка на яку переходитиме після нажаття на зображення'];
+			//$this->form[] = ['label'=>'Текст','name'=>'text','type'=>'wysiwyg','validation'=>'string|min:5|max:5000','width'=>'col-sm-10','help'=>'Альтернативгний текст замість зображення'];
+			//$this->form[] = ['label'=>'Пріорітет','name'=>'prioritet','type'=>'select','width'=>'col-sm-9','dataenum'=>'1;2;3;4;5;6;7;8;9','help'=>'Пріорітет почерговість відображення партнерів або рекоами.Менший номер зверху.'];
+			//$this->form[] = ['label'=>'Партнери','name'=>'partneri','type'=>'checkbox','width'=>'col-sm-9','dataenum'=>'1|✔','help'=>'Якщо відмічено рекламу буде перенесено до партнерів'];
 			# OLD END FORM
 
 			/* 
@@ -139,7 +139,9 @@
 	        | @color = Default is none. You can use bootstrap success,info,warning,danger,primary.        
 	        | 
 	        */
-	        $this->table_row_color = array();     	          
+	        $this->table_row_color = array();
+			$this->table_row_color[] = ['condition'=>"[activ] == '1' and [data_finish] >= date('Y-m-d')","color"=>"success"];
+
 
 	        
 	        /*
@@ -259,7 +261,9 @@
 	    |
 	    */    
 	    public function hook_row_index($column_index,&$column_value) {	        
-	    	//Your code here
+	    	// if($column_index['name']=='activ'){
+			// 	if($column_value==1) $column_value="✓";
+			// }
 	    }
 
 	    /*
@@ -298,6 +302,7 @@
 	    | 
 	    */
 	    public function hook_before_edit(&$postdata,$id) {        
+	        if (!$postdata['activ']) $postdata['activ']=0; 
 	        if (!$postdata['activ']) $postdata['activ']=0; 
 	        if (!$postdata['partneri']) $postdata['partneri']=NULL; 
 	        

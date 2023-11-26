@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers;
 
-	use Session;
+use App\Models\Event;
+use Session;
 	use Request;
 	use DB;
 	use CRUDBooster;
@@ -41,15 +42,15 @@
 
 			# START FORM DO NOT REMOVE THIS LINE
 			$this->form = [];
-			$this->form[] = ['label'=>'Eventid','name'=>'eventid','value'=>$_GET['event'],'type'=>"hidden",'validation'=>'required|integer|min:0','width'=>'col-sm-10'];
+			$this->form[] = ['label'=>'Eventid','name'=>'eventid','type'=>'hidden','validation'=>'required|integer|min:0','width'=>'col-sm-10'];
 			$this->form[] = ['label'=>'Назва реєстрації','name'=>'title','type'=>'text','validation'=>'required|string|min:3|max:70','width'=>'col-sm-10','placeholder'=>'Вкажіть назву реєстрації'];
 			$this->form[] = ['label'=>'Дата після якої прийом заявок закриється','name'=>'datestop','type'=>'datetime','validation'=>'required|string|min:5|max:5000','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Поле тренер','name'=>'trener','type'=>'checkbox','width'=>'col-sm-10','dataenum'=>'✓'];
-			$this->form[] = ['label'=>'Поле клуб','name'=>'club','type'=>'checkbox','width'=>'col-sm-10','dataenum'=>'✓'];
-			$this->form[] = ['label'=>'Поле область','name'=>'obl','type'=>'checkbox','width'=>'col-sm-10','dataenum'=>'✓'];
-			$this->form[] = ['label'=>'Поле розряд','name'=>'roz','type'=>'checkbox','width'=>'col-sm-10','dataenum'=>'✓'];
-			$this->form[] = ['label'=>'Поле SportIdent','name'=>'si','type'=>'checkbox','width'=>'col-sm-10','dataenum'=>'✓'];
-			$this->form[] = ['label'=>'Поле рік','name'=>'rik','type'=>'checkbox','width'=>'col-sm-10','dataenum'=>'✓'];
+			$this->form[] = ['label'=>'Поле тренер','name'=>'trener','type'=>'checkbox','width'=>'col-sm-10','dataenum'=>'1|✔'];
+			$this->form[] = ['label'=>'Поле клуб','name'=>'club','type'=>'checkbox','width'=>'col-sm-10','dataenum'=>'1|✔'];
+			$this->form[] = ['label'=>'Поле область','name'=>'obl','type'=>'checkbox','width'=>'col-sm-10','dataenum'=>'1|✔'];
+			$this->form[] = ['label'=>'Поле розряд','name'=>'roz','type'=>'checkbox','width'=>'col-sm-10','dataenum'=>'1|✔'];
+			$this->form[] = ['label'=>'Поле SportIdent','name'=>'si','type'=>'checkbox','width'=>'col-sm-10','dataenum'=>'1|✔'];
+			$this->form[] = ['label'=>'Поле рік','name'=>'rik','type'=>'checkbox','width'=>'col-sm-10','dataenum'=>'1|✔'];
 			$this->form[] = ['label'=>'Вкажіть групи які потрібні для реєстрації(групи потрібно вказувати через пробіл)','name'=>'grup','type'=>'textarea','width'=>'col-sm-10','placeholder'=>'Ч-12 Ч-14 Ч-16 Ж-12...'];
 			$this->form[] = ['label'=>'Вкажіть дні учвсті у змаганнях (як роздільник використовуйте пробіл)','name'=>'dni','type'=>'textarea','width'=>'col-sm-10','placeholder'=>'1-3 1,2 2,3 1,3 1 2 3'];
 			# END FORM DO NOT REMOVE THIS LINE
@@ -59,15 +60,16 @@
 			//$this->form[] = ['label'=>'Eventid','name'=>'eventid','value'=>$_GET['event'],'type'=>"hidden",'validation'=>'required|integer|min:0','width'=>'col-sm-10'];
 			//$this->form[] = ['label'=>'Назва реєстрації','name'=>'title','type'=>'text','validation'=>'required|string|min:3|max:70','width'=>'col-sm-10','placeholder'=>'Вкажіть назву реєстрації'];
 			//$this->form[] = ['label'=>'Дата після якої прийом заявок закриється','name'=>'datestop','type'=>'datetime','validation'=>'required|string|min:5|max:5000','width'=>'col-sm-10'];
-			//$this->form[] = ['label'=>'Поле тренер','name'=>'trener','type'=>'checkbox','width'=>'col-sm-10','dataenum'=>'1'];
-			//$this->form[] = ['label'=>'Поле клуб','name'=>'club','type'=>'checkbox','width'=>'col-sm-10','dataenum'=>'1'];
-			//$this->form[] = ['label'=>'Поле область','name'=>'obl','type'=>'checkbox','width'=>'col-sm-10','dataenum'=>'1'];
-			//$this->form[] = ['label'=>'Поле розряд','name'=>'roz','type'=>'checkbox','width'=>'col-sm-10','dataenum'=>'1'];
-			//$this->form[] = ['label'=>'Поле SportIdent','name'=>'si','type'=>'checkbox','width'=>'col-sm-10','dataenum'=>'1'];
-			//$this->form[] = ['label'=>'Поле рік','name'=>'rik','type'=>'checkbox','width'=>'col-sm-10','dataenum'=>'1'];
+			//$this->form[] = ['label'=>'Поле тренер','name'=>'trener','type'=>'checkbox','width'=>'col-sm-10','dataenum'=>'✓'];
+			//$this->form[] = ['label'=>'Поле клуб','name'=>'club','type'=>'checkbox','width'=>'col-sm-10','dataenum'=>'✓'];
+			//$this->form[] = ['label'=>'Поле область','name'=>'obl','type'=>'checkbox','width'=>'col-sm-10','dataenum'=>'✓'];
+			//$this->form[] = ['label'=>'Поле розряд','name'=>'roz','type'=>'checkbox','width'=>'col-sm-10','dataenum'=>'✓'];
+			//$this->form[] = ['label'=>'Поле SportIdent','name'=>'si','type'=>'checkbox','width'=>'col-sm-10','dataenum'=>'✓'];
+			//$this->form[] = ['label'=>'Поле рік','name'=>'rik','type'=>'checkbox','width'=>'col-sm-10','dataenum'=>'✓'];
 			//$this->form[] = ['label'=>'Вкажіть групи які потрібні для реєстрації(групи потрібно вказувати через пробіл)','name'=>'grup','type'=>'textarea','width'=>'col-sm-10','placeholder'=>'Ч-12 Ч-14 Ч-16 Ж-12...'];
 			//$this->form[] = ['label'=>'Вкажіть дні учвсті у змаганнях (як роздільник використовуйте пробіл)','name'=>'dni','type'=>'textarea','width'=>'col-sm-10','placeholder'=>'1-3 1,2 2,3 1,3 1 2 3'];
 			# OLD END FORM
+			$this->form[] = ['label'=>'Eventid','name'=>'eventid','type'=>'hidden','validation'=>'required|integer|min:0','width'=>'col-sm-10','value'=>$_GET['event']];
 
 			/* 
 	        | ---------------------------------------------------------------------- 
@@ -274,10 +276,11 @@
 	    | @arr
 	    |
 	    */
-		public function hook_before_add(&$postdata) {         
+		public function hook_before_add(&$postdata) {   
+			// $postdata['eventid']= $_GET['event'];      
 			$postdata['userid'] = CRUDBooster::myId();
 		   $eventid=$postdata['eventid'];
-		   $event=DB::table('event')->where('id',$eventid)->first();
+		   $event=Event::where('id',$eventid)->first();
 		   if (CRUDBooster::myId()!=$event->userid and CRUDBooster::myId()!=$event->redactorid) {
 			   CRUDBooster::redirect($_SERVER['HTTP_REFERER'], $postdata['eventid']."Ви не можете додати  лінку!!!<br> Ви не є організатором цих змагань!!!<br>Увійдіть або попросіть доступу в автора","danger");
 		   }
