@@ -314,6 +314,7 @@ class AdminOnlineController extends \crocodicstudio\crudbooster\controllers\CBCo
 			$event->userid = CRUDBooster::myId();
 			$event->save();
 			$postdata['eventid']=Event::where('title',$postdata['name'])->value('id');
+
 		}
 		else {
 			$events = Event::where('id', $eventid)->first();
@@ -351,6 +352,13 @@ class AdminOnlineController extends \crocodicstudio\crudbooster\controllers\CBCo
 	    */
 	public function hook_before_edit(&$postdata, $id)
 	{
+		if (!$postdata['starovi']) $postdata['starovi']=NULL; 
+	        if (!$postdata['comandni']) $postdata['comandni']=NULL;
+	        if (!$postdata['rezult']) $postdata['rezult']=NULL;
+	        if (!$postdata['startclok']) $postdata['startclok']=NULL;
+	        if (!$postdata['split']) $postdata['split']=NULL;
+	        if (!$postdata['split_grafic']) $postdata['split_grafic']=NULL;
+	        if (!$postdata['active']) $postdata['active']=NULL;
 		$eventid = DB::table('online')->where('id', $id)->first();
 		$event = DB::table('event')->where('id', $eventid->eventid)->first();
 		if (CRUDBooster::myId() != $event->userid and CRUDBooster::myId() != $event->redactorid) {
