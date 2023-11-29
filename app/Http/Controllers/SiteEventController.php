@@ -84,17 +84,15 @@ class SiteEventController extends \crocodicstudio\crudbooster\controllers\CBCont
         }
         if ($query) {
             $events = Event::where('title', 'like', "%$query%")->orderBy('datastart', 'DESC')->get(); // Дані змагання
-        }
-        elseif ($_GET['filter'] == 'all') {
+        } elseif ($_GET['filter'] == 'all') {
             $events = Event::where('activ', 1)->orderBy('datastart', 'DESC')->get(); // Дані змагання
-        } 
-        elseif ($_GET['datastart'] > 0) {
+        } elseif ($_GET['datastart'] > 0) {
             $events = Event::where('activ', 1)->where('datastart', 'like', $yerstart . '-' . $mountstart . '-' . '%')->orderBy('datastart', 'DESC')->get(); // Дані змагання
-        }else {
+        } else {
             $event1 = Event::where('activ', 1)->where('datastart', 'like', $yerstart . '-' . $mountstart . '-' . '%')->orderBy('datastart', 'DESC')->get(); // Дані змагання
-            $event2=Event::where('activ', 1)->where('datastart', '<', $yerstart . '-' . $mountstart . '-' . '%')->orderBy('datastart', 'DESC')->take(5)->get(); // Дані 
-            $event3=Event::where('activ', 1)->where('datastart', '>', $yerstart . '-' . $mountstart . '-' . '%')->orderBy('datastart', 'DESC')->take(5)->get(); // Дані змагання
-        
+            $event2 = Event::where('activ', 1)->where('datastart', '<', $yerstart . '-' . $mountstart . '-' . '%')->orderBy('datastart', 'DESC')->take(5)->get(); // Дані 
+            $event3 = Event::where('activ', 1)->where('datastart', '>', $yerstart . '-' . $mountstart . '-' . '%')->orderBy('datastart', 'DESC')->take(5)->get(); // Дані змагання
+
             $events = $event3->merge($event1)->merge($event2);
         }
 
@@ -185,45 +183,49 @@ class SiteEventController extends \crocodicstudio\crudbooster\controllers\CBCont
         $seting = SetingController::seting();                    // Настройки меню і назва сайту
         $event = Event::find($id);
 
-        $user=DB::table('cms_users')->where('id',CRUDBooster::myId())->first();	
+        $user = DB::table('cms_users')->where('id', CRUDBooster::myId())->first();
         $event->datastart = date_format(date_create($event->datastart), 'd.m.Y');   // Дані  
         $event->obl = Event::find($id)->obl;
         $event->club = Event::find($id)->club;
         $event->registersetings = Event::find($event->id)->registerseting; //Дані про реєстрацію
-        
+
         foreach ($event->registersetings as $regid) {
             $regid->count = Registerseting::find($regid->id)->register->count();
-            $regid->club=Register::where('eventid',$regid->id)->pluck('club')->unique()->values()->all();
-            $regid->grups=explode(" ", $regid->grup);
+            $regid->club = Register::where('eventid', $regid->id)->pluck('club')->unique()->values()->all();
+            $regid->grups = explode(" ", $regid->grup);
         }
         $event->link = Event::find($id)->evendop; //Дані про реєстрацію
-        $onlines = Event::find($id)->online->where('active','>',0);
+        $onlines = Event::find($id)->online;
         foreach ($onlines as $online) {
-            $online->ooo = DB::table('mopcompetition')->where('cid', $online->id)->first(); //meos competition
-            $online->peoples = DB::table('mopcompetitor')->where('cid', $online->id)->get(); //перевіряє чи є стартові
-            $online->grups = Mopclass::where('cid', $online->id)->get();
-            // $seting = Online::where('id', $id)->first();
-            // $online->seting=$seting;
-            foreach($online->grups as $grup){ 
-                $count_start=$online->peoples->where('cls',$grup->id)->where('st', '>', 0)->count();
-                if ($count_start>=1) {
-                  $grup->start=1;
-                }          
-                $count_rezult=$online->peoples->where('cls',$grup->id)->where('rt', '>', 0)->count();
-                if ($count_rezult>=1) {
-                  $grup->rezult=1;
-                }       
+            if ($online->active) {
 
-                // $count_split=$online->peoples->where('cls',$grup->id)->where('rt', '>', 0)->count();
-                // if ($count_rezult>=1) {
-                //   $grup->rezult=1;
-                // }             
-                
 
-            }
-            $online->splits = DB::table('mopradio')->where('cid', $online->id)->where('rt', '>', 0)->first(); //перевіряє чи є фінішні
-            if ($online->ooo) {
-                $rez = 1;
+                $online->ooo = DB::table('mopcompetition')->where('cid', $online->id)->first(); //meos competition
+                $online->peoples = DB::table('mopcompetitor')->where('cid', $online->id)->get(); //перевіряє чи є стартові
+                $online->grups = Mopclass::where('cid', $online->id)->get();
+                // $seting = Online::where('id', $id)->first();
+                // $online->seting=$seting;
+                foreach ($online->grups as $grup) {
+                    $count_start = $online->peoples->where('cls', $grup->id)->where('st', '>', 0)->count();
+                    if ($count_start >= 1) {
+                        $grup->start = 1;
+                    }
+                    $count_rezult = $online->peoples->where('cls', $grup->id)->where('rt', '>', 0)->count();
+                    if ($count_rezult >= 1) {
+                        $grup->rezult = 1;
+                    }
+
+                    // $count_split=$online->peoples->where('cls',$grup->id)->where('rt', '>', 0)->count();
+                    // if ($count_rezult>=1) {
+                    //   $grup->rezult=1;
+                    // }             
+
+
+                }
+                $online->splits = DB::table('mopradio')->where('cid', $online->id)->where('rt', '>', 0)->first(); //перевіряє чи є фінішні
+                if ($online->ooo) {
+                    $rez = 1;
+                }
             }
         }
         $event->onlines = $onlines; //Дані про реєстрацію
@@ -278,9 +280,9 @@ class SiteEventController extends \crocodicstudio\crudbooster\controllers\CBCont
     {
         $registerseting = DB::table('registerseting')->where('id', $registerid)->first();
         $registers = DB::table('register')->where('eventid', $registerid)->get();
-        $registerseting->grups=explode(' ', $registerseting->grup);
-        $registerseting->dnis=explode(' ', $registerseting->dni);
-        return view('live.register.register_event', compact( 'registers', 'registerseting'));
+        $registerseting->grups = explode(' ', $registerseting->grup);
+        $registerseting->dnis = explode(' ', $registerseting->dni);
+        return view('live.register.register_event', compact('registers', 'registerseting'));
     }
 
 
