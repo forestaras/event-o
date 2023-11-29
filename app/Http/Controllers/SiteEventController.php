@@ -195,7 +195,7 @@ class SiteEventController extends \crocodicstudio\crudbooster\controllers\CBCont
             $regid->grups = explode(" ", $regid->grup);
         }
         $event->link = Event::find($id)->evendop; //Дані про реєстрацію
-        $onlines = Event::find($id)->online->where('active', '>', 0);
+        $onlines = Event::find($id)->online->where('active','✓');
         foreach ($onlines as $online) {
             // if ($online->online->active==1) {
 
