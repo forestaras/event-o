@@ -13,7 +13,7 @@
     <div class="col-md-9">
 
 
-        <section class="content">
+        <section class="content"> 
             <div class="container-fluid">
                 <div class="row">
 
