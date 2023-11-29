@@ -197,7 +197,7 @@ class SiteEventController extends \crocodicstudio\crudbooster\controllers\CBCont
         $event->link = Event::find($id)->evendop; //Дані про реєстрацію
         $onlines = Event::find($id)->online;
         foreach ($onlines as $online) {
-            if ($online->active!=NULL) {
+            if ($online->active==1) {
 
 
                 $online->ooo = DB::table('mopcompetition')->where('cid', $online->id)->first(); //meos competition
