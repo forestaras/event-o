@@ -50,10 +50,10 @@ class AdminOnlineController extends \crocodicstudio\crudbooster\controllers\CBCo
 
 			# START FORM DO NOT REMOVE THIS LINE
 			$this->form = [];
-			$this->form[] = ['label'=>'Пусте для вибору змагант','type'=>'hidden','validation'=>'required','width'=>'col-sm-9','placeholder'=>'You can only enter the letter only'];
+			$this->form[] = ['label'=>'Пусте для вибору змагант','type'=>'hidden','validation'=>'required','width'=>'col-sm-9'];
 			$this->form[] = ['label'=>'Назва','name'=>'name','type'=>'text','validation'=>'required|string|min:3|max:70','width'=>'col-sm-10','help'=>'Minimum 4 characters. Please leave empty if you did not change the password.'];
 			$this->form[] = ['label'=>'Пароль','name'=>'cod','type'=>'text','validation'=>'min:4|max:32','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Дата старту','name'=>'datestart','type'=>'date','validation'=>'required|required','width'=>'col-sm-9','dataenum'=>'✓'];
+			$this->form[] = ['label'=>'Дата старту','name'=>'datestart','type'=>'date','validation'=>'required|required','width'=>'col-sm-9'];
 			$this->form[] = ['label'=>'Показувати','name'=>'active','type'=>'checkbox','width'=>'col-sm-9','dataenum'=>'✓'];
 			$this->form[] = ['label'=>'Стартові','name'=>'starovi','type'=>'checkbox','width'=>'col-sm-10','dataenum'=>'✓'];
 			$this->form[] = ['label'=>'Результати','name'=>'rezult','type'=>'checkbox','width'=>'col-sm-10','dataenum'=>'✓'];
@@ -64,30 +64,31 @@ class AdminOnlineController extends \crocodicstudio\crudbooster\controllers\CBCo
 			$this->form[] = ['label'=>'Розклад дня','name'=>'detali','type'=>'wysiwyg','width'=>'col-sm-9','help'=>'Додатква інформація така як розклад дня і.т.д'];
 			$this->form[] = ['label'=>'Інформація про дистанцію','name'=>'inf','type'=>'wysiwyg','width'=>'col-sm-9'];
 			$this->form[] = ['label'=>'Спонсор','name'=>'sponsor','type'=>'upload','width'=>'col-sm-9'];
-			$this->form[] = ['label'=>'Командні','name'=>'comandni','type'=>'header','validation'=>'required','width'=>'col-sm-9','dataenum'=>'✓'];
-			$this->form[] = ['label'=>'Командні результати','name'=>'comandni','type'=>'checkbox','width'=>'col-sm-10','dataenum'=>'Б=100*(Чп/Чу)'];
-			$this->form[] = ['label'=>'Формула нарахування балів','name'=>'rezult_formula_ball','type'=>'select','validation'=>'max:255','width'=>'col-sm-10'];
+			$this->form[] = ['label'=>'Командні','name'=>'comandni','type'=>'header','width'=>'col-sm-9'];
+			$this->form[] = ['label'=>'Командні результати','name'=>'comandni','type'=>'checkbox','width'=>'col-sm-10','dataenum'=>'✓'];
+			$this->form[] = ['label'=>'Формула нарахування балів','name'=>'rezult_formula_ball','type'=>'select','validation'=>'max:255','width'=>'col-sm-10','dataenum'=>'Б=100*(Чп/Чу)'];
 			$this->form[] = ['label'=>'Іде в залік','name'=>'cill','type'=>'number','validation'=>'numeric','width'=>'col-sm-9'];
 			# END FORM DO NOT REMOVE THIS LINE
 
 			# OLD START FORM
 			//$this->form = [];
-			//$this->form[] = ['label'=>'Назва','name'=>'name','type'=>'text','validation'=>'required|string|min:3|max:70','width'=>'col-sm-10','placeholder'=>'You can only enter the letter only'];
-			//$this->form[] = ['label'=>'Пароль','name'=>'cod','type'=>'text','validation'=>'min:4|max:32','width'=>'col-sm-10','help'=>'Minimum 4 characters. Please leave empty if you did not change the password.'];
-			//$this->form[] = ['label'=>'Дата старту','name'=>'datestart','type'=>'date','validation'=>'required|required','width'=>'col-sm-9'];
+			//$this->form[] = ['label'=>'Пусте для вибору змагант','type'=>'hidden','validation'=>'required','width'=>'col-sm-9','placeholder'=>'You can only enter the letter only'];
+			//$this->form[] = ['label'=>'Назва','name'=>'name','type'=>'text','validation'=>'required|string|min:3|max:70','width'=>'col-sm-10','help'=>'Minimum 4 characters. Please leave empty if you did not change the password.'];
+			//$this->form[] = ['label'=>'Пароль','name'=>'cod','type'=>'text','validation'=>'min:4|max:32','width'=>'col-sm-10'];
+			//$this->form[] = ['label'=>'Дата старту','name'=>'datestart','type'=>'date','validation'=>'required|required','width'=>'col-sm-9','dataenum'=>'✓'];
 			//$this->form[] = ['label'=>'Показувати','name'=>'active','type'=>'checkbox','width'=>'col-sm-9','dataenum'=>'✓'];
 			//$this->form[] = ['label'=>'Стартові','name'=>'starovi','type'=>'checkbox','width'=>'col-sm-10','dataenum'=>'✓'];
 			//$this->form[] = ['label'=>'Результати','name'=>'rezult','type'=>'checkbox','width'=>'col-sm-10','dataenum'=>'✓'];
 			//$this->form[] = ['label'=>'Спліти','name'=>'split','type'=>'checkbox','width'=>'col-sm-10','dataenum'=>'✓'];
 			//$this->form[] = ['label'=>'Графік сплітів','name'=>'split_grafic','type'=>'checkbox','width'=>'col-sm-9','dataenum'=>'✓'];
-			//$this->form[] = ['label'=>'Стартовий годинник','name'=>'startclok','type'=>'checkbox','width'=>'col-sm-9','dataenum'=>'✓'];
+			//$this->form[] = ['label'=>'Стартовий годинник','name'=>'startclok','type'=>'checkbox','width'=>'col-sm-9'];
 			//$this->form[] = ['label'=>'ааппаіп','type'=>'header','validation'=>'required','width'=>'col-sm-9'];
-			//$this->form[] = ['label'=>'Розклад дня','name'=>'detali','type'=>'wysiwyg','width'=>'col-sm-9'];
-			//$this->form[] = ['label'=>'Інформація про дистанцію','name'=>'inf','type'=>'wysiwyg','width'=>'col-sm-9','help'=>'Додатква інформація така як розклад дня і.т.д'];
+			//$this->form[] = ['label'=>'Розклад дня','name'=>'detali','type'=>'wysiwyg','width'=>'col-sm-9','help'=>'Додатква інформація така як розклад дня і.т.д'];
+			//$this->form[] = ['label'=>'Інформація про дистанцію','name'=>'inf','type'=>'wysiwyg','width'=>'col-sm-9'];
 			//$this->form[] = ['label'=>'Спонсор','name'=>'sponsor','type'=>'upload','width'=>'col-sm-9'];
-			//$this->form[] = ['label'=>'Командні','name'=>'comandni','type'=>'header','validation'=>'required','width'=>'col-sm-9'];
-			//$this->form[] = ['label'=>'Командні результати','name'=>'comandni','type'=>'checkbox','width'=>'col-sm-10','dataenum'=>'✓'];
-			//$this->form[] = ['label'=>'Формула нарахування балів','name'=>'rezult_formula_ball','type'=>'select','validation'=>'max:255','width'=>'col-sm-10','dataenum'=>'Б=100*(Чп/Чу)'];
+			//$this->form[] = ['label'=>'Командні','name'=>'comandni','type'=>'header','validation'=>'required','width'=>'col-sm-9','dataenum'=>'✓'];
+			//$this->form[] = ['label'=>'Командні результати','name'=>'comandni','type'=>'checkbox','width'=>'col-sm-10','dataenum'=>'Б=100*(Чп/Чу)'];
+			//$this->form[] = ['label'=>'Формула нарахування балів','name'=>'rezult_formula_ball','type'=>'select','validation'=>'max:255','width'=>'col-sm-10'];
 			//$this->form[] = ['label'=>'Іде в залік','name'=>'cill','type'=>'number','validation'=>'numeric','width'=>'col-sm-9'];
 			# OLD END FORM
 
