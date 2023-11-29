@@ -195,9 +195,9 @@ class SiteEventController extends \crocodicstudio\crudbooster\controllers\CBCont
             $regid->grups = explode(" ", $regid->grup);
         }
         $event->link = Event::find($id)->evendop; //Дані про реєстрацію
-        $onlines = Event::find($id)->online;
+        $onlines = Event::find($id)->online->where('active',1);
         foreach ($onlines as $online) {
-            if ($online->online->active==1) {
+            // if ($online->online->active==1) {
 
 
                 $online->ooo = DB::table('mopcompetition')->where('cid', $online->id)->first(); //meos competition
@@ -226,7 +226,7 @@ class SiteEventController extends \crocodicstudio\crudbooster\controllers\CBCont
                 if ($online->ooo) {
                     $rez = 1;
                 }
-            }
+            // }
         }
         $event->onlines = $onlines; //Дані про реєстрацію
         $event->rez = $rez; //Дані про результати
