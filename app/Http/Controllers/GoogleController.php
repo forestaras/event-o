@@ -19,6 +19,8 @@ class GoogleController extends Controller
     {
         try {
             $user = Socialite::driver('google')->user();
+            dd($user)
+
 
             // Ви можете отримати дані про користувача з $user і виконати потрібні дії, наприклад, створення або авторизацію користувача.
 
