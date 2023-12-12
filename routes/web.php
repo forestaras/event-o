@@ -9,6 +9,7 @@ use App\Http\Controllers\AdminRegisterController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\AdminCmsRegisterUsers;
 use App\Http\Controllers\TelegramController;
+use App\Http\Controllers\GoogleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +28,8 @@ Route::get('/admin/registerl', function () {
 Route::get('/test', function () {
     return view('live.test'); // Назва вашого Blade шаблону
 });
+Route::get('/auth/google', [GoogleController::class, 'redirectToGoogle']);
+Route::get('/auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
 // Route::view('/about', 'about');
 
 // Route::get('/1', [SiteEventController::class, 'index']);
