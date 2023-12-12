@@ -83,8 +83,8 @@
                 <div style="margin-bottom:10px" class='row'>
                     <div class='col-xs-12'>
 
-                        <a href='{{route("redirect", 'google')}}' class="btn btn-primary btn-block btn-flat"><i class='fa fa-google'></i>
-                            Google Login</a>
+                        {{-- <a href='{{route("redirect", 'google')}}' class="btn btn-primary btn-block btn-flat"><i class='fa fa-google'></i>
+                            Google Login</a> --}}
 
                         <hr>
                     </div>
