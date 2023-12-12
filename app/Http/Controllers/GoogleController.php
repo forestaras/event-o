@@ -41,9 +41,9 @@ class GoogleController extends Controller
                 Auth::login($newUser);
             }
 
-            return redirect()->route('home'); // Перенаправлення після успішної автентифікації
+            return redirect()->route('/'); // Перенаправлення після успішної автентифікації
         } catch (\Exception $e) {
-            return redirect()->route('login')->with('error', 'Помилка автентифікації через Google.');
+            return redirect()->route('admin')->with('error', 'Помилка автентифікації через Google.');
         }
     }
 }
