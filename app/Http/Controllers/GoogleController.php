@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 
 class GoogleController extends Controller
@@ -18,13 +20,28 @@ class GoogleController extends Controller
     public function handleGoogleCallback()
     {
         try {
-            $user = Socialite::driver('google')->user();
-            dd($user);
+            $googleUser = Socialite::driver('google')->user();
 
+            // Перевірка, чи користувач вже існує у вашій базі даних за допомогою email
+            $user = User::where('email', $googleUser->email)->first();
 
-            // Ви можете отримати дані про користувача з $user і виконати потрібні дії, наприклад, створення або авторизацію користувача.
+            if ($user) {
+                // Якщо користувач з такою електронною адресою вже існує, аутентифікуємо його
+                Auth::login($user);
+            } else {
+                // Якщо користувача з таким email немає, створюємо нового користувача у базі даних
+                $newUser = new User();
+                $newUser->name = $googleUser->name;
+                $newUser->email = $googleUser->email;
+                // Опціонально: можна зберегти інші дані, якщо вони доступні, наприклад, зображення профілю
+                // $newUser->img = $googleUser->avatar;
+                $newUser->save();
 
-            return redirect()->route('home'); // Перенаправлення після успішної автентифікації.
+                // Автентифікуємо нового користувача
+                Auth::login($newUser);
+            }
+
+            return redirect()->route('home'); // Перенаправлення після успішної автентифікації
         } catch (\Exception $e) {
             return redirect()->route('login')->with('error', 'Помилка автентифікації через Google.');
         }
