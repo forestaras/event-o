@@ -17,16 +17,16 @@ class GoogleController extends Controller
 
     public function handleGoogleCallback()
     {
-        try {
+        // try {
             $user = Socialite::driver('google')->user();
             dd($user);
 
 
             // Ви можете отримати дані про користувача з $user і виконати потрібні дії, наприклад, створення або авторизацію користувача.
 
-            return redirect()->route('home'); // Перенаправлення після успішної автентифікації.
-        } catch (\Exception $e) {
-            return redirect()->route('login')->with('error', 'Помилка автентифікації через Google.');
-        }
+        //     return redirect()->route('home'); // Перенаправлення після успішної автентифікації.
+        // } catch (\Exception $e) {
+        //     return redirect()->route('login')->with('error', 'Помилка автентифікації через Google.');
+        // }
     }
 }
