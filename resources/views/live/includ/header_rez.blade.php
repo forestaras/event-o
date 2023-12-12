@@ -13,6 +13,9 @@
             @if (Route::is('split'))
                 Спліти
             @endif
+            @if (Route::is('reley'))
+                Результати естафета
+            @endif
 
             <a href="{{ route('event', $online->eventid) }}?g={{ $online->id }}">{{ $online->name }}
                 @if (!$online->name)
@@ -29,25 +32,25 @@
             <a href="javascript:history.back()" title="Назад"><i class="fas fa-arrow-left"></i></a>
         </button>
 
-        @if (!Route::is('start') and $online->starovi)
+        @if (!Route::is('start') and $online->starovi and !Route::is('reley'))
             <button type="button" class="btn btn-tool">
                 <a href="{{ route('start', $event->cid) }}" title="Стартові"><i class="far fa-file-alt"></i>Старт</a>
             </button>
         @endif
 
-        @if (!Route::is('split') and $online->split)
+        @if (!Route::is('split') and $online->split and !Route::is('reley'))
             <button type="button" class="btn btn-tool">
                 <a href="{{ route('split' , $event->cid) }}" title="Спліти"><i class="fas fa-poll-h"></i>Спліт</a>
             </button>
         @endif
 
-        @if (!Route::is('rezult') and $online->rezult)
+        @if (!Route::is('rezult') and $online->rezult and !Route::is('reley'))
             <button type="button" class="btn btn-tool">
                 <a href="{{ route('rezult' , $event->cid) }}" title="Результати"><i class="fa fa-list"></i>Результ</a>
             </button>
         @endif
 
-        @if (!Route::is('comandni') and $online->comandni)
+        @if (!Route::is('comandni') and $online->comandni and !Route::is('reley'))
             <button type="button" class="btn btn-tool">
                 <a href="{{ route('comand' , $event->cid) }}" title="Командні"><i class="fas fa-user-friends"></i>Командні</a>
             </button>

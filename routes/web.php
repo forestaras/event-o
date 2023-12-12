@@ -24,6 +24,9 @@ use App\Http\Controllers\TelegramController;
 Route::get('/admin/registerl', function () {
     return view('site.register');
 });
+Route::get('/test', function () {
+    return view('live.test'); // Назва вашого Blade шаблону
+});
 // Route::view('/about', 'about');
 
 // Route::get('/1', [SiteEventController::class, 'index']);

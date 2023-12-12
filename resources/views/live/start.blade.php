@@ -40,90 +40,168 @@
 
             @if ($_GET['sort'] == 'grup' or !$_GET['sort'])
                 @foreach ($grups as $grup)
-                    <div>
-                        <p id="{{ $grup->name }}">
-                            {{-- <br>
+                    @if ($grup->reley == 0)
+                        <div>
+                            <p id="{{ $grup->name }}">
+                                {{-- <br>
                             <br> --}}
-                        </p>
+                            </p>
 
 
-                        <div class="row card-header">
-                            <div class="col-12">
-                                <div>
-                                    <h5>
-                                        <span class="badge bg-primary">{{ $grup->name }}</span>
+                            <div class="row card-header">
+                                <div class="col-12">
+                                    <div>
+                                        <h5>
+                                            <span class="badge bg-primary">{{ $grup->name }}</span>
 
-                                        <small class="float-right">
-                                            @foreach ($grups as $grupa)
-                                                <a href="#{{ $grupa->name }}">{{ $grupa->name }}</a>|
-                                            @endforeach
-                                        </small>
-                                    </h5>
+                                            <small class="float-right">
+                                                @foreach ($grups as $grupa)
+                                                {!! $grupa->rezult !!}|
+                                                @endforeach
+                                            </small>
+                                        </h5>
+                                    </div>
+                                </div>
+                                <!-- /.col -->
+                            </div>
+                            <div class="card-body p-0">
+                                <div class="d-md-flex">
+                                    <div class="table-responsive">
+
+                                        <table class="table table-striped table-bordered m-0">
+                                            <thead class="thead-dark">
+                                                <tr>
+                                                    <th>№</th>
+                                                    <th>Імя</th>
+                                                    <th>Команда,клуб</th>
+                                                    <th>SI</th>
+                                                    <th>Старт</th>
+                                                    {{-- <th>Рез</th> --}}
+                                                    {{-- <th>Відставання</th> --}}
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @php
+                                                    $x = 0;
+                                                @endphp
+                                                @foreach ($peoples as $people)
+                                                    @if ($grup->name == $people['cls'])
+                                                        @php
+                                                            $x = $x + 1;
+                                                        @endphp
+                                                        <tr>
+
+                                                            <td>{{ $x }}</td>
+                                                            <td><a
+                                                                    href="/livess/atlet/{{ $people['name'] }}">{{ $people->name }}</a>
+                                                            </td>
+                                                            <th class="d-sm-none"><a
+                                                                    href="?sort=club#{{ $people->org }}">{{ $people->club }}</a>
+                                                            </th>
+                                                            <th class="d-none d-sm-table-cell"><a
+                                                                    href="?sort=club#{{ $people->org }}">{{ $people->org }}</a>
+                                                            </th>
+                                                            <td>{{ $people->si }}</td>
+
+                                                            <td>{{ $people->start }}</td>
+
+                                                        </tr>
+                                                    @endif
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
-                            <!-- /.col -->
                         </div>
-                        <div class="card-body p-0">
-                            <div class="d-md-flex">
-                                <div class="table-responsive">
-
-                                    <table class="table table-striped table-bordered m-0">
-                                        <thead class="thead-dark">
-                                            <tr>
-                                                <th>№</th>
-                                                <th>Імя</th>
-                                                <th>Команда,клуб</th>
-                                                <th>SI</th>
-                                                <th>Старт</th>
-                                                {{-- <th>Рез</th> --}}
-                                                {{-- <th>Відставання</th> --}}
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @php
-                                                $x = 0;
-                                            @endphp
-                                            @foreach ($peoples as $people)
-                                                @if ($grup->name == $people['cls'])
-                                                    @php
-                                                        $x = $x + 1;
-                                                    @endphp
-                                                    <tr>
-
-                                                        <td>{{ $x }}</td>
-                                                        <td><a
-                                                                href="/livess/atlet/{{ $people['name'] }}">{{ $people->name }}</a>
-                                                        </td>
-                                                        <th class="d-sm-none"><a
-                                                            href="?sort=club#{{ $people->org }}">{{ $people->club }}</a>
-                                                    </th>
-                                                        <th class="d-none d-sm-table-cell"><a
-                                                                href="?sort=club#{{ $people->org }}">{{ $people->org }}</a>
-                                                        </th>
-                                                        <td>{{ $people->si }}</td>
-
-                                                        <td>{{ $people->start }}</td>
-
-                                                    </tr>
-                                                @endif
-                                            @endforeach
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @endif
                 @endforeach
             @endif
             @if ($_GET['sort'] == 'club')
                 @foreach ($clubs as $club)
-                    <div>
-                        <p id="{{ $club->name }}">
-                            <br>
-                            <br>
-                        </p>
+                    @if ($grup->reley == 0)
+                        <div>
+                            <p id="{{ $club->name }}">
+                                <br>
+                                <br>
+                            </p>
 
-                        <div class="row card-header">
+                            <div class="row card-header">
+                                <div class="col-12">
+                                    <h5>
+                                        <span class="badge bg-primary">{{ $club->name }}</span>
+                                        <small class="float-right">
+                                            @foreach ($clubs as $cluba)
+                                                <a href="#{{ $cluba->name }}">{{ $cluba->name }}</a>|
+                                            @endforeach
+                                        </small>
+                                    </h5>
+                                </div>
+                                <!-- /.col -->
+                            </div>
+                            <div class="card-body p-0">
+                                <div class="d-md-flex">
+                                    <div class="table-responsive">
+
+                                        <table class="table table-striped table-bordered m-0">
+                                            <thead class="thead-dark">
+                                                <tr>
+                                                    <th>№</th>
+                                                    <th>Імя</th>
+                                                    <th>Група</th>
+                                                    <th>SI</th>
+                                                    <th>Старт</th>
+                                                    {{-- <th>Рез</th> --}}
+                                                    {{-- <th>Відставання</th> --}}
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @php
+                                                    $x = 0;
+                                                @endphp
+                                                @foreach ($peoples as $people)
+                                                    {{-- {{$people->org}} --}}
+                                                    @if ($club->id == $people->orgid)
+                                                        @php
+                                                            $x = $x + 1;
+                                                        @endphp
+                                                        <tr>
+
+                                                            <td>{{ $x }}</td>
+                                                            <td><a
+                                                                    href="/livess/atlet/{{ $people->name }}">{{ $people->name }}</a>
+                                                            </td>
+                                                            <th><a
+                                                                    href="?sort=grup#{{ $people->cls }}">{{ $people->cls }}</a>
+                                                            </th>
+                                                            <td>{{ $people->si }}</td>
+
+                                                            <td>{{ $people->start }}</td>
+
+                                                        </tr>
+                                                    @endif
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    @endif
+                @endforeach
+            @endif
+            @if ($_GET['sort'] == 'sah')
+                @if ($grup->reley == 0)
+                    {{-- @foreach ($clubs as $club) --}}
+                    <div>
+                        {{-- <p id="{{ $club->name }}">
+                            <br>
+                            <br>
+                        </p> --}}
+
+                        {{-- <div class="row card-header">
                             <div class="col-12">
                                 <h5>
                                     <span class="badge bg-primary">{{ $club->name }}</span>
@@ -135,7 +213,7 @@
                                 </h5>
                             </div>
                             <!-- /.col -->
-                        </div>
+                        </div> --}}
                         <div class="card-body p-0">
                             <div class="d-md-flex">
                                 <div class="table-responsive">
@@ -145,6 +223,7 @@
                                             <tr>
                                                 <th>№</th>
                                                 <th>Імя</th>
+                                                <th>Команда/клуб</th>
                                                 <th>Група</th>
                                                 <th>SI</th>
                                                 <th>Старт</th>
@@ -158,25 +237,26 @@
                                             @endphp
                                             @foreach ($peoples as $people)
                                                 {{-- {{$people->org}} --}}
-                                                @if ($club->id == $people->orgid)
-                                                    @php
-                                                        $x = $x + 1;
-                                                    @endphp
-                                                    <tr>
+                                                {{-- @if ($club->id == $people->orgid) --}}
+                                                @php
+                                                    $x = $x + 1;
+                                                @endphp
+                                                <tr>
 
-                                                        <td>{{ $x }}</td>
-                                                        <td><a
-                                                                href="/livess/atlet/{{ $people->name }}">{{ $people->name }}</a>
-                                                        </td>
-                                                        <th><a
-                                                                href="?sort=grup#{{ $people->cls }}">{{ $people->cls }}</a>
-                                                        </th>
-                                                        <td>{{ $people->si }}</td>
+                                                    <td>{{ $x }}</td>
+                                                    <td><a
+                                                            href="/livess/atlet/{{ $people->name }}">{{ $people->name }}</a>
+                                                    </td>
+                                                    <th><a href="?sort=club#{{ $people->org }}">{{ $people->org }}</a>
+                                                    </th>
+                                                    <th><a href="?sort=grup#{{ $people->cls }}">{{ $people->cls }}</a>
+                                                    </th>
+                                                    <td>{{ $people->si }}</td>
 
-                                                        <td>{{ $people->start }}</td>
+                                                    <td>{{ $people->start }}</td>
 
-                                                    </tr>
-                                                @endif
+                                                </tr>
+                                                {{-- @endif --}}
                                             @endforeach
                                         </tbody>
                                     </table>
@@ -186,81 +266,8 @@
 
                         </div>
                     </div>
-                @endforeach
-            @endif
-            @if ($_GET['sort'] == 'sah')
-                {{-- @foreach ($clubs as $club) --}}
-                <div>
-                    {{-- <p id="{{ $club->name }}">
-                            <br>
-                            <br>
-                        </p> --}}
-
-                    {{-- <div class="row card-header">
-                            <div class="col-12">
-                                <h5>
-                                    <span class="badge bg-primary">{{ $club->name }}</span>
-                                    <small class="float-right">
-                                        @foreach ($clubs as $cluba)
-                                            <a href="#{{ $cluba->name }}">{{ $cluba->name }}</a>|
-                                        @endforeach
-                                    </small>
-                                </h5>
-                            </div>
-                            <!-- /.col -->
-                        </div> --}}
-                    <div class="card-body p-0">
-                        <div class="d-md-flex">
-                            <div class="table-responsive">
-
-                                <table class="table table-striped table-bordered m-0">
-                                    <thead class="thead-dark">
-                                        <tr>
-                                            <th>№</th>
-                                            <th>Імя</th>
-                                            <th>Команда/клуб</th>
-                                            <th>Група</th>
-                                            <th>SI</th>
-                                            <th>Старт</th>
-                                            {{-- <th>Рез</th> --}}
-                                            {{-- <th>Відставання</th> --}}
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @php
-                                            $x = 0;
-                                        @endphp
-                                        @foreach ($peoples as $people)
-                                            {{-- {{$people->org}} --}}
-                                            {{-- @if ($club->id == $people->orgid) --}}
-                                            @php
-                                                $x = $x + 1;
-                                            @endphp
-                                            <tr>
-
-                                                <td>{{ $x }}</td>
-                                                <td><a href="/livess/atlet/{{ $people->name }}">{{ $people->name }}</a>
-                                                </td>
-                                                <th><a href="?sort=club#{{ $people->org }}">{{ $people->org }}</a>
-                                                </th>
-                                                <th><a href="?sort=grup#{{ $people->cls }}">{{ $people->cls }}</a>
-                                                </th>
-                                                <td>{{ $people->si }}</td>
-
-                                                <td>{{ $people->start }}</td>
-
-                                            </tr>
-                                            {{-- @endif --}}
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
-
-                        </div>
-
-                    </div>
-                </div>
-                {{-- @endforeach --}}
+                    {{-- @endforeach --}}
+                @endif
             @endif
             <!-- /.card-body -->
         </div>

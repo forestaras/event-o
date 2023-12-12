@@ -203,9 +203,12 @@ class SiteEventController extends \crocodicstudio\crudbooster\controllers\CBCont
                 $online->ooo = DB::table('mopcompetition')->where('cid', $online->id)->first(); //meos competition
                 $online->peoples = DB::table('mopcompetitor')->where('cid', $online->id)->get(); //перевіряє чи є стартові
                 $online->grups = Mopclass::where('cid', $online->id)->get();
+                $online->grups=RezultController::grup_list($online->grups,'rezult');
+                
                 // $seting = Online::where('id', $id)->first();
-                // $online->seting=$seting;
+                // $online->seting=$seting; 
                 foreach ($online->grups as $grup) {
+                   
                     $count_start = $online->peoples->where('cls', $grup->id)->where('st', '>', 0)->count();
                     if ($count_start >= 1) {
                         $grup->start = 1;

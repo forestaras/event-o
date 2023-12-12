@@ -14,7 +14,7 @@ app/storage/
 # Laravel 5 & Lumen specific with changed public path
 # public_html/storage
 public_html/hot
-
+# public_html/live/config.php
 storage/*.key
 .env
 .htaccess
@@ -30,3 +30,4 @@ Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
+public/live/config.php

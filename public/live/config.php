@@ -1,15 +1,15 @@
 <?php
 
 define("MYSQL_HOSTNAME", "localhost");
-define("MYSQL_USERNAME", "u320095004_forestaras");
-define("MYSQL_DBNAME", "u320095004_evento");  
-define("MYSQL_PASSWORD", "Nfhnfr-30");
+define("MYSQL_USERNAME", "root");
+define("MYSQL_DBNAME", "event_o2");  
+define("MYSQL_PASSWORD", "root");
 
 define("MEOS_PASSWORD", "meos");
 $servername = "localhost";
-$username = "u320095004_forestaras";
-$password = "Nfhnfr-30";
-$dbname = "u320095004_evento";
+$username = "root";
+$password = "root";
+$dbname = "event_o2";
 
 
 

@@ -13,7 +13,7 @@
     <div class="col-md-9">
 
 
-        <section class="content"> 
+        <section class="content">
             <div class="container-fluid">
                 <div class="row">
 
@@ -349,89 +349,108 @@
                                                         @endif
 
                                                         @if ($online->rezult or $online->starovi or $online->split)
-                                                        <div class="card card-primary">
-                                                            <div class="card-header">
-                                                                <h3 class="card-title">
-                                                                    <font style="vertical-align: inherit;">
-                                                                        <font style="vertical-align: inherit;">Результати і
-                                                                            стартові
-                                                                        </font>
-                                                                    </font>
-                                                                </h3>
-                                                                <div class="card-tools">
-                                                                </div>
-                                                            </div>
-                                                            <div class="card-body">
-                                                                <div>
-                                                                    <div class="direct-chat-msg">
-                                                                        <span class="direct-chat-name float-left">
+                                                            <div class="card card-primary">
+                                                                <div class="card-header">
+                                                                    <h3 class="card-title">
+                                                                        <font style="vertical-align: inherit;">
                                                                             <font style="vertical-align: inherit;">
-                                                                                <div id="event_update_results_content_62295"
-                                                                                    class="text p-4">
-                                                                                    @if ($online->starovi)
-                                                                                        <p><strong><a href="/livess/start/{{ $online->id }}">Стартові:</a></strong><br>
-                                                                                            <font
-                                                                                                style="vertical-align: inherit;">
-                                                                                                @foreach ($online->grups as $grup)
-                                                                                                    @if ($grup->start == 1)
-                                                                                                        <a
-                                                                                                            href="/livess/start/{{ $online->id }}#{{ $grup->name }}">{{ $grup->name }}</a>|
-                                                                                                    @else
-                                                                                                        {{ $grup->name }}|
-                                                                                                    @endif
-                                                                                                @endforeach
-                                                                                            </font>
-                                                                                    @endif
-                                                                                    @if ($online->rezult)
-                                                                                        <p><strong><a href="/livess/rezult/{{ $online->id }}">Результати
-                                                                                                онлайн:</a></strong><br>
-                                                                                            <font
-                                                                                                style="vertical-align: inherit;">
-                                                                                                @foreach ($online->grups as $grup)
-                                                                                                    @if ($grup->rezult == 1)
-                                                                                                        <a
-                                                                                                            href="/livess/rezult/{{ $online->id }}#{{ $grup->name }}">{{ $grup->name }}</a>|
-                                                                                                    @else
-                                                                                                        {{ $grup->name }}|
-                                                                                                    @endif
-                                                                                                @endforeach
-                                                                                            </font>
-                                                                                    @endif
-                                                                                    @if ($online->split)
-                                                                                        <p><strong><a href="/livess/split/{{ $online->id }}">Спліти:</a></strong><br>
-                                                                                            <font
-                                                                                                style="vertical-align: inherit;">
-                                                                                                @foreach ($online->grups as $grup)
-                                                                                                    @if ($grup->rezult == 1)
-                                                                                                        <a
-                                                                                                            href="/livess/split/{{ $online->id }}?grup={{ $grup->name }}">{{ $grup->name }}</a>|
-                                                                                                    @else
-                                                                                                        {{ $grup->name }}|
-                                                                                                    @endif
-                                                                                                @endforeach
-                                                                                            </font>
-                                                                                    @endif
-
-
-
-
-
-                                                                                </div>
-
-
-
+                                                                                Результати і
+                                                                                стартові
                                                                             </font>
-                                                                        </span>
+                                                                        </font>
+                                                                    </h3>
+                                                                    <div class="card-tools">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="card-body">
+                                                                    <div>
+                                                                        <div class="direct-chat-msg">
+                                                                            <span class="direct-chat-name float-left">
+                                                                                <font style="vertical-align: inherit;">
+                                                                                    <div id="event_update_results_content_62295"
+                                                                                        class="text p-4">
+                                                                                        @if ($online->starovi)
+                                                                                            <p><strong><a
+                                                                                                        href="/livess/start/{{ $online->id }}">Стартові:</a></strong><br>
+                                                                                                <font
+                                                                                                    style="vertical-align: inherit;">
+                                                                                                    @foreach ($online->grups as $grup)
+                                                                                                        @if ($grup->reley == 0)
+                                                                                                            @if ($grup->start == 1)
+                                                                                                                <a
+                                                                                                                    href="/livess/start/{{ $online->id }}#{{ $grup->name }}">{{ $grup->name }}</a>|
+                                                                                                            @else
+                                                                                                                {{ $grup->name }}|
+                                                                                                            @endif
+                                                                                                        @endif
+                                                                                                    @endforeach
+                                                                                                </font>
+                                                                                        @endif
+                                                                                        @if ($online->rezult)
+                                                                                            <p><strong><a
+                                                                                                        href="/livess/rezult/{{ $online->id }}">Результати
+                                                                                                        онлайн:</a></strong><br>
+                                                                                                <font
+                                                                                                    style="vertical-align: inherit;">
+                                                                                                    @php
+                                                                                                        //  dd($online->grups)   ;
+                                                                                                    @endphp
+                                                                                                    @foreach ($online->grups as $grup)
+                                                                                                        @if ($grup->reley == 0)
+                                                                                                            @if ($grup->rezult == 1)
+                                                                                                                <a
+                                                                                                                    href="/livess/rezult/{{ $online->id }}#{{ $grup->name }}">{{ $grup->name }}</a>|
+                                                                                                            @else
+                                                                                                                {{ $grup->name }}|
+                                                                                                            @endif
+                                                                                                        @endif
+                                                                                                        @if ($grup->reley > 0)
+                                                                                                            <a
+                                                                                                                href="/livess/reley/{{ $online->id }}?grup={{ $grup->name }}">
+                                                                                                                Естафета
+                                                                                                                {{ $grup->name }}</a>|
+                                                                                                        @endif
+                                                                                                    @endforeach
+                                                                                                </font>
+                                                                                        @endif
+                                                                                        @if ($online->split)
+                                                                                            <p><strong><a
+                                                                                                        href="/livess/split/{{ $online->id }}">Спліти:</a></strong><br>
+                                                                                                <font
+                                                                                                    style="vertical-align: inherit;">
+                                                                                                    @foreach ($online->grups as $grup)
+                                                                                                        @if ($grup->reley == 0)
+                                                                                                            @if ($grup->rezult == 1)
+                                                                                                                <a
+                                                                                                                    href="/livess/split/{{ $online->id }}?grup={{ $grup->name }}">{{ $grup->name }}</a>|
+                                                                                                            @else
+                                                                                                                {{ $grup->name }}|
+                                                                                                            @endif
+                                                                                                        @endif
+                                                                                                    @endforeach
+                                                                                                </font>
+                                                                                        @endif
+
+
+
+
+
+                                                                                    </div>
+
+
+
+                                                                                </font>
+                                                                            </span>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
                                                         @endif
 
                                                         @if ($online->comandni)
                                                             @include('live.show_widget.widget_comand')
                                                         @endif
-                                                        
+
                                                         @if ($online->startclok)
                                                             @include('live.show_widget.widget_start_cloks')
                                                         @endif

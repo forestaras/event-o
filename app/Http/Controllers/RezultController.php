@@ -48,6 +48,85 @@ class RezultController extends Controller
 
 	public function reley($id)
 	{
+		$grupa = $_GET['grup'];
+		$event = Mopcompetition::where('cid', $id)->first();
+		$online = Online::where('id', $id)->first();
+		$eventseting = Event::where('id', $online->eventid)->first();
+		$grups = Mopclass::where('cid', $id)->get();
+		$cls = $grups->where('name', $grupa)->first();
+
+		$grups = self::grup_list($grups,'reley');
+
+
+
+		$event = Mopcompetition::where('cid', $id)->first();
+		$peoples = Mopcompetitor::where('cid', $id)->where('cls', $cls->id)->get();
+		$clubs = Moporganization::where('cid', $id)->get();
+		$teams = DB::table('mopteam')->where('cid', $id)->where('cls', $cls->id)->get();
+		$teammembers = DB::table('mopteammember')->where('cid', $id)->get();
+		// $peopless=$peoples;
+
+
+
+		foreach ($peoples as $people) {
+			$people->grup = $cls->name;
+			$people->status = self::statussearh($people);
+			$people->start = self::formatTime($people->st);
+			$people->rezult = self::formatTime($people->rt);
+			$people->rezultetap = self::formatTime($people->it);
+			$people->leg = $teammembers->where('rid', $people->id)->first()->leg;
+			$people->rid = $teammembers->where('rid', $people->id)->first()->rid;
+			$people->comand = $teammembers->where('rid', $people->id)->first()->id;
+			$people->team = $teams->where('id', $people->comand)->first();
+			$people->rez_stat = self::rez_stat($people);
+			$people->org = $clubs->where('id', $people->team->org)->first();
+
+			// $people->mistse = self::mistse($people, $peopless);
+		}
+		foreach ($peoples as $people) {
+			$people->etap = self::rezultetap($peoples, $people, $teams);
+			$people->mistse = self::mistse($people, $peoples->where('leg', $people->leg));
+			$people->plase = self::plases($people->stat, $people->mistse);
+		}
+		foreach ($teams as $team) {
+			$team->peoples = $peoples->where('comand', $team->id);
+			$team->count = $team->peoples->count();
+			$team->mistse = self::mistse($team, $teams);
+			$team->plases = self::plases($team->stat, $team->mistse);
+			$team->rezult = self::formatTime($team->rt);
+			$team->rez_stat = self::rez_stat($team);
+		}
+		$teams = $teams->sortBy('plases');
+		$etap = $teams->where('mistse', 1)->first()->peoples;
+
+		if (!$_GET['leg']) {
+			return view('live.reley', compact('event', 'grups', 'grupa', 'teams', 'eventseting', 'online', 'etap'));
+		}
+
+		$leg = $_GET['leg'];
+		$peoples = $peoples->where('leg', $leg);
+
+		$peoples = $peoples->sortBy('plase');
+		foreach ($peoples as $people) {
+			if ($people->plase  == 1) $x = $people->rt;
+			$vids = $people->rt - $x;
+			$people->vids = self::formatVids($vids, $people->stat);
+		}
+		// dd($peoples);
+
+
+
+
+		if ($_GET['leg']) {
+			return view('live.reley', compact('event', 'grups', 'grupa', 'teams', 'eventseting', 'online', 'etap', 'peoples'));
+		}
+	}
+
+
+
+	public function reley2($id)
+	{
+
 		$event = Mopcompetition::where('cid', $id)->first();
 		$peoples = Mopcompetitor::where('cid', $id)->get();
 		$grups = Mopclass::where('cid', $id)->get();
@@ -98,26 +177,26 @@ class RezultController extends Controller
 
 	public function comand($id)
 	{
-        
+
 
 		$event = Mopcompetition::where('cid', $id)->first();
-		$online = Online::where('id',$id)->first();
-		$eventseting=Event::where('id',$online->eventid)->first();
-		if ($event==0) {
-			return view('live.erorrs.erorrs_rezult', compact('event','online','eventseting'));
+		$online = Online::where('id', $id)->first();
+		$eventseting = Event::where('id', $online->eventid)->first();
+		if ($event == 0) {
+			return view('live.erorrs.erorrs_rezult', compact('event', 'online', 'eventseting'));
 		}
-        $peopless = Mopcompetitor::where('cid', $id)->get();
-        $grups = Mopclass::where('cid', $id)->get();
-        $clubs = Moporganization::where('cid', $id)->get();
-		$zalik=$online->cill;
-		$formula=$online->rezult_formula_ball;
+		$peopless = Mopcompetitor::where('cid', $id)->get();
+		$grups = Mopclass::where('cid', $id)->get();
+		$clubs = Moporganization::where('cid', $id)->get();
+		$zalik = $online->cill;
+		$formula = $online->rezult_formula_ball;
 		foreach ($grups as $grup) {
 			$grup->best = $peopless->where('cls', $grup->id)->where('cls', $grup->id)->where('stat', 1)->min('rt');
 		}
 		foreach ($peopless as $people) {
 			if ($people->stat == 1) {
 				$bestrt = $grups->where('id', $people->cls)->first->best;
-				if ($formula=='Б=100*(Чп/Чу)') {
+				if ($formula == 'Б=100*(Чп/Чу)') {
 					$bali = 100 * ($bestrt->best / $people->rt);
 				}
 				$bali = 100 * ($bestrt->best / $people->rt);
@@ -125,63 +204,61 @@ class RezultController extends Controller
 				$people->best = $bestrt->best;
 				$people->mistse = self::mistse($people, $peopless);
 				$people->cls_name = self::grupsearh($grups, $people);
-                $people->rezult=self::formatTime($people->rt);
+				$people->rezult = self::formatTime($people->rt);
 			}
 		}
-		$y=0;
+		$y = 0;
 		foreach ($clubs as $club) {
 			$x = 0;
-			
+
 			$people = $peopless->where('org', $club->id)->sortByDesc('bali')->take($zalik);
 			foreach ($people as $p) {
-				
+
 
 				$x = $p->bali + $x;
 			}
-			$club->sumball = round($x,2);
-
+			$club->sumball = round($x, 2);
 		}
 		$clubs = $clubs->sortByDesc('sumball');
-		$club_max_bal=$clubs->max('sumball');
-		foreach($clubs as $club){
-			
-			$y=$y+1;
+		$club_max_bal = $clubs->max('sumball');
+		foreach ($clubs as $club) {
+
+			$y = $y + 1;
 			$club->mistse = $y;
-			$club->count_fifnsh=$peopless->where('org', $club->id)->where('stat', 1)->count();
-			$club->count_start=$peopless->where('org', $club->id)->count();
-			$club->bal_vits=75/$club_max_bal*$club->sumball;
-			$people=$peopless->where('org', $club->id)->where('stat', 1)->sortByDesc('bali');
-			$text="";
-			foreach($people as $p){
-				$sp=$p->mistse.".".$p->name."-". round($p->bali,2)."         ";
-				$text=$text.$sp;
-
+			$club->count_fifnsh = $peopless->where('org', $club->id)->where('stat', 1)->count();
+			$club->count_start = $peopless->where('org', $club->id)->count();
+			$club->bal_vits = 75 / $club_max_bal * $club->sumball;
+			$people = $peopless->where('org', $club->id)->where('stat', 1)->sortByDesc('bali');
+			$text = "";
+			foreach ($people as $p) {
+				$sp = $p->mistse . "." . $p->name . "-" . round($p->bali, 2) . "         ";
+				$text = $text . $sp;
 			}
-			
 
-			$club->people=$text;
-			
+
+			$club->people = $text;
 		}
 		$peopless = $peopless->sortByDesc('bali');
 		// print_r($clubs);
 
 
 
-		return view('live.comand', compact('peopless', 'clubs','event','zalik','online','eventseting'));
+		return view('live.comand', compact('peopless', 'clubs', 'event', 'zalik', 'online', 'eventseting'));
 	}
 
 	public function rezult($id)
 	{
 		// $seting = SetingController::seting();
 		$event = Mopcompetition::where('cid', $id)->first();
-		$online = Online::where('id',$id)->first();
-		$eventseting=Event::where('id',$online->eventid)->first();
-		if ($event==0) {
-			return view('live.erorrs.erorrs_rezult', compact('event','online','eventseting'));
+		$online = Online::where('id', $id)->first();
+		$eventseting = Event::where('id', $online->eventid)->first();
+		if ($event == 0) {
+			return view('live.erorrs.erorrs_rezult', compact('event', 'online', 'eventseting'));
 		}
-		
+
 		$peopless = Mopcompetitor::where('cid', $id)->get();
 		$grups = Mopclass::where('cid', $id)->get();
+		$grups = self::grup_list($grups,'rezult');
 		$clubs = Moporganization::where('cid', $id)->get();
 		foreach ($peopless as $people) {
 			$mistse = self::mistse($people, $peopless);
@@ -199,7 +276,7 @@ class RezultController extends Controller
 				'rez_stat' => self::rez_stat($people),
 				'mistse' => $mistse,
 				'plases' => self::plases($people->stat, $mistse),
-				
+
 
 			];
 		}
@@ -220,20 +297,22 @@ class RezultController extends Controller
 		}
 		$event->count_people = $count_people;
 		$event->count_club = self::count_club($clubs);
-		return view('live.rezult', compact('event', 'seting', 'peoples', 'grups', 'clubs','online','eventseting'));
+		return view('live.rezult', compact('event', 'seting', 'peoples', 'grups', 'clubs', 'online', 'eventseting'));
 	}
 
 	public function start($id)
 	{
 		// $seting = SetingController::seting();
 		$event = Mopcompetition::where('cid', $id)->first();
-		$online = Online::where('id',$id)->first();
-		$eventseting=Event::where('id',$online->eventid)->first();
-		if ($event==0) {
-			return view('live.erorrs.erorrs_rezult', compact('event','online','eventseting'));
+		$online = Online::where('id', $id)->first();
+		$eventseting = Event::where('id', $online->eventid)->first();
+		if ($event == 0) {
+			return view('live.erorrs.erorrs_rezult', compact('event', 'online', 'eventseting'));
 		}
 		$peoples = Mopcompetitor::where('cid', $id)->get();
 		$grups = Mopclass::where('cid', $id)->get();
+		$grups = self::grup_list($grups,'start');
+
 		$clubs = Moporganization::where('cid', $id)->get();
 		foreach ($peoples as $people) {
 			// $people->mistse = self::mistse($people, $peoples);
@@ -256,7 +335,7 @@ class RezultController extends Controller
 			['st', 'asc'],
 			['cls', 'asc'],
 		]);
-		return view('live.start', compact('event', 'seting', 'peoples', 'grups', 'clubs','online','eventseting'));
+		return view('live.start', compact('event', 'seting', 'peoples', 'grups', 'clubs', 'online', 'eventseting'));
 	}
 
 
@@ -327,10 +406,10 @@ class RezultController extends Controller
 		// $seting = SetingController::seting();
 		$grupss = Mopclass::where('cid', $id)->get();
 		$event = Mopcompetition::where('cid', $id)->first();
-		$online = Online::where('id',$id)->first();
-		$eventseting=Event::where('id',$online->eventid)->first();
-		if ($event==0) {
-			return view('live.erorrs.erorrs_rezult', compact('event','online','eventseting'));
+		$online = Online::where('id', $id)->first();
+		$eventseting = Event::where('id', $online->eventid)->first();
+		if ($event == 0) {
+			return view('live.erorrs.erorrs_rezult', compact('event', 'online', 'eventseting'));
 		}
 		$clubs = Moporganization::where('cid', $id)->get();
 		$grups = Mopclass::where('cid', $id)->where('name', $grup)->first(); // виймаємо группу     
@@ -503,7 +582,7 @@ class RezultController extends Controller
 			];
 			$color = $color + 1;
 		}
-		return view('live.split', compact('event', 'seting', 'people_rezult', 'mopkp', 'grupss', 'id', 'grup','online','eventseting'));
+		return view('live.split', compact('event', 'seting', 'people_rezult', 'mopkp', 'grupss', 'id', 'grup', 'online', 'eventseting'));
 	}
 
 	public function atlet($name)
@@ -563,16 +642,15 @@ class RezultController extends Controller
 
 	public function search_atlet(Request $request)
 	{
-		
+
 		$query = $request->input('query');
 		if ($query) {
 			$athletes = Peoples::where('name', 'like', "%$query%")->get();
-		}
-		elseif (!$query) {
+		} elseif (!$query) {
 			$athletes = Peoples::where('name', 'like', "%548445451213545435454%")->get();
 		}
 
-        
+
 		return view('live.page.search_atlet', compact('athletes'));
 	}
 
@@ -806,6 +884,43 @@ class RezultController extends Controller
 			return SiteOnlineController::formatTime($people->rt);
 	}
 
+	static function tip_event($grups)
+	{ //Додає дл групи тип змагань 
+		$cid = $grups->first()->cid;
+		$team = DB::table('mopteam')->where('cid', $cid)->get();
+		foreach ($grups as $grup) {
+			$grup->reley = $team->where('cls', $grup->id)->first()->id;
+		}
+		return $grups;
+	}
+
+	static function grup_list($grups, $start)
+	{ //Додає дл групи тип змагань 
+		$cid = $grups->first()->cid;
+		$team = DB::table('mopteam')->where('cid', $cid)->get();
+		if ($start == 'start') {
+			foreach ($grups as $grup) {
+				$grup->reley = $team->where('cls', $grup->id)->first()->id;
+				$grup->rezult = '<a
+					href="/livess/start/' . $cid . '#' . $grup->name . '">' . $grup->name . '</a>';
+			}
+		}
+		else{
+			foreach ($grups as $grup) {
+			$grup->reley = $team->where('cls', $grup->id)->first()->id;
+			if ($grup->reley > 0) {
+				$grup->rezult = '<a
+				href="/livess/reley/' . $cid . '?grup=' . $grup->name . '">' . $grup->name . '</a>';
+			} else {
+				$grup->rezult = '<a
+				href="/livess/rezult/' . $cid . '#' . $grup->name . '">' . $grup->name . '</a>';
+			}
+		}
+		}
+		
+		return $grups;
+	}
+
 
 
 
@@ -840,6 +955,4 @@ class RezultController extends Controller
 			return $bali;
 		}
 	}
-
-
 }

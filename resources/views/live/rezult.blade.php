@@ -63,6 +63,10 @@
 
             @if ($_GET['sort'] == 'grup' or !$_GET['sort'])
                 @foreach ($grups as $grup)
+                @if ($grup->reley==0)
+                    
+                
+
                     <div>
                         <p id="{{ $grup->name }}">
                             {{-- <br>
@@ -78,7 +82,7 @@
 
                                         <small class="float-right">
                                             @foreach ($grups as $grupa)
-                                                <a href="#{{ $grupa->name }}">{{ $grupa->name }}</a>|
+                                            {!!$grupa->rezult!!}|
                                             @endforeach
                                         </small>
                                     </h5>
@@ -135,6 +139,7 @@
 
                         </div>
                     </div>
+                    @endif
                 @endforeach
             @endif
             @if ($_GET['sort'] == 'club')
