@@ -23,7 +23,7 @@ class GoogleController extends Controller
 
         try {
             $googleUser = Socialite::driver('google')->user();
-        dd ($googleUser);
+        // dd ($googleUser);
 
             // Перевірка, чи користувач вже існує у вашій базі даних за допомогою email
             $user = User::where('email', $googleUser->email)->first();
