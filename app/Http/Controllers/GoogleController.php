@@ -47,9 +47,9 @@ class GoogleController extends Controller
                 Auth::login($newUser);
             }
 
-            return redirect()->route('event'); // Перенаправлення після успішної автентифікації
+            return redirect()->route('live'); // Перенаправлення після успішної автентифікації
         // } catch (\Exception $e) {
-            return redirect()->route('event')->with('error', 'Помилка автентифікації через Google.');
+            // return redirect()->route('event')->with('error', 'Помилка автентифікації через Google.');
         // }
     }
 }
