@@ -21,7 +21,7 @@ class GoogleController extends Controller
     {
         
 
-        try {
+        // try {
             $googleUser = Socialite::driver('google')->user();
         // dd ($googleUser);
 
@@ -48,8 +48,8 @@ class GoogleController extends Controller
             }
 
             return redirect()->url('/admin'); // Перенаправлення після успішної автентифікації
-        } catch (\Exception $e) {
+        // } catch (\Exception $e) {
             return redirect()->route('event')->with('error', 'Помилка автентифікації через Google.');
-        }
+        // }
     }
 }
