@@ -24,6 +24,7 @@ class GoogleController extends Controller
 
             // Перевірка, чи користувач вже існує у вашій базі даних за допомогою email
             $user = User::where('email', $googleUser->email)->first();
+            dd ($user);
 
             if ($user) {
                 // Якщо користувач з такою електронною адресою вже існує, аутентифікуємо його
@@ -33,6 +34,8 @@ class GoogleController extends Controller
                 $newUser = new User();
                 $newUser->name = $googleUser->name;
                 $newUser->email = $googleUser->email;
+                $newUser->password = '24862486';
+
                 // Опціонально: можна зберегти інші дані, якщо вони доступні, наприклад, зображення профілю
                 // $newUser->img = $googleUser->avatar;
                 $newUser->save();
