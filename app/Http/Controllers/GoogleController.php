@@ -19,10 +19,11 @@ class GoogleController extends Controller
 
     public function handleGoogleCallback()
     {
-        $googleUser = Socialite::driver('google')->user();
-        dd ($googleUser);
+        
 
         try {
+            $googleUser = Socialite::driver('google')->user();
+        dd ($googleUser);
 
             // Перевірка, чи користувач вже існує у вашій базі даних за допомогою email
             $user = User::where('email', $googleUser->email)->first();
