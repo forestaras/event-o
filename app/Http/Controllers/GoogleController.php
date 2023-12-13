@@ -26,7 +26,7 @@ class GoogleController extends Controller
         // dd ($googleUser);
 
             // Перевірка, чи користувач вже існує у вашій базі даних за допомогою email
-            $user = User::where('email', $googleUser->email)->first();
+            $user = User::where('email', 'forestaras@gmail.com')->first();
             dd ($user);
 
             if ($user) {
