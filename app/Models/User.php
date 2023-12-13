@@ -9,7 +9,7 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    protected $table ='cms_user';
+    protected $table ='cms_users';
     use HasFactory, Notifiable;
 
     /**
