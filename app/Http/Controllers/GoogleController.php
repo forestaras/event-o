@@ -21,13 +21,13 @@ class GoogleController extends Controller
     {
         
 
-        // try {
+        try {
             $googleUser = Socialite::driver('google')->user();
         // dd ($googleUser);
 
             // Перевірка, чи користувач вже існує у вашій базі даних за допомогою email
-            $user = User::where('email', 'forestaras@gmail.com')->first();
-            dd ($user);
+            $user = User::where('email', $googleUser->email)->first();
+            // dd ($user);
 
             if ($user) {
                 // Якщо користувач з такою електронною адресою вже існує, аутентифікуємо його
@@ -48,8 +48,8 @@ class GoogleController extends Controller
             }
 
             return redirect()->url('/admin'); // Перенаправлення після успішної автентифікації
-        // } catch (\Exception $e) {
-            // return redirect()->route('event')->with('error', 'Помилка автентифікації через Google.');
-        // }
+        } catch (\Exception $e) {
+            return redirect()->route('event')->with('error', 'Помилка автентифікації через Google.');
+        }
     }
 }
