@@ -26,10 +26,10 @@ Route::get('/admin/registerl', function () {
     return view('site.register');
 });
 Route::get('/test', function () {
-    return view('live.test'); // Назва вашого Blade шаблону
+    return view('site.login_page.login'); // Назва вашого Blade шаблону
 });
-Route::get('/auth/google', [GoogleController::class, 'redirectToGoogle']);
-Route::get('/auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
+Route::get('/auth/google', [GoogleController::class, 'redirectToGoogle'])->name('google');
+Route::get('/admin/google', [GoogleController::class, 'handleGoogleCallback']);
 // Route::view('/about', 'about');
 
 // Route::get('/1', [SiteEventController::class, 'index']);
