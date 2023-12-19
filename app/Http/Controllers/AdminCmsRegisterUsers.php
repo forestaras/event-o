@@ -20,7 +20,9 @@ class AdminCmsRegisterUsers extends Controller
     	}
     	else{
     	DB::insert('insert into cms_users (name,email,password,id_cms_privileges) values (?, ?, ?, ?)', [$request->name,$request->email,Hash::make($request->password),2]);
-
+		if (Session::get('url') != '') {
+			return redirect(url(Session::get('url')));
+		}
         return redirect()->route('getLogin')->with('message', trans($request->name." вітаємо ви успішно зареєструвалися на EVENT-O тепер увійдіть на сайт. Ваш Email: $request->email".' Пароль:'.$request->password));
         }
     }

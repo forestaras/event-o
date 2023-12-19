@@ -67,7 +67,13 @@ class GoogleController extends Controller
 
                 $cb_hook_session = new \App\Http\Controllers\CBHook;
                 $cb_hook_session->afterLogin();
-                return redirect(CRUDBooster::adminPath());
+                if (Session::get('url') != '') {
+                    return redirect(url(Session::get('url')));
+                }
+                else{
+
+                    return redirect(CRUDBooster::adminPath());
+                }
             }
             if (!$user) {
                 $random = rand(10000, 99999);
@@ -101,6 +107,9 @@ class GoogleController extends Controller
 
                 $cb_hook_session = new \App\Http\Controllers\CBHook;
                 $cb_hook_session->afterLogin();
+                if (Session::get('url') != '') {
+                    return redirect(url(Session::get('url')));
+                }
                 
                 // CRUDBooster::redirect(CRUDBooster::adminPath(), cbLang('alert_update_data_success'), 'success');
                 return redirect(CRUDBooster::adminPath());

@@ -98,11 +98,14 @@
 
                     <div class="info-box-content">
                         @if (date_format(date_create($registerseting->datestop), 'U') > date('U'))
-                            <a href="/admin/register/add/?registerid={{ $registerseting->id }}" type="button"
-                                class="btn btn-xs btn-success">
+                            
                                 @if (!CRUDBooster::myName())
+                                <a href="/redirect/?url=/admin/register/add/?registerid={{ $registerseting->id }}" type="button"
+                                    class="btn btn-xs btn-success">
                                     Увійти і зареєструватися
                                 @else
+                                <a href="/admin/register/add/?registerid={{ $registerseting->id }}" type="button"
+                                    class="btn btn-xs btn-success">
                                     Зареєструватися
                                 @endif
                             </a>

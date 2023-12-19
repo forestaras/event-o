@@ -51,6 +51,8 @@ Route::post('/event', [SiteEventController::class, 'index'])->name('event');
 Route::get('/event/{id}', [SiteEventController::class, 'show'])->name('event_show');
 Route::get('/event/register/{registerid}', [SiteEventController::class, 'registerevent'])->name('register');
 Route::get('/admin/register/add', [AdminRegisterController::class, 'getAdd'])->name('register_proces');
+Route::get('/redirect/', [SiteEventController::class, 'redirect_register'])->name('redirect_register');
+
 // Route::get('/protocols', [ProtocolController::class, 'index']);
 // Route::resource('items', ItemController::class);
 // Route::resource('/protocols', [ProtocolController::class])->name('protocols');

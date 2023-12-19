@@ -285,7 +285,14 @@ class SiteEventController extends \crocodicstudio\crudbooster\controllers\CBCont
         $registers = DB::table('register')->where('eventid', $registerid)->get();
         $registerseting->grups = explode(' ', $registerseting->grup);
         $registerseting->dnis = explode(' ', $registerseting->dni);
+        
         return view('live.register.register_event', compact('registers', 'registerseting'));
+    }
+
+    public function redirect_register(){
+        $url=$_GET['url'];
+        Session::put('url', $url);
+        return redirect(route('getLogin'));
     }
 
 
