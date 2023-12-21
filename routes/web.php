@@ -62,6 +62,7 @@ Route::get('/export/clubs.xml', [ProtocolController::class, 'export'])->name('re
 Route::get('/admin/telegram/{event_id}/{pass}/{time}/{stat}', [TelegramController::class, 'search2'])->name('telegram_search');
 Route::get('/admin/telegramm', [TelegramController::class, 'telegram'])->name('telegram');
 Route::get('atlet/{name}', [RezultController::class, 'atlet'])->name('atlet');
+Route::get('/anna', [RezultController::class, 'anna'])->name('anna');
 // Route::get('/telegram_bot', [TelegramController::class, 'bot'])->name('telegram_bot');
 // Route::get('/telegram_create', [TelegramController::class, 'create'])->name('telegram_create');
 

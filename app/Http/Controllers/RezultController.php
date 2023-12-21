@@ -10,7 +10,8 @@ use App\Models\Moporganization;
 use App\Models\Mopradio;
 use App\Models\Online;
 use App\Models\Peoples;
-
+use crocodicstudio\crudbooster\helpers\CRUDBooster;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\DB;
@@ -18,6 +19,19 @@ use Illuminate\Support\Facades\DB;
 
 class RezultController extends Controller
 {
+
+
+	public function anna()
+	{
+		$name = CRUDBooster::myID();
+		if ($name == 1) {//206
+			return view('live.anna');
+		} else {
+			$url = url()->current();
+			Session::put('url', $url);
+			return redirect(route('getLogin'));
+		}
+	}
 
 	public function erorrs()
 	{
@@ -55,7 +69,7 @@ class RezultController extends Controller
 		$grups = Mopclass::where('cid', $id)->get();
 		$cls = $grups->where('name', $grupa)->first();
 
-		$grups = self::grup_list($grups,'reley');
+		$grups = self::grup_list($grups, 'reley');
 
 
 
@@ -258,7 +272,7 @@ class RezultController extends Controller
 
 		$peopless = Mopcompetitor::where('cid', $id)->get();
 		$grups = Mopclass::where('cid', $id)->get();
-		$grups = self::grup_list($grups,'rezult');
+		$grups = self::grup_list($grups, 'rezult');
 		$clubs = Moporganization::where('cid', $id)->get();
 		foreach ($peopless as $people) {
 			$mistse = self::mistse($people, $peopless);
@@ -311,7 +325,7 @@ class RezultController extends Controller
 		}
 		$peoples = Mopcompetitor::where('cid', $id)->get();
 		$grups = Mopclass::where('cid', $id)->get();
-		$grups = self::grup_list($grups,'start');
+		$grups = self::grup_list($grups, 'start');
 
 		$clubs = Moporganization::where('cid', $id)->get();
 		foreach ($peoples as $people) {
@@ -904,20 +918,19 @@ class RezultController extends Controller
 				$grup->rezult = '<a
 					href="/livess/start/' . $cid . '#' . $grup->name . '">' . $grup->name . '</a>';
 			}
-		}
-		else{
+		} else {
 			foreach ($grups as $grup) {
-			$grup->reley = $team->where('cls', $grup->id)->first()->id;
-			if ($grup->reley > 0) {
-				$grup->rezult = '<a
+				$grup->reley = $team->where('cls', $grup->id)->first()->id;
+				if ($grup->reley > 0) {
+					$grup->rezult = '<a
 				href="/livess/reley/' . $cid . '?grup=' . $grup->name . '">' . $grup->name . '</a>';
-			} else {
-				$grup->rezult = '<a
+				} else {
+					$grup->rezult = '<a
 				href="/livess/rezult/' . $cid . '#' . $grup->name . '">' . $grup->name . '</a>';
+				}
 			}
 		}
-		}
-		
+
 		return $grups;
 	}
 
