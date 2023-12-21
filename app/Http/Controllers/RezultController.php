@@ -24,7 +24,7 @@ class RezultController extends Controller
 	public function anna()
 	{
 		$name = CRUDBooster::myID();
-		if ($name == 1) {//206
+		if ($name == 206) {//206
 			return view('live.anna');
 		} else {
 			$url = url()->current();
