@@ -24,6 +24,7 @@ class CPcompetitionsController extends Controller
         
         // Збереження запису в базі даних
         $cPcompetitions->save();
+        echo "OK";
     }
 
     /**
