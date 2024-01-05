@@ -52,6 +52,11 @@ class Mopcompetitor extends Model
     {
         return $this->belongsTo(Moporganization::class,'id')->where('cid',$cid);
     }
+    public function cls($cid)
+    {
+      return $this->hasMany(Mopcompetitor::class,'id')->where('cid',$cid);
+        // return $this->belongsTo(Mopclass::class,'id')->where('cid',$cid);
+    }
 
 
 

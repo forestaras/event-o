@@ -17,7 +17,8 @@
         "laravel/socialite": "^5.11",
         "laravel/tinker": "^2.0",
         "livewire/livewire": "^2.10",
-        "rappasoft/laravel-livewire-tables": "^2.8"
+        "rappasoft/laravel-livewire-tables": "^2.8",
+        "simplesoftwareio/simple-qrcode": "^4.2"
     },
     "require-dev": {
         "facade/ignition": "^2.3.6",

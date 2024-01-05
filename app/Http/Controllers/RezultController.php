@@ -15,16 +15,27 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\DB;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 
 class RezultController extends Controller
 {
 
 
+	public function test($cid)
+	{
+
+
+		$qr=QrCode::generate('Make me into a QrCode!');
+		// $event = Mopcompetition::where('cid', $cid)->first()->people;
+		// dd($event);
+		return view('live.test',compact('qr'));
+	}
+
 	public function anna()
 	{
 		$name = CRUDBooster::myID();
-		if ($name == 206) {//206
+		if ($name == 206) { //206
 			return view('live.anna');
 		} else {
 			$url = url()->current();
@@ -32,12 +43,14 @@ class RezultController extends Controller
 			return redirect(route('getLogin'));
 		}
 	}
+	/////////////////////////////////////////////////////////////////
 
 	public function erorrs()
 	{
 
 		return view('live.erorrs.erorrs_split');
 	}
+	//////////////////////////////////////
 
 	public function protocol_start($id)
 	{

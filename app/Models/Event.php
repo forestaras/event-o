@@ -57,7 +57,7 @@ class Event extends Model
      * @var array
      */
     protected $table = 'event';
-    protected $fillable = ['userid','redactorid','secretarid','golsudid','clubid','oblid','title','text','datastart','datafinish','org','activ','logo','contactid','bul','rez','inf','location','contact_name','contact_email','contact_phone','contact_fb','contact_website','stvoreno'];
+    // protected $fillable = ['userid','redactorid','secretarid','golsudid','clubid','oblid','title','text','datastart','datafinish','org','activ','logo','contactid','bul','rez','inf','location','contact_name','contact_email','contact_phone','contact_fb','contact_website','stvoreno'];
 
     
     public function obl()
