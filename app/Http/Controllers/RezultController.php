@@ -22,14 +22,14 @@ class RezultController extends Controller
 {
 
 
-	public function test($cid)
+	public function test()
 	{
 
 
-		$qr=QrCode::generate('Make me into a QrCode!');
+		// $qr=QrCode::generate('Make me into a QrCode!');
 		// $event = Mopcompetition::where('cid', $cid)->first()->people;
 		// dd($event);
-		return view('live.test',compact('qr'));
+		return view('live.test');
 	}
 
 	public function anna()
@@ -309,21 +309,29 @@ class RezultController extends Controller
 		}
 		// dd($peoplesa);
 
-		$cls = array_column($peoplesa, 'plases');
-		$st = array_column($peoplesa, 'st');
+		// $cls = array_column($peoplesa, 'plases');
+		// $st = array_column($peoplesa, 'st');
+		// array_multisort($cls, SORT_ASC, $st, SORT_ASC, $peoplesa);
+		$cls = array_column($peoplesa, 'cls');
+		$st = array_column($peoplesa, 'plases');
 		array_multisort($cls, SORT_ASC, $st, SORT_ASC, $peoplesa);
 
 		$x = 0;
 		$count_people = 0;
 		foreach ($peoplesa as $people) {
-			if ($people['plases'] == 1) $x = $people['rt'];
+			if ($people['plases'] == 1) {
+				$x = $people['rt'];
+			}
 			$vids = $people['rt'] - $x;
 			$people['vids'] = self::formatVids($vids, $people['stat']);
+			// $people['vids'] = $x;
 			$peoples[] = $people;
 			$count_people = $count_people + 1;
 		}
+		// dd($peoplesa);
 		$event->count_people = $count_people;
 		$event->count_club = self::count_club($clubs);
+
 		return view('live.rezult', compact('event', 'seting', 'peoples', 'grups', 'clubs', 'online', 'eventseting'));
 	}
 

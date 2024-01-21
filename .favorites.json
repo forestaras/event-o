@@ -43,5 +43,41 @@
         "workspaceRoot": null,
         "workspacePath": null,
         "id": "gWl50q7FxMUfhrm3"
+    },
+    {
+        "type": "Directory",
+        "name": "d:\\OpenServer\\domains\\event_o2\\app\\Http\\Controllers\\CpController",
+        "parent_id": null,
+        "fsPath": "d:\\OpenServer\\domains\\event_o2\\app\\Http\\Controllers\\CpController",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "iowqMh7EVPJ3C4pR"
+    },
+    {
+        "type": "Directory",
+        "name": "d:\\OpenServer\\domains\\event_o2\\resources\\views\\c-pcompetition",
+        "parent_id": null,
+        "fsPath": "d:\\OpenServer\\domains\\event_o2\\resources\\views\\c-pcompetition",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "IExtVaXYPbMyOcin"
+    },
+    {
+        "type": "Directory",
+        "name": "d:\\OpenServer\\domains\\event_o2\\resources\\views\\c-ppoint-class",
+        "parent_id": null,
+        "fsPath": "d:\\OpenServer\\domains\\event_o2\\resources\\views\\c-ppoint-class",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "AYNSjD3lyFb46rQi"
+    },
+    {
+        "type": "Directory",
+        "name": "d:\\OpenServer\\domains\\event_o2\\resources\\views\\c-pclass",
+        "parent_id": null,
+        "fsPath": "d:\\OpenServer\\domains\\event_o2\\resources\\views\\c-pclass",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "VNIEsU1jPFqDcA0b"
     }
 ]

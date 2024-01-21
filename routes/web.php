@@ -8,10 +8,12 @@ use App\Http\Controllers\RezultController;
 use App\Http\Controllers\AdminRegisterController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\AdminCmsRegisterUsers;
-use App\Http\Controllers\CPcompetitionsController;
+use App\Http\Controllers\CpController\CPclassController;
+use App\Http\Controllers\CpController\CPcompetitionController;
+use App\Http\Controllers\CpController\CPpointClassController;
 use App\Http\Controllers\TelegramController;
 use App\Http\Controllers\GoogleController;
-use App\Models\CPcompetitions;
+
 use Illuminate\Support\Facades\Route;
 
 //Роути для входу
@@ -25,7 +27,7 @@ Route::get('/redirect/', [SiteEventController::class, 'redirect_register'])->nam
 
 //Тестові роути
 Route::get('/anna', [RezultController::class, 'anna'])->name('anna');
-Route::get('/test/{cid}', [RezultController::class, 'test'])->name('test');
+Route::get('/test', [RezultController::class, 'test'])->name('test');
 //Тестові роути
 
 //Реєстрація на змагання
@@ -91,8 +93,11 @@ Route::prefix('online')->group(function () {
 });
 
 Route::prefix('cp')->group(function () {
+    Route::resource('/c-pcompetitions', CPcompetitionController::class);
+    Route::resource('c-ppoint-classes', CPpointClassController::class);
+    Route::resource('c-pclasses', CPclassController::class);
     // Route::resource('/', [CPcompetitionsController::class, 'indexonline'])->name('cp_competition');
-    Route::resource('/', CPcompetitionsController::class);
+    // Route::resource('/', CPcompetitionsController::class);
     
 });
 
