@@ -16,7 +16,7 @@ use App\Http\Controllers\GoogleController;
 
 use Illuminate\Support\Facades\Route;
 
-//Роути для входу
+//Роути для входуddddd
 Route::get('/admin/registerl', function () {
     return view('site.register');
 });
