@@ -8,7 +8,7 @@ use App\Models\CP\CPpointClass as CPpointClass;
 use Illuminate\Http\Request;
 
 /**
- * Class CPpointClassController
+ * Class CPpointClassControllerjkhku
  * @package App\Http\Controllers
  */
 class CPpointClassController extends Controller
