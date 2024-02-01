@@ -48,13 +48,16 @@ class Mopcompetitor extends Model
     protected $fillable = ['cid','name','org','cls','stat','st','rt','tstat','it','si'];
     protected $table=('mopcompetitor');
 
-    public function org($cid)
+    public function organ($cid)
     {
-        return $this->belongsTo(Moporganization::class,'id')->where('cid',$cid);
+        return $this->belongsTo(Moporganization::class, 'id','org')->where('cid',$cid);
+        
     }
-    public function cls($cid)
+
+
+    public function class($cid)
     {
-      return $this->hasMany(Mopcompetitor::class,'id')->where('cid',$cid);
+      return $this->hasMany(Mopclass::class,'id')->where('cid',$cid);
         // return $this->belongsTo(Mopclass::class,'id')->where('cid',$cid);
     }
 

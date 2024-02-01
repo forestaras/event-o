@@ -13,7 +13,7 @@ use App\Http\Controllers\CpController\CPcompetitionController;
 use App\Http\Controllers\CpController\CPpointClassController;
 use App\Http\Controllers\TelegramController;
 use App\Http\Controllers\GoogleController;
-
+use App\Http\Controllers\New_EventController;
 use Illuminate\Support\Facades\Route;
 
 //Роути для входу
@@ -27,7 +27,7 @@ Route::get('/redirect/', [SiteEventController::class, 'redirect_register'])->nam
 
 //Тестові роути
 Route::get('/anna', [RezultController::class, 'anna'])->name('anna');
-Route::get('/test', [RezultController::class, 'test'])->name('test');
+Route::get('/test/{id}', [New_EventController::class, 'people_all_event'])->name('test');
 //Тестові роути
 
 //Реєстрація на змагання
@@ -61,6 +61,7 @@ Route::prefix('livess')->group(function () {
     Route::get('/show/{id}', [LiveRezultsController::class, 'show_event'])->name('live_show');
     Route::get('/online/{id}/{cls}', [LiveRezultsController::class, 'live'])->name('live_online');
     Route::get('/rezult/{id}', [RezultController::class, 'rezult'])->name('rezult');
+    Route::get('/rezult2/{id}', [New_EventController::class, 'rezult'])->name('rezult');
     Route::get('/start/{id}', [RezultController::class, 'start'])->name('start');
     Route::get('/start_cloks/{id}', [RezultController::class, 'start_cloks'])->name('start_cloks');
     Route::get('/split/{id}', [RezultController::class, 'split'])->name('split');
@@ -74,7 +75,7 @@ Route::prefix('livess')->group(function () {
     Route::prefix('/rezult')->group(function () {
         Route::get('/protocol_start/{id}', [RezultController::class, 'protocol_start'])->name('protocol_start');
         Route::get('/protocol_finish/{id}', [RezultController::class, 'protocol_finish'])->name('protocol_finish');
-        Route::get('/protocol_comand/{id}', [RezultController::class, 'protocol_comand'])->name('protocol_comand');
+        Route::get('/protocol_comand/{id}', [New_EventController::class, 'protocol_comand'])->name('protocol_comand');
         Route::get('/protocol_comand_big/{id}', [RezultController::class, 'protocol_comand_big'])->name('protocol_comand_big');
         Route::get('/protocol_summa/{id}', [RezultController::class, 'protocol_summa'])->name('protocol_summa');
     });

@@ -3,11 +3,11 @@
 	use Session;
 	use Request;
 	use DB;
-	use CRUDBooster;
+	use CRUDBooster; 
 
 	class AdminClubController extends \crocodicstudio\crudbooster\controllers\CBController {
 
-	    public function cbInit() {
+	    public function cbInit() {  
 
 			# START CONFIGURATION DO NOT REMOVE THIS LINE
 			$this->title_field = "title";

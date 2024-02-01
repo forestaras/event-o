@@ -1,3 +1,17 @@
+@foreach ($class as $clas)
+{{$class->class_}}
+<table>
+    <tr>
+        <td></td>
+    </tr>
+</table>
+@endforeach
+<table>
+    <tr>
+        <td></td>
+    </tr>
+</table>
+
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 
 <html>
@@ -151,15 +165,3 @@
 </body>
 
 </html>
-
-@foreach ($clubs as $club)
-{{$club->name}}
-{{$club->sumball}}  
-@foreach ($peopless as $people)
-    @if ($people->org==$club->id)
-    <br>
-        {{$people->name}}
-        {{$people->bali}}
-    @endif
-@endforeach
-@endforeach
