@@ -6,7 +6,7 @@ use App\Models\Event;
 use Illuminate\Http\Request;
 
 /**
- * Class EventController
+ * Class EventControllerjjj
  * @package App\Http\Controllers
  */
 class EventController extends Controller
