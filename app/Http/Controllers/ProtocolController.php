@@ -116,8 +116,8 @@ class ProtocolController extends Controller
         if (stripos($i, '3') !== false and stripos($i, 'ю') !== false) {
             $rang = 0.3;
         } elseif (stripos($i, '2') !== false and stripos($i, 'ю') !== false 
-        ||stripos($i, 'iii') !== false
-        ||stripos($i, 'ііі') !== false) {
+        ||stripos($i, 'ііі') !== false
+        ||stripos($i, 'iii') !== false) {
             $rang = 1;
         } elseif (stripos($i, '1') !== false and stripos($i, 'ю') !== false 
         ||stripos($i, 'ii') !== false
