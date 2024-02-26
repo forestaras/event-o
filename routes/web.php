@@ -73,9 +73,10 @@ Route::prefix('livess')->group(function () {
     Route::post('/search_atlet', [RezultController::class, 'search_atlet'])->name('search_atlet2');
     
     Route::prefix('/rezult')->group(function () {
-        Route::get('/protocol_start/{id}', [RezultController::class, 'protocol_start'])->name('protocol_start');
-        Route::get('/protocol_finish/{id}', [RezultController::class, 'protocol_finish'])->name('protocol_finish');
+        Route::get('/protocol_start/{id}', [New_EventController::class, 'protocol_start'])->name('protocol_start');
+        Route::get('/protocol_finish/{id}', [New_EventController::class, 'protocol_finish'])->name('protocol_finish');
         Route::get('/protocol_comand/{id}', [New_EventController::class, 'protocol_comand'])->name('protocol_comand');
+        Route::get('/protocol_raley/{id}', [New_EventController::class, 'protocol_raley'])->name('protocol_raley');
         Route::get('/protocol_comand_big/{id}', [RezultController::class, 'protocol_comand_big'])->name('protocol_comand_big');
         Route::get('/protocol_summa/{id}', [RezultController::class, 'protocol_summa'])->name('protocol_summa');
     });
