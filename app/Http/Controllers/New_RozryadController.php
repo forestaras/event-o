@@ -51,7 +51,7 @@ class New_RozryadController extends Controller
             $rang = 30;
         } elseif (stripos($i, 'мс') !== false) {
             $rang = 100;
-        } elseif (
+        } elseif ( III   ІІІ
             stripos($i, 'б') !== false
             || stripos($i, ' ') !== false
             || stripos($i, 'р') !== false
