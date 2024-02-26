@@ -31,7 +31,7 @@ class ProtocolController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create() 
+    public function create()
     {
         $protocol = new Protocol();
         return view('protocol.create', compact('protocol'));
@@ -109,33 +109,44 @@ class ProtocolController extends Controller
 
     function rang_people($i, $grup)
     {
-        $i=strtolower($i);
+
+        $i = str_replace("I", "І", $i);
+        $i = strtolower($i);
 
 
-        
+
         if (stripos($i, '3') !== false and stripos($i, 'ю') !== false) {
             $rang = 0.3;
-        } elseif (stripos($i, '2') !== false and stripos($i, 'ю') !== false 
-        ||stripos($i, 'iii') !== false
-        ||stripos($i, 'ііі') !== false) {
+        } elseif (
+            stripos($i, '2') !== false and stripos($i, 'ю') !== false
+            || stripos($i, 'iii') !== false
+            || stripos($i, 'ііі') !== false
+        ) {
             $rang = 1;
-        } elseif (stripos($i, '1') !== false and stripos($i, 'ю') !== false 
-        ||stripos($i, 'ii') !== false
-        ||stripos($i, 'іі') !== false) {
+        } elseif (
+            stripos($i, '1') !== false and stripos($i, 'ю') !== false
+            || stripos($i, 'ii') !== false
+            || stripos($i, 'іі') !== false
+        ) {
             $rang = 3;
-        } elseif 
-        (stripos($i, '1') !== false 
-        ||stripos($i, 'i') !== false
-        ||stripos($i, 'і') !== false) {
+        } elseif (
+            stripos($i, '1') !== false
+            || stripos($i, 'i') !== false
+            || stripos($i, 'і') !== false
+        ) {
             $rang = 10;
-        } elseif (stripos($i, 'к') !== false 
-        ||stripos($i, 'k') !== false) {
+        } elseif (
+            stripos($i, 'к') !== false
+            || stripos($i, 'k') !== false
+        ) {
             $rang = 30;
-        } elseif (stripos($i, 'мс') !== false){
+        } elseif (stripos($i, 'мс') !== false) {
             $rang = 100;
-        } elseif (stripos($i, 'б') !== false 
-        ||stripos($i, ' ') !== false
-        ||stripos($i, 'р') !== false) {
+        } elseif (
+            stripos($i, 'б') !== false
+            || stripos($i, ' ') !== false
+            || stripos($i, 'р') !== false
+        ) {
             $rang = 0.1;
             if (preg_replace("/[^0-9]/", "", $grup) >= 16) {
                 $rang = 0.3;
@@ -243,7 +254,7 @@ class ProtocolController extends Controller
         return $ekran;
     }
 
-    public function max_roz($roz, $max) 
+    public function max_roz($roz, $max)
     {
         if ($max == 0) {
             return $roz;
@@ -422,7 +433,6 @@ class ProtocolController extends Controller
                     // $rez->mistse == $rez->status;
                     $rez->mistse = $x;
                     $x = $x + 1;
-                    
                 }
                 if ($grup->grup == $rez->grup and $rez->rez) {
                     $rez->mistse = $x;
@@ -508,7 +518,7 @@ class ProtocolController extends Controller
 
     public function export()
     {
-        
+
         // return view('protocol.export');
         return response()->view('protocol.export')->header('Content-Type', 'text/xml');
     }
