@@ -57,7 +57,7 @@
 			$this->form[] = ['label'=>'Клас дистанції для дітей(юнацькі розряди)','name'=>'cld','type'=>'text','width'=>'col-sm-10'];
 			$this->form[] = ['label'=>'Клас дистанції для дорослих(дорослих розрядів)','name'=>'cldr','type'=>'text','width'=>'col-sm-10'];
 			$this->form[] = ['label'=>'Скопіюйте сюди протокол з меоs','name'=>'prot','type'=>'textarea','validation'=>'required|string','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Формула','name'=>'formula','type'=>'select','width'=>'col-sm-6','dataenum'=>'Б=100*(Чп/Чу);0|Не потрібно рахувати бали','default'=>'Не потрібно рахувати бали'];
+			$this->form[] = ['label'=>'Формула','name'=>'formula','type'=>'select','width'=>'col-sm-6','dataenum'=>'Б=100*(Чп/Чу);Пліч о пліч;0|Не потрібно рахувати бали','default'=>'Не потрібно рахувати бали'];
 			$this->form[] = ['label'=>'Максимальний розряд','name'=>'max','type'=>'select','width'=>'col-sm-6','dataenum'=>'0|Виконуються всі розряди;1|КМСУ;2|I;3|II;4|III;5|Не виконуються дорослі розряди','default'=>'Виконуються всі розряди'];
 			$this->form[] = ['label'=>'Поля','type'=>'header','width'=>'col-sm-9'];
 			$this->form[] = ['label'=>'Рік народження','name'=>'pol_rik','type'=>'checkbox','width'=>'col-sm-3','dataenum'=>'1|Вкл'];
@@ -70,6 +70,7 @@
 
 			# OLD START FORM
 			//$this->form = [];
+			//$this->form[] = ['label'=>'Userid','name'=>'userid','type'=>'hidden','width'=>'col-sm-10'];
 			//$this->form[] = ['label'=>'Організація 1 строка','name'=>'col1','type'=>'text','width'=>'col-sm-10'];
 			//$this->form[] = ['label'=>'Організація 2 строка','name'=>'col2','type'=>'text','width'=>'col-sm-10'];
 			//$this->form[] = ['label'=>'Організація 3 строка','name'=>'col3','type'=>'text','width'=>'col-sm-10'];
@@ -86,15 +87,15 @@
 			//$this->form[] = ['label'=>'Клас дистанції для дітей(юнацькі розряди)','name'=>'cld','type'=>'text','width'=>'col-sm-10'];
 			//$this->form[] = ['label'=>'Клас дистанції для дорослих(дорослих розрядів)','name'=>'cldr','type'=>'text','width'=>'col-sm-10'];
 			//$this->form[] = ['label'=>'Скопіюйте сюди протокол з меоs','name'=>'prot','type'=>'textarea','validation'=>'required|string','width'=>'col-sm-10'];
-			//$this->form[] = ['label'=>'Формула','name'=>'formula','type'=>'select','width'=>'col-sm-6','dataenum'=>'Б=100*(Чп/Чу);Не потрібно рахувати бали','default'=>'Не потрібно рахувати бали'];
-			//$this->form[] = ['label'=>'Максимальний розряд','name'=>'max','type'=>'select','width'=>'col-sm-6','dataenum'=>'Виконуються всі розряди;КМСУ;I;II;III;Не виконуються дорослі розряди','default'=>'Виконуються всі розряди'];
+			//$this->form[] = ['label'=>'Формула','name'=>'formula','type'=>'select','width'=>'col-sm-6','dataenum'=>'Б=100*(Чп/Чу);0|Не потрібно рахувати бали','default'=>'Не потрібно рахувати бали'];
+			//$this->form[] = ['label'=>'Максимальний розряд','name'=>'max','type'=>'select','width'=>'col-sm-6','dataenum'=>'0|Виконуються всі розряди;1|КМСУ;2|I;3|II;4|III;5|Не виконуються дорослі розряди','default'=>'Виконуються всі розряди'];
 			//$this->form[] = ['label'=>'Поля','type'=>'header','width'=>'col-sm-9'];
-			//$this->form[] = ['label'=>'Рік народження','name'=>'pol_rik','type'=>'select','width'=>'col-sm-3','dataenum'=>'Вкл;Викл','default'=>'Вкл'];
-			//$this->form[] = ['label'=>'Команда','name'=>'pol_com','type'=>'select','width'=>'col-sm-3','dataenum'=>'Вкл;Викл','default'=>'Вкл'];
-			//$this->form[] = ['label'=>'Тренер','name'=>'pol_tren','type'=>'select','width'=>'col-sm-3','dataenum'=>'Вкл;Викл','default'=>'Вкл'];
+			//$this->form[] = ['label'=>'Рік народження','name'=>'pol_rik','type'=>'checkbox','width'=>'col-sm-3','dataenum'=>'1|Вкл'];
+			//$this->form[] = ['label'=>'Команда','name'=>'pol_com','type'=>'checkbox','width'=>'col-sm-3','dataenum'=>'1|Вкл'];
+			//$this->form[] = ['label'=>'Тренер','name'=>'pol_tren','type'=>'checkbox','width'=>'col-sm-3','dataenum'=>'1|Вкл'];
 			//$this->form[] = ['label'=>'Розряд','name'=>'pol_roz','type'=>'checkbox','width'=>'col-sm-3','dataenum'=>'1|Вкл'];
-			//$this->form[] = ['label'=>'Виконаний розряд','name'=>'pol_roz_vik','type'=>'select','width'=>'col-sm-3','dataenum'=>'Вкл;Викл','default'=>'Вкл'];
-			//$this->form[] = ['label'=>'Бали','name'=>'pol_ball','type'=>'select','width'=>'col-sm-3','dataenum'=>'0|Вкл;1|Викл','default'=>'0|Вкл'];
+			//$this->form[] = ['label'=>'Виконаний розряд','name'=>'pol_roz_vik','type'=>'checkbox','width'=>'col-sm-3','dataenum'=>'1|Вкл'];
+			//$this->form[] = ['label'=>'Бали','name'=>'pol_ball','type'=>'checkbox','width'=>'col-sm-3','dataenum'=>'1|Вкл'];
 			# OLD END FORM
 
 			/* 
