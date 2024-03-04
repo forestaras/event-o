@@ -184,9 +184,19 @@ class ProtocolController extends Controller
         } else return '';
     }
 
-    function ball_formul($twin, $tpip, $coef)
+    function ball_formul($twin, $tpip, $coef,$formula,$mistse)
     {
-        $bal = round($coef * ($twin / $tpip), 2);
+        if ($formula=='Б=100*(Чп/Чу)'){
+            $bal = round($coef * ($twin / $tpip), 2);
+        }
+        if ($formula == 'Пліч о пліч') {
+            if ($mistse==1) $bal= 100;
+            if ($mistse==2) $bal = 95;
+            if ($mistse==3) $bal = 90;
+            if ($mistse==4) $bal = 85;
+            if ($mistse>=5 and $mistse<=88) $bal = 89-$mistse;			
+        }
+        
         return $bal;
     }
 
@@ -442,7 +452,7 @@ class ProtocolController extends Controller
                     // $rez->vikroz = self::max_roz($vikroz,$max);
                     if ($protocol->formula) {
                         if ($rez->statuss == 1) {
-                            $rez->ball = self::ball_formul($grup->bestrez, $rez->rez, 100);
+                            $rez->ball = self::ball_formul($grup->bestrez, $rez->rez, 100,$protocol->formula,$rez->mistse);
                         } else $rez->ball = " ";
                     }
 
