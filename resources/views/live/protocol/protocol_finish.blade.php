@@ -1,11 +1,12 @@
 
 @foreach ($class_peoples as $clas)
+<br>
 {{$clas->class_name}}
 {{-- {{$clas->rang}} --}}
 {{-- {{$clas->best_time}} --}}
 {{-- {{$clas->rozryad}} --}}
 
-    <table>
+    <table border="2px">
         <tr>
             <th></th>
             <th></th>
@@ -40,5 +41,5 @@
     {{$roz['vidsotki']}}
     {{$roz['time']}}
         
-    @endforeach////////
+    @endforeach
 @endforeach

@@ -164,7 +164,7 @@
         padding: 0px 3px 0px 3px;
     }
 </style>
-<div class="ritz grid-container" dir="ltr">
+
     <table class="waffle" cellspacing="0" cellpadding="0">
         <tbody>
             <tr style="height: 18px">
@@ -306,4 +306,3 @@
             </tr>
         </tbody>
     </table>
-</div>

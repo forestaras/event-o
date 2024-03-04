@@ -305,9 +305,18 @@ class LiveRezultsController extends Controller
         }
         foreach ($peopless as $people) {
             if ($people->stat == 1) { 
+
                 $bestrt = $grups->where('id', $people->cls)->first->best;
+                $people->mistse = RezultController::mistse($people, $peopless);
                 if ($formula=='Б=100*(Чп/Чу)') {
 					$bali = 100 * ($bestrt->best / $people->rt);
+				}
+                if ($formula == 'Пліч о пліч') {
+					if ($people->mistse==1) $bali = 100;
+					if ($people->mistse==2) $bali = 95;
+					if ($people->mistse==3) $bali = 90;
+					if ($people->mistse==4) $bali = 85;
+					if ($people->mistse>=5 and $people->mistse<=88) $bali = 89-$people->mistse;			
 				}
                 $people->bali = $bali;
                 $people->best = $bestrt->best;

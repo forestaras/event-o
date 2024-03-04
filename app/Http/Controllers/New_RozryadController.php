@@ -71,7 +71,7 @@ class New_RozryadController extends Controller
         foreach ($class_peoples as $clas) {
             $clas->rang = $peoples->where('class_name', $clas->class_name)->sum('rang');
             $clas->best_time = $peoples->where('class_name', $clas->class_name)->where('sort_plases', '>=', 1)->where('sort_plases', '<=', 12)->min('rt');
-            $rozriad = self::klasifik($clas->rang, $clas->best_time);
+            $rozriad = self::klasifik($clas);
             $clas->rozryad = $rozriad;
             foreach ($clas->peoples as $people) {
                 foreach ($rozriad as $roz) {
@@ -88,7 +88,7 @@ class New_RozryadController extends Controller
 
 
 
-    static function klasifik($rang, $time_best)
+    static function klasifik($clas)
     {
         $rozz = collect([
             ['rang' => 1200, 'МСУ' => 0, 'КМСУ' => 131, 'I' => 147, 'II' => 174, 'III' => 209, '3-ю' => 0],
@@ -125,19 +125,66 @@ class New_RozryadController extends Controller
         ]);
 
         foreach ($rozz as $roz) {
-            if ($rang > $roz['rang']) {
+            if ($clas->rang > $roz['rang']) {
                 break;
             }
         }
+        
         unset($roz['rang']);
+        
+        
 
 
         foreach ($roz as $key => $value) {
-            $timevik = $time_best / 100 * $value;
+            $value= self::rahroz($clas->class_name, $value);
+            if ($value!=0) {
+                $key=self::undor($clas->class_name, $key);
+            $timevik = $clas->best_time / 100 * $value;
             $time = New_FunctionController::formatTime($timevik);
             $rozryads[] = ['vidsotki' => $value, 'nazva' => $key, 'time_vikon' => $timevik, 'time' => $time];
+            }
+         
         }
         $rozryads = collect($rozryads);
         return $rozryads;
+    }
+
+
+    static function undor($grup, $vr)
+    {
+        if (preg_replace("/[^0-9]/", "", $grup) >= 10 and preg_replace("/[^0-9]/", "", $grup) < 16) {
+            if ($vr == 'III') {
+                return '2-ю';
+            }
+            if ($vr == 'II') {
+                return '1-ю';
+            }
+
+            if ($vr == 'I') {
+                return '1-ю';
+            }
+            if ($vr == 'КМСУ') {
+                return '1-ю';
+            }
+            if ($vr == 'МСУ') {
+                return '1-ю';
+            } else return $vr;
+        }
+        if (preg_replace("/[^0-9]/", "", $grup) >= 16 and preg_replace("/[^0-9]/", "", $grup) <= 21 or preg_replace("/[^0-9]/", "", $grup) <= 1) {
+            if ($vr != '3-ю') {
+                return $vr;
+            } else return '';
+        } else return '';
+    }
+
+    static function rahroz($grup, $vr)
+    { 
+        if (preg_replace("/[^0-9]/", "", $grup) < 10 and preg_replace("/[^0-9]/", "", $grup) != 0) {
+            $vr=0;
+        }
+        if (preg_replace("/[^0-9]/", "", $grup) > 21) {
+            $vr=0;
+        }
+     return $vr;
     }
 }
