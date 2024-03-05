@@ -46,7 +46,7 @@ class Protocol extends Model
      *
      * @var array
      */ 
-    protected $fillable = ['col1','col2','col3','name1','name2','name3','namedist','inf_data','inf_local','nd','gse','gsu','con','cld','cldr','prot','formula','max','pol_roz_vik','pol_roz','pol_com','pol_tren','pol_rik'];
+    protected $fillable = ['col1','col2','col3','name1','name2','name3','namedist','inf_data','inf_local','nd','gse','gsu','con','cld','cldr','prot','formula','max','pol_roz_vik','pol_roz','pol_com','pol_tren','pol_rik','kom','kom_count_views','kom_count'];
 
 
 

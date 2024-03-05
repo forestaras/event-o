@@ -9,20 +9,25 @@ use Illuminate\Http\Request;
 
 class New_RozryadController extends Controller
 {
-    static function rozryad($peoples)
+    static function rozryad($peoples,$protocol)
     {
+        $peoples=New_FunctionController::bali($peoples,$protocol->formula);
         foreach ($peoples as $people) {
+           
+
             if ($people->sort_plases >= 1 and $people->sort_plases <= 12) {
                 $people->rang = self::rang_people($people->roz, $people->class_name);
+                
             }
         }
-        $class_peoples_rang = self::rang_class($peoples);
+        $class_peoples_rang = self::rang_class($peoples,$protocol);
         // $class_peoples_rang=self::rang_class($peoples);
         return $class_peoples_rang;
     }
 
     static function rang_people($i, $grup)
     {
+        $i = str_replace("I", "І", $i);
         $i = strtolower($i);
         if (stripos($i, '3') !== false and stripos($i, 'ю') !== false) {
             $rang = 0.3;
@@ -65,7 +70,7 @@ class New_RozryadController extends Controller
     }
 
 
-    static function rang_class($peoples)
+    static function rang_class($peoples,$protocol)
     {
         $class_peoples = New_FunctionController::class_peoples($peoples);
         foreach ($class_peoples as $clas) {
@@ -73,10 +78,14 @@ class New_RozryadController extends Controller
             $clas->best_time = $peoples->where('class_name', $clas->class_name)->where('sort_plases', '>=', 1)->where('sort_plases', '<=', 12)->min('rt');
             $rozriad = self::klasifik($clas);
             $clas->rozryad = $rozriad;
+            $clas->klas_dist=self::klas_dist($clas->class_name);
+           
             foreach ($clas->peoples as $people) {
+                
                 foreach ($rozriad as $roz) {
                     if ($roz['time_vikon'] >= $people->rt and $people->stat==1) {
-                        $people->vik_roz = $roz['nazva'];
+                        $clas->leng=$people->legts;
+                        $people->vik_roz = self::max_roz($roz['nazva'],$protocol->max);
                         break;
                     }
                 }
@@ -132,9 +141,6 @@ class New_RozryadController extends Controller
         
         unset($roz['rang']);
         
-        
-
-
         foreach ($roz as $key => $value) {
             $value= self::rahroz($clas->class_name, $value);
             if ($value!=0) {
@@ -187,4 +193,36 @@ class New_RozryadController extends Controller
         }
      return $vr;
     }
+    
+    static function klas_dist($grup){
+        if (preg_replace("/[^0-9]/", "", $grup) >= 10 and preg_replace("/[^0-9]/", "", $grup) < 16) {
+            $vr="dt";
+        }
+        if (preg_replace("/[^0-9]/", "", $grup) >= 16 and preg_replace("/[^0-9]/", "", $grup) <= 21 or preg_replace("/[^0-9]/", "", $grup) <= 1) {
+            $vr="dor";
+        }
+     return $vr;
+
+    }
+
+    public function max_roz($roz, $max)
+    {
+
+        if ($max == 0) {
+            return $roz;
+        } elseif ($max == 1 and $roz == 'МСУ') {
+            return 'КМСУ';
+        } elseif ($max == 2 and $roz == 'МСУ' || $roz == 'КМСУ') {
+            return 'I';
+        } elseif ($max == 3 and $roz == 'МСУ' || $roz == 'КМСУ' || $roz == 'I') {
+            return 'II';
+        } elseif ($max == 4 and $roz == 'МСУ' || $roz == 'КМСУ' || $roz == 'I' || $roz == 'II') {
+            return 'III';
+        } elseif ($max == 5 and $roz == 'МСУ' || $roz == 'КМСУ' || $roz == 'I' || $roz == 'II' || $roz == 'III') {
+            return ' ';
+        }
+        return $roz;
+    }
+
+    
 }

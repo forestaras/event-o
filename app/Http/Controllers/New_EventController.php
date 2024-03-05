@@ -7,6 +7,7 @@ use App\Models\Mopcompetitor;
 use App\Models\Moporganization;
 use Illuminate\Http\Request;
 use App\Http\Controllers\New_FunctionController;
+use App\Models\Protocol;
 use Illuminate\Support\Facades\DB;
 
 class New_EventController extends Controller
@@ -28,7 +29,6 @@ class New_EventController extends Controller
         $peoples = Mopcompetitor::where('cid', $id)->get();
         $class = Mopclass::where('cid', $id)->get();
         $organization = Moporganization::where('cid', $id)->get();
-
         foreach ($peoples as $people) {
            $people->club_name=New_FunctionController::club_name($organization,$people);
            $people->club_name_small=mb_substr($people->clyb_name, 0, 10, 'UTF-8') . '...';
@@ -39,6 +39,10 @@ class New_EventController extends Controller
            $people->rezult_stat=New_FunctionController::rezult_stat($people);
            $people->plases=New_FunctionController::plases($people, $peoples);
            $people->sort_plases=New_FunctionController::sort_plases($people->stat, $people->plases);
+           
+
+           
+           
         }
         $peoples=$peoples->sortBy('sort_plases');
        
@@ -46,19 +50,41 @@ class New_EventController extends Controller
         return $peoples;
     }
 
+    static function protocol_people($cid)
+    {
+        $peoples=New_FunctionController::protocol($cid);
+        foreach ($peoples as $people) {
+           $people->club_name_small=mb_substr($people->club_name, 0, 10, 'UTF-8') . '...';
+           $people->status=New_FunctionController::status($people);
+           $people->start=New_FunctionController::formatTime($people->st);
+           $people->rezult=New_FunctionController::formatTime($people->rt);
+           $people->rezult_stat=New_FunctionController::rezult_stat($people);
+           $people->plases=New_FunctionController::plases($people, $peoples);
+           $people->sort_plases=New_FunctionController::sort_plases($people->stat, $people->plases);
+        }
+        $peoples=$peoples->sortBy('sort_plases');
+        
+       
+        // dd($peoples);
+        return $peoples;
+    }
+
     public function protocol_comand($cid){
-        $peoples=self::people_all_event($cid);
-        $clubs = New_FunctionController::club_summball_peoples($peoples);
+        $peoples=self::protocol_people($cid);
+        $protocol_dani = Protocol::find($cid);
+        $peoples_bali=New_FunctionController::bali($peoples,$protocol_dani->formula);
+        $clubs = New_FunctionController::club_summball_peoples($peoples,$protocol_dani);
         $clubs=$clubs->sortByDesc('sumball');
-        return view('live.protocol.protocol_comand', compact('clubs'));
+        return view('live.protocol.protocol_comand', compact('clubs','protocol_dani'));
     }
 
     public function protocol_finish($cid){
-        $peoples=self::people_all_event($cid);
+        $protocol_dani=Protocol::find($cid);
+        $peoples=self::protocol_people($cid);
         $peoples= New_FunctionController::roz($peoples);
-        $class_peoples= New_RozryadController::rozryad($peoples);
+        $class_peoples= New_RozryadController::rozryad($peoples,$protocol_dani);
         // $class_peoples = New_FunctionController::class_peoples($peoples_rozriad);
-        return view('live.protocol.protocol_finish', compact('class_peoples'));
+        return view('live.protocol.protocol_finish', compact('class_peoples','protocol_dani'));
     }
 
     public function protocol_start($cid){
