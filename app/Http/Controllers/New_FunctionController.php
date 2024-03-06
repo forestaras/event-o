@@ -143,6 +143,16 @@ class New_FunctionController extends Controller
 			// $peoples=$peoples->sortBy('bali');
 			return $peoples;
 		}
+		else{
+			foreach ($peoples as $people) {
+				
+				 $people->bali = 0;
+					
+				
+			}
+			// $peoples=$peoples->sortBy('bali');
+			return $peoples;
+		}
 	}
 
 	static function club_summball_peoples($peoples,$protocol)
