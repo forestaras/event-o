@@ -181,6 +181,7 @@ use Session;
 	        | 
 	        */
 	        $this->index_button = array();
+			$this->index_button[] = ['target'=>'_blank','label'=>'Скачати файл для Meos','url'=>'https://drive.google.com/file/d/1OlTU1EPq8A2Arxd4gyZr4M03VmHuBlHn/view?usp=drive_link',"icon"=>"fa fa-download",'color'=>'success'];
 
 
 
@@ -203,6 +204,7 @@ use Session;
 	        |
 	        */
 	        $this->index_statistic = array();
+			// $this->index_statistic[] = ['label'=>'Файл конвертації для Meos','count'=>"Скачати",'icon'=>'fa fa-download','color'=>'success'];
 
 
 

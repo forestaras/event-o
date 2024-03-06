@@ -28,39 +28,20 @@ class New_RozryadController extends Controller
     static function rang_people($i, $grup)
     {
         $i = str_replace("I", "І", $i);
-        $i = strtolower($i);
-        if (stripos($i, '3') !== false and stripos($i, 'ю') !== false) {
-            $rang = 0.3;
-        } elseif (
-            stripos($i, '2') !== false and stripos($i, 'ю') !== false
-            || stripos($i, 'ііі') !== false
-            || stripos($i, 'iii') !== false
-        ) {
-            $rang = 1;
-        } elseif (
-            stripos($i, '1') !== false and stripos($i, 'ю') !== false
-            || stripos($i, 'ii') !== false
-            || stripos($i, 'іі') !== false
-        ) {
-            $rang = 3;
-        } elseif (
-            stripos($i, '1') !== false
-            || stripos($i, 'i') !== false
-            || stripos($i, 'і') !== false
-        ) {
-            $rang = 10;
-        } elseif (
-            stripos($i, 'к') !== false
-            || stripos($i, 'k') !== false
-        ) {
-            $rang = 30;
-        } elseif (stripos($i, 'мс') !== false) {
-            $rang = 100;
-        } elseif (
-            stripos($i, 'б') !== false
-            || stripos($i, ' ') !== false
-            || stripos($i, 'р') !== false
-        ) {
+        $i = strtoupper($i);
+
+
+
+        if (stripos($i, '3') !== false and stripos($i, 'ю') !== false)$rang = 0.3;
+        elseif (stripos($i, '2') !== false and stripos($i, 'ю') !== false)  $rang = 1;
+        elseif (stripos($i, 'ІІІ') !== false|| stripos($i, 'III') !== false) $rang = 1;
+        elseif (stripos($i, '1') !== false and stripos($i, 'ю') !== false) $rang = 3;
+        elseif (stripos($i, 'ІІ') !== false|| stripos($i, 'II')!== false) $rang = 3;
+        elseif (stripos($i, '1') !== false and stripos($i, 'ю') !== false) $rang = 3;
+        elseif (stripos($i, '1') !== false||stripos($i, 'І') !== false|| stripos($i, 'I')!== false) $rang = 10;
+        elseif (stripos($i, 'К') !== false|| stripos($i, 'K') !== false) $rang = 30;
+        elseif (stripos($i, 'МС') !== false) $rang = 100;
+        elseif (stripos($i, 'б') !== false|| stripos($i, ' ') !== false|| stripos($i, 'р') !== false) {
             $rang = 0.1;
             if (preg_replace("/[^0-9]/", "", $grup) >= 16) {
                 $rang = 0.3;
@@ -74,7 +55,9 @@ class New_RozryadController extends Controller
     {
         $class_peoples = New_FunctionController::class_peoples($peoples);
         foreach ($class_peoples as $clas) {
-            $clas->rang = $peoples->where('class_name', $clas->class_name)->sum('rang');
+            
+        
+            $clas->rangs = $peoples->where('class_name', $clas->class_name)->sum('rang');
             $clas->best_time = $peoples->where('class_name', $clas->class_name)->where('sort_plases', '>=', 1)->where('sort_plases', '<=', 12)->min('rt');
             $rozriad = self::klasifik($clas);
             $clas->rozryad = $rozriad;
@@ -134,7 +117,7 @@ class New_RozryadController extends Controller
         ]);
 
         foreach ($rozz as $roz) {
-            if ($clas->rang > $roz['rang']) {
+            if ($clas->rangs > $roz['rang']) {
                 break;
             }
         }

@@ -76,6 +76,7 @@ Route::prefix('livess')->group(function () {
         Route::get('/protocol_start/{id}', [New_EventController::class, 'protocol_start'])->name('protocol_start');
         Route::get('/protocol_test/{id}', [New_EventController::class, 'protocol_people'])->name('protocol_test');////////////
         Route::get('/protocol_finish/{id}', [New_EventController::class, 'protocol_finish'])->name('protocol_finish');
+        Route::get('/protocol_finish_test/{id}', [New_EventController::class, 'protocol_finish_test'])->name('protocol_finish_test');
         Route::get('/protocol_comand/{id}', [New_EventController::class, 'protocol_comand'])->name('protocol_comand');
         Route::get('/protocol_raley/{id}', [New_EventController::class, 'protocol_raley'])->name('protocol_raley');
         Route::get('/protocol_comand_big/{id}', [RezultController::class, 'protocol_comand_big'])->name('protocol_comand_big');

@@ -1,5 +1,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link type="text/css" rel="stylesheet" href="resources/sheet.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 <style type="text/css">
     .ritz .waffle a {
         color: inherit;
@@ -148,6 +149,13 @@
     }
 </style>
 <div class="ritz grid-container" dir="ltr">
+    <div class="alert alert-danger" role="alert">
+        <h4 class="alert-heading">Увага!</h4>
+        <p>Це сторінка відладки вашого протоколу.</p>
+        <hr>
+        <p class="mb-0">Переконайтеся що всім 12спортсменам  правильно нараховано ранг:</p>
+        <a href="/livess/rezult/protocol_finish/{{$protocol_dani->id}}" class="btn btn-primary btn-lg mt-3">Перейти до протоколу</a>
+      </div>
     <table class="waffle no-grid" cellspacing="0" cellpadding="0">
         <thead>
             <tr>
@@ -295,6 +303,7 @@
                     @if ($protocol_dani->pol_roz)<td class="s7" dir="ltr">Кваліф.</td>@endif
                     @if ($protocol_dani->pol_roz_vik)<td class="s7" dir="ltr">Вик. розр.</td>@endif
                     @if ($protocol_dani->pol_ball)<td class="s7" dir="ltr">Бали</td>@endif
+                    <td class="s7" dir="ltr">РАНГ УЧАСНИКА</td>
                     <td></td>
                     <td></td>
                 </tr>
@@ -315,6 +324,7 @@
                         @if ($protocol_dani->pol_roz)<td class="s0" dir="ltr">{{ $people->roz }}</td>@endif
                         @if ($protocol_dani->pol_roz_vik)<td class="s0" dir="ltr">{{ $people->vik_roz }}</td>@endif
                         @if ($protocol_dani->pol_ball)<td class="s0" dir="ltr">{{ $people->bali }}</td>@endif
+                        <td class="s0" dir="ltr">{{ $people->rang }}</td>
                         <td></td>
                         <td></td>
                     </tr>

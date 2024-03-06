@@ -87,6 +87,15 @@ class New_EventController extends Controller
         return view('live.protocol.protocol_finish', compact('class_peoples','protocol_dani'));
     }
 
+    public function protocol_finish_test($cid){
+        $protocol_dani=Protocol::find($cid);
+        $peoples=self::protocol_people($cid);
+        $peoples= New_FunctionController::roz($peoples);
+        $class_peoples= New_RozryadController::rozryad($peoples,$protocol_dani);
+        // $class_peoples = New_FunctionController::class_peoples($peoples_rozriad);
+        return view('live.protocol.protocol_finish_test', compact('class_peoples','protocol_dani'));
+    }
+
     public function protocol_start($cid){
         $peoples=self::people_all_event($cid);
         $peoples=$peoples->sortBy('st');
