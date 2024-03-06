@@ -135,7 +135,7 @@ use Session;
 	        | 
 	        */
 	        $this->addaction[] = ['label'=>'Переглянути протокол','url'=>'/protocols/[id]','icon'=>'fa fa-newspaper-o','color'=>'info'];
-	        $this->addaction[] = ['label'=>'ТЕСТ Переглянути протокол','url'=>'/livess/rezult/protocol_finish/[id]','icon'=>'fa fa-newspaper-o','color'=>'warning'];
+	        $this->addaction[] = ['label'=>'ТЕСТ Переглянути протокол','url'=>'/livess/rezult/protocol_finish_test/[id]','icon'=>'fa fa-newspaper-o','color'=>'warning'];
 			// if (Protocol::find($this->col::)) {
 			// 	# code...
 			// }
