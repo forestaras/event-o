@@ -326,6 +326,9 @@ use Session;
 	    */
 	    public function hook_before_add(&$postdata) {        
 	        $postdata['userid'] = CRUDBooster::myId();
+			if (!$postdata['kom']) $postdata['kom']=NULL;
+	        // if (!$postdata['kom_count']) $postdata['kom_count']=NULL;
+	        if (!$postdata['kom_count_views']) $postdata['kom_count_views']=NULL;
 
 	    }
 
