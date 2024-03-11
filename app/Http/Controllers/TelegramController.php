@@ -15,10 +15,10 @@ class TelegramController extends Controller
 {
     public function message(Request $request)
     {
-        \Log::info($request->all());
-        $site_dir = dirname(dirname(__FILE__)) . '/'; // корень сайта
+        // \Log::info($request->all());
+        // $site_dir = dirname(dirname(__FILE__)) . '/'; // корень сайта
         $bot_token = '6947389463:AAEFdsijx_I9B1v6f4BJW2sUSVOiYYDmo2I'; // токен вашего бота
-        file_put_contents(__DIR__ . '/message.txt', print_r($data, true));
+        // file_put_contents(__DIR__ . '/message.txt', print_r($data, true));
         if (!empty($request->message['text'])) {
             $chat_id = $request->message['from']['id'];
             $user_name = $request->message['from']['username'];

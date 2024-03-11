@@ -7,20 +7,61 @@ use Illuminate\Support\Facades\Http;
 
 class New_TelegramBotController extends Controller
 {
-    public function telegram()
+    public function telegram(Request $request)
     {
-        $telegramBotToken = '2107045715:AAFH4DLnTFuxLCTxZ17FGLj0hHCbNbAbOm8';
-        $chatId = '741175385'; // Ідентифікатор чату або користувача
+        // Отримуємо вхідні дані від Телеграма
+        $update = $request->all();
 
-        $message = 'Вітаю, це моє перше повідомлення через PHP!';
+        // Перевіряємо, чи є текст повідомлення
+        if (isset($update['message']['text'])) {
+            $command = $update['message']['text'];
 
-        // Формуємо URL для виклику методу sendMessage
+            // Обробляємо команду
+            switch ($command) {
+                case '/start':
+                    $response = 'Ви викликали команду /start.';
+                    break;
+                case '/help':
+                    $response = 'Ви викликали команду /help.';
+                    break;
+                default:
+                    $response = 'Невідома команда. Використайте /start або /help.';
+                    break;
+            }
+
+            // Відправляємо відповідь на команду
+            $this->sendMessage($update['message']['chat']['id'], $response);
+        }
+
+        // Повертаємо відповідь для Телеграма
+        return response()->json(['status' => 'success']);
+    }
+
+    private function sendMessage($chatId, $message)
+    {
+        // Ваш код для відправки повідомлення в Телеграм
+        $telegramBotToken = 'YOUR_TELEGRAM_BOT_TOKEN';
         $url = 'https://api.telegram.org/bot' . $telegramBotToken . '/sendMessage?' . http_build_query([
             'chat_id' => $chatId,
             'text' => $message,
         ]);
 
         // Надсилаємо запит на URL
+        $response = file_get_contents($url);
+
+        // Виводимо результат
+        var_dump($response);
+    }
+
+    public function setWebhook()
+    {
+        $telegramBotToken = '6947389463:AAEFdsijx_I9B1v6f4BJW2sUSVOiYYDmo2I';
+        $webhookUrl = 'https://event-o.net/';
+
+        // Встановлюємо веб-хук для бота
+        $url = 'https://api.telegram.org/bot' . $telegramBotToken . '/setWebhook?url=' . $webhookUrl;
+
+        // Відправляємо запит на встановлення веб-хука
         $response = file_get_contents($url);
 
         // Виводимо результат
