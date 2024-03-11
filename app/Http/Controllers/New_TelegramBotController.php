@@ -41,16 +41,13 @@ class New_TelegramBotController extends Controller
     {
         // Ваш код для відправки повідомлення в Телеграм
         $telegramBotToken = '6947389463:AAEFdsijx_I9B1v6f4BJW2sUSVOiYYDmo2I';
-        $url = 'https://api.telegram.org/bot' . $telegramBotToken . '/sendMessage?' . http_build_query([
+        $response = Http::post("https://api.telegram.org/bot{$telegramBotToken}/sendMessage", [
             'chat_id' => $chatId,
             'text' => $message,
         ]);
 
-        // Надсилаємо запит на URL
-        $response = file_get_contents($url);
-
         // Виводимо результат
-        var_dump($response);
+        var_dump($response->body());
     }
 
     public function setWebhook()
@@ -59,12 +56,13 @@ class New_TelegramBotController extends Controller
         $webhookUrl = 'https://event-o.net';
 
         // Встановлюємо веб-хук для бота
-        $url = 'https://api.telegram.org/bot' . $telegramBotToken . '/setWebhook?url=' . $webhookUrl;
-
-        // Відправляємо запит на встановлення веб-хука
-        $response = file_get_contents($url);
+        $response = Http::post("https://api.telegram.org/bot{$telegramBotToken}/setWebhook", [
+            'url' => $webhookUrl,
+        ]);
 
         // Виводимо результат
-        var_dump($response);
+        var_dump($response->body());
     }
 }
+
+
