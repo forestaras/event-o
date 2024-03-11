@@ -141,7 +141,7 @@ class AdminEvent19Controller extends \crocodicstudio\crudbooster\controllers\CBC
 			// }
 			
 			$this->addaction[] = ['label'=>'Сторінка','url'=>'/event/[id]','icon'=>'fa fa-newspaper-o','color'=>'info'];
-			$this->addaction[] = ['label'=>'Деталі' ,'url'=>'/admin/event19/detail/[id]','icon'=>'fa fa-cogs','color'=>'success'];
+			$this->addaction[] = ['label'=>'Деталі[id]' ,'url'=>'/admin/event19/detail/[id]','icon'=>'fa fa-cogs','color'=>'success'];
 			$this->addaction[] = ['label'=>'Редагувати','url'=>'/admin/event19/edit/[id]','icon'=>'fa fa-pencil-square-o','color'=>'success'];
 
 			

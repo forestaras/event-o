@@ -8,6 +8,8 @@ use App\Models\Moporganization;
 use Illuminate\Http\Request;
 use App\Http\Controllers\New_FunctionController;
 use App\Models\Protocol;
+use Illuminate\Database\Eloquent\Collection;
+// use FontLib\TrueType\Collection;
 use Illuminate\Support\Facades\DB;
 
 class New_EventController extends Controller
@@ -86,6 +88,37 @@ class New_EventController extends Controller
         // $class_peoples = New_FunctionController::class_peoples($peoples_rozriad);
         return view('live.protocol.protocol_finish', compact('class_peoples','protocol_dani'));
     }
+    public function protocol_finish_summa($cid){
+        $protocol=Protocol::find($cid);
+        // $sort=$protocol->sort;
+        // $sort_count=$protocol->sort_count;
+        $cids_all =explode(" ", $protocol->cids);
+        $all_people=collect();
+        $x=1;
+        foreach ($cids_all  as $id) {
+            $protocol_dani=Protocol::find($id); 
+            $events[]=['cid'=>$id,'inf_data'=>$protocol_dani->inf_data,'x'=>$x++];
+            $peoples=self::protocol_people($id);
+            $peoples_bali=New_FunctionController::bali($peoples,$protocol_dani->formula);
+            $all_people = $all_people->merge($peoples_bali);
+        }
+        $all_people_grup=$all_people->groupBy(['grup','name']);
+        foreach ($all_people_grup as $group) {
+            foreach ($group as $item) {
+                if ($protocol->sort===NULL) {
+                 $iteme=$item->sortByDesc('bali')->take($protocol->sort_count);   ///// більші значення сума
+                }
+                if ($protocol->sort==1) {
+                    $iteme=$item->sortBy('bali')->take($protocol->sort_count);   /////менші значення сума
+                }
+                
+                $item->sum_bali = $iteme->sum('bali');
+            }
+        }
+
+        // dd($all_people_grup);
+        return view('live.protocol.protocol_finish_summa', compact('all_people_grup','protocol_dani','events'));
+    }
 
     public function protocol_finish_test($cid){
         $protocol_dani=Protocol::find($cid);
@@ -127,6 +160,8 @@ class New_EventController extends Controller
         }
         return view('live.protocol.protocol_raley', compact('class'));
     }
+
+    
 
 
 }

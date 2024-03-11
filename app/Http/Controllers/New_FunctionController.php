@@ -143,6 +143,15 @@ class New_FunctionController extends Controller
 			// $peoples=$peoples->sortBy('bali');
 			return $peoples;
 		}
+		if ($formula == 'Місце=бал') {
+			foreach ($peoples as $people) {
+				if ($people->stat == 1) {
+					$people->bali = $people->plases;
+				}
+			}
+			// $peoples=$peoples->sortBy('bali');
+			return $peoples;
+		}
 		else{
 			foreach ($peoples as $people) {
 				
@@ -287,7 +296,7 @@ class New_FunctionController extends Controller
 		return $all_rezult;
 	}
 
-	function bject($Array)
+	static function bject($Array)
 	{ //Функція що перетворює в обєет
 
 		// Create new stdClass object

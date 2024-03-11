@@ -33,10 +33,9 @@ use Session;
 			$this->col = [];
 			$this->col[] = ["label"=>"Id","name"=>"id"];
 			$this->col[] = ["label"=>"Дата","name"=>"inf_data"];
-			$this->col[] = ["label"=>"Назва1","name"=>"name1"];
-			$this->col[] = ["label"=>"Назва2","name"=>"name2"];
-			$this->col[] = ["label"=>"Дистанція","name"=>"namedist"];
 			$this->col[] = ["label"=>"Локація","name"=>"inf_local"];
+			$this->col[] = ["label"=>"Назва1","name"=>"name1"];
+			$this->col[] = ["label"=>"Дистанція","name"=>"namedist"];
 			# END COLUMNS DO NOT REMOVE THIS LINE
 
 			# START FORM DO NOT REMOVE THIS LINE
@@ -48,26 +47,26 @@ use Session;
 			$this->form[] = ['label'=>'Назва змагаань 1 строка','name'=>'name1','type'=>'text','width'=>'col-sm-10'];
 			$this->form[] = ['label'=>'Назва змагаань 2 строка','name'=>'name2','type'=>'text','width'=>'col-sm-10'];
 			$this->form[] = ['label'=>'Назва змагаань 3 строка','name'=>'name3','type'=>'text','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Дистанція назва(середня,довга,спринт','name'=>'namedist','type'=>'text','width'=>'col-sm-10'];
+			$this->form[] = ['label'=>'Дистанція назва(середня,довга,спринт)','name'=>'namedist','type'=>'text','width'=>'col-sm-10'];
 			$this->form[] = ['label'=>'Дата проведення','name'=>'inf_data','type'=>'date','width'=>'col-sm-10'];
 			$this->form[] = ['label'=>'Місце проведення','name'=>'inf_local','type'=>'text','width'=>'col-sm-10'];
 			$this->form[] = ['label'=>'Начальник дистанції','name'=>'nd','type'=>'text','width'=>'col-sm-10'];
 			$this->form[] = ['label'=>'Головний секретар','name'=>'gse','type'=>'text','width'=>'col-sm-10'];
 			$this->form[] = ['label'=>'Головний суддя','name'=>'gsu','type'=>'text','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Контрольний час','name'=>'con','type'=>'time','width'=>'col-sm-10'];
+			$this->form[] = ['label'=>'Контрольний час(ГГ:ХХ:СС)','name'=>'con','type'=>'time','width'=>'col-sm-10'];
 			$this->form[] = ['label'=>'Клас дистанції для дітей(юнацькі розряди)','name'=>'cld','type'=>'text','width'=>'col-sm-10'];
 			$this->form[] = ['label'=>'Клас дистанції для дорослих(дорослих розрядів)','name'=>'cldr','type'=>'text','width'=>'col-sm-10'];
 			$this->form[] = ['label'=>'Скопіюйте сюди протокол з меоs','name'=>'prot','type'=>'textarea','validation'=>'required|string','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Формула','name'=>'formula','type'=>'select','width'=>'col-sm-6','dataenum'=>'Б=100*(Чп/Чу);Пліч о пліч;0|Не потрібно рахувати бали','default'=>'Не потрібно рахувати бали'];
 			$this->form[] = ['label'=>'Максимальний розряд','name'=>'max','type'=>'select','validation'=>'required','width'=>'col-sm-6','dataenum'=>'0|Виконуються всі розряди;1|КМСУ;2|I;3|II;4|III;5|Не виконуються дорослі розряди'];
-			$this->form[] = ['label'=>'Поля','type'=>'header','width'=>'col-sm-9'];
+			$this->form[] = ['label'=>'Формула нарахування балів','name'=>'formula','type'=>'select','width'=>'col-sm-6','dataenum'=>'Б=100*(Чп/Чу);Пліч о пліч;Місце=бал;0|Не потрібно рахувати бали','default'=>'Не потрібно рахувати бали'];
+			$this->form[] = ['label'=>'Поля для відображення','name'=>'pol_rik','type'=>'header','width'=>'col-sm-9'];
 			$this->form[] = ['label'=>'Рік народження','name'=>'pol_rik','type'=>'checkbox','width'=>'col-sm-3','dataenum'=>'1|Вкл'];
 			$this->form[] = ['label'=>'Команда','name'=>'pol_com','type'=>'checkbox','width'=>'col-sm-3','dataenum'=>'1|Вкл'];
 			$this->form[] = ['label'=>'Тренер','name'=>'pol_tren','type'=>'checkbox','width'=>'col-sm-3','dataenum'=>'1|Вкл'];
 			$this->form[] = ['label'=>'Розряд','name'=>'pol_roz','type'=>'checkbox','width'=>'col-sm-3','dataenum'=>'1|Вкл'];
 			$this->form[] = ['label'=>'Виконаний розряд','name'=>'pol_roz_vik','type'=>'checkbox','width'=>'col-sm-3','dataenum'=>'1|Вкл'];
 			$this->form[] = ['label'=>'Бали','name'=>'pol_ball','type'=>'checkbox','width'=>'col-sm-3','dataenum'=>'1|Вкл'];
-			$this->form[] = ['label'=>'Командні','name'=>'kom','type'=>'header','width'=>'col-sm-9'];
+			$this->form[] = ['label'=>'Командні(незабудьте вказати формулу для нарахування балів)','name'=>'kom','type'=>'header','width'=>'col-sm-9'];
 			$this->form[] = ['label'=>'Створити командний протокол','name'=>'kom','type'=>'checkbox','width'=>'col-sm-9','dataenum'=>'1|Вкл'];
 			$this->form[] = ['label'=>'Кількість учасників команди що іде в залік','name'=>'kom_count','type'=>'number','width'=>'col-sm-9'];
 			$this->form[] = ['label'=>'Показувати в протоколі тільки тих хто попав в залік','name'=>'kom_count_views','type'=>'checkbox','width'=>'col-sm-9','dataenum'=>'1|Вкл'];
@@ -76,32 +75,32 @@ use Session;
 			# OLD START FORM
 			//$this->form = [];
 			//$this->form[] = ['label'=>'Userid','name'=>'userid','type'=>'hidden','width'=>'col-sm-10'];
-			//$this->form[] = ['label'=>'Організація 1 строка','name'=>'col1','type'=>'text','width'=>'col-sm-10','value'=>'0'];
+			//$this->form[] = ['label'=>'Організація 1 строка','name'=>'col1','type'=>'text','width'=>'col-sm-10'];
 			//$this->form[] = ['label'=>'Організація 2 строка','name'=>'col2','type'=>'text','width'=>'col-sm-10'];
 			//$this->form[] = ['label'=>'Організація 3 строка','name'=>'col3','type'=>'text','width'=>'col-sm-10'];
 			//$this->form[] = ['label'=>'Назва змагаань 1 строка','name'=>'name1','type'=>'text','width'=>'col-sm-10'];
 			//$this->form[] = ['label'=>'Назва змагаань 2 строка','name'=>'name2','type'=>'text','width'=>'col-sm-10'];
 			//$this->form[] = ['label'=>'Назва змагаань 3 строка','name'=>'name3','type'=>'text','width'=>'col-sm-10'];
-			//$this->form[] = ['label'=>'Дистанція назва(середня,довга,спринт','name'=>'namedist','type'=>'text','width'=>'col-sm-10'];
+			//$this->form[] = ['label'=>'Дистанція назва(середня,довга,спринт)','name'=>'namedist','type'=>'text','width'=>'col-sm-10'];
 			//$this->form[] = ['label'=>'Дата проведення','name'=>'inf_data','type'=>'date','width'=>'col-sm-10'];
 			//$this->form[] = ['label'=>'Місце проведення','name'=>'inf_local','type'=>'text','width'=>'col-sm-10'];
 			//$this->form[] = ['label'=>'Начальник дистанції','name'=>'nd','type'=>'text','width'=>'col-sm-10'];
 			//$this->form[] = ['label'=>'Головний секретар','name'=>'gse','type'=>'text','width'=>'col-sm-10'];
 			//$this->form[] = ['label'=>'Головний суддя','name'=>'gsu','type'=>'text','width'=>'col-sm-10'];
-			//$this->form[] = ['label'=>'Контрольний час','name'=>'con','type'=>'time','width'=>'col-sm-10'];
+			//$this->form[] = ['label'=>'Контрольний час(ГГ:ХХ:СС)','name'=>'con','type'=>'time','width'=>'col-sm-10'];
 			//$this->form[] = ['label'=>'Клас дистанції для дітей(юнацькі розряди)','name'=>'cld','type'=>'text','width'=>'col-sm-10'];
 			//$this->form[] = ['label'=>'Клас дистанції для дорослих(дорослих розрядів)','name'=>'cldr','type'=>'text','width'=>'col-sm-10'];
 			//$this->form[] = ['label'=>'Скопіюйте сюди протокол з меоs','name'=>'prot','type'=>'textarea','validation'=>'required|string','width'=>'col-sm-10'];
-			//$this->form[] = ['label'=>'Формула','name'=>'formula','type'=>'select','width'=>'col-sm-6','dataenum'=>'Б=100*(Чп/Чу);Пліч о пліч;0|Не потрібно рахувати бали','default'=>'Не потрібно рахувати бали'];
 			//$this->form[] = ['label'=>'Максимальний розряд','name'=>'max','type'=>'select','validation'=>'required','width'=>'col-sm-6','dataenum'=>'0|Виконуються всі розряди;1|КМСУ;2|I;3|II;4|III;5|Не виконуються дорослі розряди'];
-			//$this->form[] = ['label'=>'Поля','type'=>'header','width'=>'col-sm-9'];
+			//$this->form[] = ['label'=>'Формула нарахування балів','name'=>'formula','type'=>'select','width'=>'col-sm-6','dataenum'=>'Б=100*(Чп/Чу);Пліч о пліч;0|Не потрібно рахувати бали','default'=>'Не потрібно рахувати бали'];
+			//$this->form[] = ['label'=>'Поля для відображення','name'=>'pol_rik','type'=>'header','width'=>'col-sm-9'];
 			//$this->form[] = ['label'=>'Рік народження','name'=>'pol_rik','type'=>'checkbox','width'=>'col-sm-3','dataenum'=>'1|Вкл'];
 			//$this->form[] = ['label'=>'Команда','name'=>'pol_com','type'=>'checkbox','width'=>'col-sm-3','dataenum'=>'1|Вкл'];
 			//$this->form[] = ['label'=>'Тренер','name'=>'pol_tren','type'=>'checkbox','width'=>'col-sm-3','dataenum'=>'1|Вкл'];
 			//$this->form[] = ['label'=>'Розряд','name'=>'pol_roz','type'=>'checkbox','width'=>'col-sm-3','dataenum'=>'1|Вкл'];
 			//$this->form[] = ['label'=>'Виконаний розряд','name'=>'pol_roz_vik','type'=>'checkbox','width'=>'col-sm-3','dataenum'=>'1|Вкл'];
 			//$this->form[] = ['label'=>'Бали','name'=>'pol_ball','type'=>'checkbox','width'=>'col-sm-3','dataenum'=>'1|Вкл'];
-			//$this->form[] = ['label'=>'Командні','name'=>'kom','type'=>'header','width'=>'col-sm-9'];
+			//$this->form[] = ['label'=>'Командні(незабудьте вказати формулу для нарахування балів)','name'=>'kom','type'=>'header','width'=>'col-sm-9'];
 			//$this->form[] = ['label'=>'Створити командний протокол','name'=>'kom','type'=>'checkbox','width'=>'col-sm-9','dataenum'=>'1|Вкл'];
 			//$this->form[] = ['label'=>'Кількість учасників команди що іде в залік','name'=>'kom_count','type'=>'number','width'=>'col-sm-9'];
 			//$this->form[] = ['label'=>'Показувати в протоколі тільки тих хто попав в залік','name'=>'kom_count_views','type'=>'checkbox','width'=>'col-sm-9','dataenum'=>'1|Вкл'];
@@ -134,12 +133,13 @@ use Session;
 	        | @showIf 	   = If condition when action show. Use field alias. e.g : [id] == 1
 	        | 
 	        */
+			$this->col[] = ["label"=>"kom","name"=>"kom"];
 	        $this->addaction[] = ['label'=>'Переглянути протокол','url'=>'/protocols/[id]','icon'=>'fa fa-newspaper-o','color'=>'info'];
 	        $this->addaction[] = ['label'=>'ТЕСТ Переглянути протокол','url'=>'/livess/rezult/protocol_finish_test/[id]','icon'=>'fa fa-newspaper-o','color'=>'warning'];
 			// if (Protocol::find($this->col::)) {
 			// 	# code...
 			// }
-	        $this->addaction[] = ['label'=>'ТЕСТ Переглянути командний протокол','url'=>'/livess/rezult/protocol_comand/[id]','icon'=>'fa fa-newspaper-o','color'=>'warning'];
+	        $this->addaction[] = ['showIf'=>'[kom]==1','label'=>'ТЕСТ Переглянути командний протокол','url'=>'/livess/rezult/protocol_comand/[id]','icon'=>'fa fa-newspaper-o','color'=>'warning'];
 
 			
 			// $this->addaction[] = ['label'=>'Деталі' ,'url'=>'/admin/event19/detail/[id]','icon'=>'fa fa-cogs','color'=>'success'];

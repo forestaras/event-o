@@ -76,6 +76,7 @@ Route::prefix('livess')->group(function () {
         Route::get('/protocol_start/{id}', [New_EventController::class, 'protocol_start'])->name('protocol_start');
         Route::get('/protocol_test/{id}', [New_EventController::class, 'protocol_people'])->name('protocol_test');////////////
         Route::get('/protocol_finish/{id}', [New_EventController::class, 'protocol_finish'])->name('protocol_finish');
+        Route::get('/protocol_finish_summa/{id}', [New_EventController::class, 'protocol_finish_summa'])->name('protocol_finish_summa');
         Route::get('/protocol_finish_test/{id}', [New_EventController::class, 'protocol_finish_test'])->name('protocol_finish_test');
         Route::get('/protocol_comand/{id}', [New_EventController::class, 'protocol_comand'])->name('protocol_comand');
         Route::get('/protocol_raley/{id}', [New_EventController::class, 'protocol_raley'])->name('protocol_raley');
@@ -165,8 +166,8 @@ Route::post('upload', ['as' => 'upload_file', 'uses' => 'CSVController@upload'])
 // Route::get('/protocols', [ProtocolController::class, 'index']);
 // Route::resource('items', ItemController::class);
 // Route::resource('/protocols', [ProtocolController::class])->name('protocols');
-// Route::get('/telegram_bot', [TelegramController::class, 'bot'])->name('telegram_bot');
-// Route::get('/telegram_create', [TelegramController::class, 'create'])->name('telegram_create');
+Route::get('/telegram_bot', [TelegramController::class, 'bot'])->name('telegram_bot');
+Route::get('/telegram_create', [TelegramController::class, 'create'])->name('telegram_create');
 // Route::get('/atlets', 'SiteOnlineController@atlets')->name('homes');
 // Route::post('/atlets2', 'SiteOnlineController@atlets2')->name('homes');lllllllllllllllllllllllllllllllgit
 // Route::post('/atlets', 'SiteOnlineController@atlets')->name('atlets');
