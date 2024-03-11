@@ -56,7 +56,7 @@ class New_TelegramBotController extends Controller
     public function setWebhook()
     {
         $telegramBotToken = '6947389463:AAEFdsijx_I9B1v6f4BJW2sUSVOiYYDmo2I';
-        $webhookUrl = 'https://event-o.net/';
+        $webhookUrl = 'https://event-o.net';
 
         // Встановлюємо веб-хук для бота
         $url = 'https://api.telegram.org/bot' . $telegramBotToken . '/setWebhook?url=' . $webhookUrl;
