@@ -50,14 +50,10 @@ Route::get('atlet/{name}', [RezultController::class, 'atlet'])->name('atlet');
 //Сторніки сайту
 
 // Route::get('/admin/register/add', [AdminRegisterController::class, 'getAdd'])->name('register_proces');
-Route::post('/telegram/webhook', [New_TelegramBotController::class, 'telegram']);
-
-// Роут для встановлення вебхука
-Route::get('/telegram/set-webhook', [New_TelegramBotController::class, 'setWebhook']);
 
 //Телеграм
-// Route::get('/admin/telegram/{event_id}/{pass}/{time}/{stat}', [TelegramController::class, 'search2'])->name('telegram_search');
-// Route::get('/admin/telegramm', [TelegramController::class, 'telegram'])->name('telegram');
+Route::get('/admin/telegram/{event_id}/{pass}/{time}/{stat}', [TelegramController::class, 'search2'])->name('telegram_search');
+Route::get('/admin/telegramm', [TelegramController::class, 'telegram'])->name('telegram');
 //Телеграм
 
 // Route::post('/send-message',  [TelegramController::class, 'telegram'])->name('telegram_send-message');
