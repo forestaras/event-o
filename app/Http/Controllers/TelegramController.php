@@ -15,11 +15,9 @@ class TelegramController extends Controller
 {
     public function message(Request $request)
     {
-        Telegram_log::info($request->all());
+        \Log::info($request->all());
         $site_dir = dirname(dirname(__FILE__)) . '/'; // корень сайта
-        $data = file_get_contents('php://input'); // весь ввод перенаправляем в $data
-        $data = json_decode($data, true); // декодируем json-закодированные-текстовые данные в PHP-массив
-        $bot_token = '2107045715:AAFH4DLnTFuxLCTxZ17FGLj0hHCbNbAbOm8'; // токен вашего бота
+        $bot_token = '6947389463:AAEFdsijx_I9B1v6f4BJW2sUSVOiYYDmo2I'; // токен вашего бота
         file_put_contents(__DIR__ . '/message.txt', print_r($data, true));
         if (!empty($request->message['text'])) {
             $chat_id = $request->message['from']['id'];

@@ -16,7 +16,7 @@ class TelegramController extends Controller
     public function telegram()
     {
 
-        $bot_token = '2107045715:AAFH4DLnTFuxLCTxZ17FGLj0hHCbNbAbOm8'; // токен вашего бота
+        $bot_token = '6947389463:AAEFdsijx_I9B1v6f4BJW2sUSVOiYYDmo2I'; // токен вашего бота
         $data = file_get_contents('php://input'); // весь ввод перенаправляем в $data
         $data = json_decode($data, true); // декодируем json-закодированные-текстовые данные в PHP-массив
 

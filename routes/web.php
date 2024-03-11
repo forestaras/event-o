@@ -14,6 +14,7 @@ use App\Http\Controllers\CpController\CPpointClassController;
 use App\Http\Controllers\TelegramController;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\New_EventController;
+use App\Http\Controllers\New_TelegramBotController;
 use Illuminate\Support\Facades\Route;
 
 //Роути для входуddddd
@@ -55,6 +56,7 @@ Route::get('/admin/telegram/{event_id}/{pass}/{time}/{stat}', [TelegramControlle
 Route::get('/admin/telegramm', [TelegramController::class, 'telegram'])->name('telegram');
 //Телеграм
 
+// Route::post('/send-message',  [TelegramController::class, 'telegram'])->name('telegram_send-message');
 
 Route::prefix('livess')->group(function () {
     Route::get('/', [LiveRezultsController::class, 'all_event'])->name('live');
@@ -71,6 +73,7 @@ Route::prefix('livess')->group(function () {
     Route::get('atlet/{name}', [RezultController::class, 'atlet'])->name('atlet');
     Route::get('/search_atlet', [RezultController::class, 'search_atlet'])->name('search_atlet');
     Route::post('/search_atlet', [RezultController::class, 'search_atlet'])->name('search_atlet2');
+
     
     Route::prefix('/rezult')->group(function () {
         Route::get('/protocol_start/{id}', [New_EventController::class, 'protocol_start'])->name('protocol_start');
@@ -152,7 +155,6 @@ Route::get('/statistic', 'Statistic@add')->name('add');
 
 Route::get('upload', ['as' => 'upload_form', 'uses' => 'CSVController@getForm']);
 Route::post('upload', ['as' => 'upload_file', 'uses' => 'CSVController@upload']);
-
 //НЕПОТРІНІ РОУТИ
 // Route::view('/about', 'about');
 // Route::get('/1', [SiteEventController::class, 'index']);
@@ -166,8 +168,8 @@ Route::post('upload', ['as' => 'upload_file', 'uses' => 'CSVController@upload'])
 // Route::get('/protocols', [ProtocolController::class, 'index']);
 // Route::resource('items', ItemController::class);
 // Route::resource('/protocols', [ProtocolController::class])->name('protocols');
-Route::get('/telegram_bot', [TelegramController::class, 'bot'])->name('telegram_bot');
-Route::get('/telegram_create', [TelegramController::class, 'create'])->name('telegram_create');
+// Route::get('/telegram_bot', [TelegramController::class, 'bot'])->name('telegram_bot');
+// Route::get('/telegram_create', [TelegramController::class, 'create'])->name('telegram_create');
 // Route::get('/atlets', 'SiteOnlineController@atlets')->name('homes');
 // Route::post('/atlets2', 'SiteOnlineController@atlets2')->name('homes');lllllllllllllllllllllllllllllllgit
 // Route::post('/atlets', 'SiteOnlineController@atlets')->name('atlets');
