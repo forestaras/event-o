@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\New_TelegramBotController;
+use App\Http\Controllers\TelegramController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +19,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::get('/admin/telegram/{event_id}/{pass}/{time}/{stat}', [TelegramController::class, 'search2'])->name('telegram_search');
+Route::get('/admin/telegramm', [TelegramController::class, 'telegram'])->name('telegram');
+//Телеграм
+Route::post('/telegram/webhook', [New_TelegramBotController::class, 'telegram']);
+Route::get('/telegram/set-webhook', [New_TelegramBotController::class, 'setWebhook']);
