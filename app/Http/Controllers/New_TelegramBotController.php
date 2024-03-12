@@ -7,61 +7,38 @@ use Illuminate\Support\Facades\Http;
 
 class New_TelegramBotController extends Controller
 {
-    public function handle()
+    public function handle(Request $request)
     {
         // Отримуємо дані від Телеграма
-        $data = file_get_contents('php://input'); // весь ввод перенаправляем в $data
-        $data = json_decode($data, true); // декодируем json-закодированные-текстовые данные в PHP-массив
-        // $datas = $_GET;
+        $data = $request->all();
+        // $data = "Дані для запису в файл\n";
         file_put_contents("message.txt", $data);
 
         // Перевіряємо, чи містить запит текст повідомлення
-        if (isset($data['message']['text'])) {
-            // Отримуємо текст повідомлення
-            $message = $data['message']['text'];
+        // if (isset($data['message']['text'])) {
+        //     // Отримуємо текст повідомлення
+        //     $message = $data['message']['text'];
 
-            // Обробляємо команди
-            switch ($message) {
-                case '/start':
-                    $response = 'Вітаю, бот працює!';
-                    break;
-                case '/help':
-                    $response = 'Доступні команди: /start, /help';
-                    break;
-                default:
-                    $response = 'Невідома команда. Використайте /help, щоб отримати список доступних команд.';
-                    break;
-            }
+        //     // Обробляємо команди
+        //     switch ($message) {
+        //         case '/start':
+        //             $response = 'Вітаю, бот працює!';
+        //             break;
+        //         case '/help':
+        //             $response = 'Доступні команди: /start, /help';
+        //             break;
+        //         default:
+        //             $response = 'Невідома команда. Використайте /help, щоб отримати список доступних команд.';
+        //             break;
+        //     }
 
-            // Відправляємо відповідь на повідомлення
-            $this->sendMessage($data['message']['chat']['id'], $response);
-        }
+        //     // Відправляємо відповідь на повідомлення
+        //     $this->sendMessage($data['message']['chat']['id'], $response);
+        // }
 
         // Повертаємо відповідь на запит для Телеграма
         return response()->json(['status' => 'success']);
     }
 
-    private function sendMessage($chatId, $message)
-    {
-        // Отримуємо токен бота
-        $token = '6825994146:AAET1ztCSlWSKj1gNDDmk9FSemsaZWFpLoUd';
 
-        // Формуємо URL для відправки повідомлення
-        $url = 'https://api.telegram.org/bot' . $token . '/sendMessage';
-
-        // Відправляємо POST-запит на API Телеграма
-        $response = Http::post($url, [
-            'chat_id' => $chatId,
-            'text' => $message,
-        ]);
-
-        // Перевіряємо, чи вдалося відправити повідомлення
-        if ($response->successful()) {
-            // Повідомлення успішно відправлене
-            return true;
-        } else {
-            // Помилка при відправці повідомлення
-            return false;
-        }
-    }
 }
