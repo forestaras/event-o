@@ -11,6 +11,8 @@ class New_TelegramBotController extends Controller
     {
         // Отримуємо дані від Телеграма
         $data = $request->all();
+        // $data = "Дані для запису в файл\n";
+        file_put_contents("message.txt", $data);
 
         // Перевіряємо, чи містить запит текст повідомлення
         if (isset($data['message']['text'])) {
