@@ -13,7 +13,6 @@ define("MYSQL_PASSWORD", "Nfhnfr-30");
 
 
 
-
 function add_name_table($username,$name,$user_id){
 $conn = new mysqli(MYSQL_HOSTNAME, MYSQL_USERNAME, MYSQL_PASSWORD, MYSQL_DBNAME);
 // Check connection
@@ -38,7 +37,7 @@ $conn->close();
 
 
 $site_dir = dirname(dirname(__FILE__)).'/'; // корень сайта
-$bot_token = '2107045715:AAFH4DLnTFuxLCTxZ17FGLj0hHCbNbAbOm8'; // токен вашего бота
+$bot_token = '6825994146:AAET1ztCSlWSKj1gNDDmk9FSemsaZWFpLoU'; // токен вашего бота
 $data = file_get_contents('php://input'); // весь ввод перенаправляем в $data
 $data = json_decode($data, true); // декодируем json-закодированные-текстовые данные в PHP-массив
 
