@@ -3,34 +3,9 @@
 *   Very simple chat bot @verysimple_bot by Novelsite.ru
 *   05.07.2021
 */
-header('Content-Type: text/html; charset=utf-8'); // на всякий случай досообщим PHP, что все в кодировке UTF-8
-
-define("MYSQL_HOSTNAME", "localhost");
-define("MYSQL_USERNAME", "u320095004_forestaras");
-define("MYSQL_DBNAME", "u320095004_evento");  
-define("MYSQL_PASSWORD", "Nfhnfr-30");
 
 
 
-
-function add_name_table($username,$name,$user_id){
-$conn = new mysqli(MYSQL_HOSTNAME, MYSQL_USERNAME, MYSQL_PASSWORD, MYSQL_DBNAME);
-// Check connection
-if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
-}
-
-$sql = "INSERT INTO telegram (id, username, name, user_id)
-VALUES (' ','$username','$name','$user_id')";
-
-if ($conn->query($sql) === TRUE) {
-  echo "New record created successfully";
-} else {
-  echo "Error: " . $sql . "<br>" . $conn->error;
-}
-
-$conn->close();
-}
 
 
 
