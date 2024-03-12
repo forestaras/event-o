@@ -3,18 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Http;
 
 class New_TelegramBotController extends Controller
-{
-    <?php
-
-namespace App\Http\Controllers;
-
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Http;
-
-class TelegramBotController extends Controller
 {
     public function handle(Request $request)
     {
@@ -71,7 +61,3 @@ class TelegramBotController extends Controller
         }
     }
 }
-
-
-
-    
