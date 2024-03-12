@@ -132,7 +132,7 @@ class TelegramController extends Controller
 
     public function search2($event_id)
     {
-        $token = '2107045715:AAFH4DLnTFuxLCTxZ17FGLj0hHCbNbAbOm8';
+        $token = '6947389463:AAEFdsijx_I9B1v6f4BJW2sUSVOiYYDmo2I';
 
         $grups = Mopclass::where('cid', $event_id)->get();
         $event = Mopcompetition::where('cid', $event_id)->first();
