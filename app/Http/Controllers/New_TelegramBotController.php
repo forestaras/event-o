@@ -43,7 +43,7 @@ class New_TelegramBotController extends Controller
     private function sendMessage($chatId, $message)
     {
         // Отримуємо токен бота
-        $token = '6825994146:AAET1ztCSlWSKj1gNDDmk9FSemsaZWFpLoU';
+        $token = '6825994146:AAET1ztCSlWSKj1gNDDmk9FSemsaZWFpLoUd';
 
         // Формуємо URL для відправки повідомлення
         $url = 'https://api.telegram.org/bot' . $token . '/sendMessage';
