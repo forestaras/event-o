@@ -12,6 +12,7 @@ use App\Http\Controllers\CpController\CPclassController;
 use App\Http\Controllers\CpController\CPcompetitionController;
 use App\Http\Controllers\CpController\CPpointClassController;
 use App\Http\Controllers\TelegramController;
+use App\Http\Controllers\TelegramController2;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\New_EventController;
 use App\Http\Controllers\New_TelegramBotController;
@@ -53,9 +54,9 @@ Route::get('atlet/{name}', [RezultController::class, 'atlet'])->name('atlet');
 
 //Телеграм
 // Route::get('/admin/telegram/{event_id}/{pass}/{time}/{stat}', [TelegramController::class, 'search2'])->name('telegram_search');
-// Route::get('/admin/telegramm', [TelegramController::class, 'telegram'])->name('telegram');
+Route::get('/telegram/telegram', [TelegramController2::class, 'telegram'])->name('telegram');
 //Телеграм
-Route::post('/telegram/handle', [New_TelegramBotController::class, 'handle']);
+// Route::post('/telegram/handle', [New_TelegramBotController::class, 'handle']);
 // Route::get('/telegram/set-webhook', [New_TelegramBotController::class, 'setWebhook']);
 
 // Route::post('/send-message',  [TelegramController::class, 'telegram'])->name('telegram_send-message');
