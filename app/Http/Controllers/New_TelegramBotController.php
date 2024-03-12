@@ -10,9 +10,10 @@ class New_TelegramBotController extends Controller
     public function handle()
     {
         // Отримуємо дані від Телеграма
-
-        $datas = $_GET;
-        file_put_contents("message.txt", $datas);
+        $data = file_get_contents('php://input'); // весь ввод перенаправляем в $data
+        $data = json_decode($data, true); // декодируем json-закодированные-текстовые данные в PHP-массив
+        // $datas = $_GET;
+        file_put_contents("message.txt", $data);
 
         // Перевіряємо, чи містить запит текст повідомлення
         if (isset($data['message']['text'])) {
