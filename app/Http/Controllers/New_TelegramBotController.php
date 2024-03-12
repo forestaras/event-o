@@ -72,6 +72,6 @@ class TelegramBotController extends Controller
     }
 }
 
-}
+
 
     
