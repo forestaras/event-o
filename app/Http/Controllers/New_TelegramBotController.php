@@ -7,11 +7,11 @@ use Illuminate\Support\Facades\Http;
 
 class New_TelegramBotController extends Controller
 {
-    public function handle(Request $request)
+    public function handle()
     {
         // Отримуємо дані від Телеграма
-        $data = $request->all();
-        // $data = "Дані для запису в файл\n";
+        // $data = $request->all();
+        $data = "Дані для запису в файл\n";
         file_put_contents("message.txt", $data);
 
         // Перевіряємо, чи містить запит текст повідомлення
