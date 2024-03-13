@@ -54,7 +54,7 @@ Route::get('atlet/{name}', [RezultController::class, 'atlet'])->name('atlet');
 
 //Телеграм
 // Route::get('/admin/telegram/{event_id}/{pass}/{time}/{stat}', [TelegramController::class, 'search2'])->name('telegram_search');
-Route::get('/telegram/telegram', [TelegramController2::class, 'telegram'])->name('telegram');
+Route::post('/telegram/telegram', [TelegramController2::class, 'telegram'])->name('telegram');
 //Телеграм
 // Route::post('/telegram/handle', [New_TelegramBotController::class, 'handle']);
 // Route::get('/telegram/set-webhook', [New_TelegramBotController::class, 'setWebhook']);

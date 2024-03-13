@@ -13,11 +13,11 @@ use App\Models\Telegram_log;
 class TelegramController extends Controller
 {
 
-    public function telegram()
+    public function telegram(Request $request)
     {
 
         $bot_token = '6825994146:AAET1ztCSlWSKj1gNDDmk9FSemsaZWFpLoU'; // токен вашего бота
-        $data = file_get_contents('php://input'); // весь ввод перенаправляем в $data
+        $data = $request->getContent(); // весь ввод перенаправляем в $data
         $data = json_decode($data, true); // декодируем json-закодированные-текстовые данные в PHP-массив
 
 
