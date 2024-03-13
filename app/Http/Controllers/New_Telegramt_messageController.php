@@ -17,6 +17,9 @@ class New_Telegramt_messageController extends Controller
             $text_array = explode(" ", $text);
         }
         switch ($text) {
+            case '/name':
+                $text_return = "Вкажіть імя яке ви хочете відслідковувати ";
+                break;
             case '/start':
                 $text_return = "sjdhfbsjhdfbjdshbfk";
                 break;
