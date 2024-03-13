@@ -7,10 +7,10 @@ use Illuminate\Support\Facades\Http;
 
 class New_TelegramBotController extends Controller
 {
-    public function handle()
+    public function handle(Request $request)
     {
         $bot_token = '6825994146:AAET1ztCSlWSKj1gNDDmk9FSemsaZWFpLoU'; // токен вашего бота
-        $data = file_get_contents('php://input'); // весь ввод перенаправляем в $data
+        $data = $request->getContent(); // весь ввод перенаправляем в $data
         $data = json_decode($data, true); // декодируем json-закодированные-текстовые данные в PHP-массив
         
         $order_chat_id = '123456789';  //chat_id менеджера компании для заявок
