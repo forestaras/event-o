@@ -18,10 +18,10 @@ class New_Telegramt_messageController extends Controller
             $bot_state = self::get_bot_state($chat_id);
         }
         if ($bot_state) {
-            if ($bot_state=='/name') {
-                $text_return = "Будьласка напишіть імя яке ви хочете добавити до списку.";
+            if ($bot_state == '/name') {
+                $text_return = "Імя" . $text . "Було збережно";
             }
-            if ($bot_state=='/dele') {
+            if ($bot_state == '/dele') {
                 $text_return = "Вкажіть імя яке ви хочете видалити зі списку";
             }
         } else {
@@ -30,7 +30,7 @@ class New_Telegramt_messageController extends Controller
                     $text_return = "Доступні команди /name для добавлення імя до відслідковування
                     /delet_name видалення
                     /all_name перегляд всіх імен які відслідковуються";
-                    
+
                     break;
 
                 case '/info':
@@ -38,7 +38,8 @@ class New_Telegramt_messageController extends Controller
                     break;
 
                 case '/sta':
-                    $text_return = "Привіт я стартова сторінка";
+                case '/name':
+                    $text_return = "Введіть імя яке ви хочете зберегти";
                     break;
 
                 default:
