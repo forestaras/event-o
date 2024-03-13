@@ -11,7 +11,7 @@ use App\Models\Telegram;
 use App\Models\Telegram_log;
 use App\Http\Middleware\VerifyCsrfToken;
 
-class TelegramController extends Controller
+class TelegramController2 extends Controller
 {
     public function __construct()
     {
