@@ -11,7 +11,7 @@ class New_TelegramBotController extends Controller
 
     public function handle(Request $request)
     {
-        $bot_token = '6825994146:AAET1ztCSlWSKj1gNDDmk9FSemsaZWFpLoU'; // токен вашего бота
+         // токен вашего бота
         $data = $request->getContent(); // весь ввод перенаправляем в $data
         $data = json_decode($data, true); // декодируем json-закодированные-текстовые данные в PHP-массив
 
@@ -21,38 +21,15 @@ class New_TelegramBotController extends Controller
             $first_name = $data['message']['from']['first_name'];
             $last_name = $data['message']['from']['last_name'];
             $text = trim($data['message']['text']);
-            $text_array = explode(" ", $text);
-
-            if ($text == '/help') {
-                $text_return = "Привет, $first_name $last_name, вот команды, что я понимаю: 
-            /help - список команд
-            /about - о нас
-            /order - оставить заявку
-            ";
-                self::message_to_telegram($bot_token, $chat_id, $text_return);
-            }
-
-            elseif ($text == '/about') {
-                $text_return = "verysimple_bot:
-            Я пример самого простого бота для телеграм, написанного на простом PHP.
-            Мой код можно скачивать, дополнять, исправлять. Код доступен в этой статье:
-            https://www.novelsite.ru/kak-sozdat-prostogo-bota-dlya-telegram-na-php.html
-            ";
-                self::message_to_telegram($bot_token, $chat_id, $text_return);
-            }
-
-            elseif ($text == '/order') {
-
-                $text_return = "$first_name $last_name, для подтверждения Заявки введите текст вашей заявки и нажмите отправить. 
-        Наши специалисты свяжутся с вами в ближайшее время!
-        ";
-                self::message_to_telegram($bot_token, $chat_id, $text_return);
-            }
+            $text_array = explode(" ", $text);         
         }
+        $text_message=New_Telegramt_messageController::messge_to_telegram($data);
+        self::message_to_telegram($chat_id, $text_message, $reply_markup = '');
 
     }
-    static function message_to_telegram($bot_token, $chat_id, $text, $reply_markup = '')
+    static function message_to_telegram($chat_id, $text, $reply_markup = '')
     {
+        $bot_token = '6825994146:AAET1ztCSlWSKj1gNDDmk9FSemsaZWFpLoU';
         $ch = curl_init();
         $ch_post = [
             CURLOPT_URL => 'https://api.telegram.org/bot' . $bot_token . '/sendMessage',
