@@ -14,7 +14,7 @@ class New_TelegramBotController extends Controller
         $data = $request->getContent(); // весь ввод перенаправляем в $data
         $data = json_decode($data, true); // декодируем json-закодированные-текстовые данные в PHP-массив
         
-        file_put_contents(__DIR__ . '/message.txt', print_r($data, true));
+        // file_put_contents(__DIR__ . '/message.txt', print_r($data, true));
         $order_chat_id = '123456789';  //chat_id менеджера компании для заявок
         $bot_state = ''; // состояние бота, по-умолчанию пустое
         
