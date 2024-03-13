@@ -25,7 +25,7 @@ class New_Telegramt_messageController extends Controller
                 $text_return = "Вкажіть імя яке ви хочете видалити зі списку";
             }
             file_put_contents('telegram_bot/users/' . $chat_id . '.txt', "2222");
-        } else {
+        } 
             switch ($text) {
                 case '/help':
                     $text_return = "Доступні команди /name для добавлення імя до відслідковування
@@ -45,7 +45,7 @@ class New_Telegramt_messageController extends Controller
                     $text_return = $text;
                     break;
             }
-        }
+        
 
         file_put_contents('telegram_bot/users/' . $chat_id . '.txt', $text);
         return $text_return;
