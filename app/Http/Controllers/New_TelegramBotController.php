@@ -34,7 +34,7 @@ class New_TelegramBotController extends Controller
             $text_array = explode(" ", $text);
         
             // получим текущее состояние бота, если оно есть
-            $bot_state = get_bot_state ($chat_id);
+            $bot_state = self::get_bot_state ($chat_id);
             
             
         
@@ -134,7 +134,7 @@ class New_TelegramBotController extends Controller
         
         // получить текущее состояние бота для пользователя
     }
-    function get_bot_state ($chat_id)
+    static function get_bot_state ($chat_id)
     {
         if (file_exists(__DIR__ . '/users/'.$chat_id.'.txt')) {
             $data = file_get_contents(__DIR__ . '/users/'.$chat_id.'.txt');
