@@ -133,15 +133,15 @@ class New_TelegramBotController extends Controller
         }
         
         // получить текущее состояние бота для пользователя
-        function get_bot_state ($chat_id)
-        {
-            if (file_exists(__DIR__ . '/users/'.$chat_id.'.txt')) {
-                $data = file_get_contents(__DIR__ . '/users/'.$chat_id.'.txt');
-                return $data;
-            }
-            else {
-                return '';
-            }
+    }
+    function get_bot_state ($chat_id)
+    {
+        if (file_exists(__DIR__ . '/users/'.$chat_id.'.txt')) {
+            $data = file_get_contents(__DIR__ . '/users/'.$chat_id.'.txt');
+            return $data;
+        }
+        else {
+            return '';
         }
     }
 
