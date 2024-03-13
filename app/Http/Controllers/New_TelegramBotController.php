@@ -8,10 +8,7 @@ use Illuminate\Support\Facades\Http;
 
 class New_TelegramBotController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware(VerifyCsrfToken::class)->except('yourMethod');
-    }
+    
     public function handle(Request $request)
     {
         $bot_token = '6825994146:AAET1ztCSlWSKj1gNDDmk9FSemsaZWFpLoU'; // токен вашего бота
