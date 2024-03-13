@@ -62,8 +62,8 @@ class New_TelegramBotController extends Controller
         Имя: $first_name $last_name 
         $text
         ";
-                message_to_telegram($bot_token, $order_chat_id, $text_return);
-                set_bot_state ($chat_id, ''); // не забудем почистить состояние на пустоту, после отправки заявки
+        self::message_to_telegram($bot_token, $order_chat_id, $text_return);
+        self::set_bot_state ($chat_id, ''); // не забудем почистить состояние на пустоту, после отправки заявки
             }
             // если состояние бота пустое -- то обычные запросы
             else {
@@ -75,8 +75,8 @@ class New_TelegramBotController extends Controller
             /about - о нас
             /order - оставить заявку
             ";
-                    message_to_telegram($bot_token, $chat_id, $text_return);
-                    set_bot_state ($chat_id, '/help');
+            self::message_to_telegram($bot_token, $chat_id, $text_return);
+            self::set_bot_state ($chat_id, '/help');
                 }
                 
                 // вывод информации о нас
@@ -86,8 +86,8 @@ class New_TelegramBotController extends Controller
             Мой код можно скачивать, дополнять, исправлять. Код доступен в этой статье:
             https://www.novelsite.ru/kak-sozdat-prostogo-bota-dlya-telegram-na-php.html
             ";
-                    message_to_telegram($bot_token, $chat_id, $text_return);
-                    set_bot_state ($chat_id, '/about');
+            self::message_to_telegram($bot_token, $chat_id, $text_return);
+            self::set_bot_state ($chat_id, '/about');
                 }
                 
                 // переход в режим Заявки
@@ -99,40 +99,40 @@ class New_TelegramBotController extends Controller
                     $text_return = "$first_name $last_name, для подтверждения Заявки введите текст вашей заявки и нажмите отправить. 
         Наши специалисты свяжутся с вами в ближайшее время!
         ";
-                    message_to_telegram($bot_token, $chat_id, $text_return);
-                    set_bot_state ($chat_id, '/order');
+        self::message_to_telegram($bot_token, $chat_id, $text_return);
+        self::set_bot_state ($chat_id, '/order');
                 }
             }
         }
         
         // функция отправки сообщения от бота в диалог с юзером
-        function message_to_telegram($bot_token, $chat_id, $text, $reply_markup = '')
-        {
-            $ch = curl_init();
-            $ch_post = [
-                CURLOPT_URL => 'https://api.telegram.org/bot' . $bot_token . '/sendMessage',
-                CURLOPT_POST => TRUE,
-                CURLOPT_RETURNTRANSFER => TRUE,
-                CURLOPT_TIMEOUT => 10,
-                CURLOPT_POSTFIELDS => [
-                    'chat_id' => $chat_id,
-                    'parse_mode' => 'HTML',
-                    'text' => $text,
-                    'reply_markup' => $reply_markup,
-                ]
-            ];
-        
-            curl_setopt_array($ch, $ch_post);
-            curl_exec($ch);
-        }
         
         // сохранить состояние бота для пользователя
-        function set_bot_state ($chat_id, $data)
-        {
-            file_put_contents(__DIR__ . '/users/'.$chat_id.'.txt', $data);
-        }
         
         // получить текущее состояние бота для пользователя
+    }
+    static function message_to_telegram($bot_token, $chat_id, $text, $reply_markup = '')
+    {
+        $ch = curl_init();
+        $ch_post = [
+            CURLOPT_URL => 'https://api.telegram.org/bot' . $bot_token . '/sendMessage',
+            CURLOPT_POST => TRUE,
+            CURLOPT_RETURNTRANSFER => TRUE,
+            CURLOPT_TIMEOUT => 10,
+            CURLOPT_POSTFIELDS => [
+                'chat_id' => $chat_id,
+                'parse_mode' => 'HTML',
+                'text' => $text,
+                'reply_markup' => $reply_markup,
+            ]
+        ];
+    
+        curl_setopt_array($ch, $ch_post);
+        curl_exec($ch);
+    }
+    static function set_bot_state ($chat_id, $data)
+    {
+        file_put_contents(__DIR__ . '/users/'.$chat_id.'.txt', $data);
     }
     static function get_bot_state ($chat_id)
     {
