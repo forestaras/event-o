@@ -24,7 +24,7 @@ class New_Telegramt_messageController extends Controller
             if ($bot_state == '/dele') {
                 $text_return = "Вкажіть імя яке ви хочете видалити зі списку";
             }
-            file_put_contents('telegram_bot/users/' . $chat_id . '.txt', " ");
+            file_put_contents('telegram_bot/users/' . $chat_id . '.txt', "2222");
         } else {
             switch ($text) {
                 case '/help':
@@ -37,8 +37,6 @@ class New_Telegramt_messageController extends Controller
                 case '/info':
                     $text_return = "Вкажіть імя яке ви хочете відслідковувати ";
                     break;
-
-                case '/sta':
                 case '/name':
                     $text_return = "Введіть імя яке ви хочете зберегти";
                     break;
