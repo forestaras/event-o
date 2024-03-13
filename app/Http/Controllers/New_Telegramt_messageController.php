@@ -48,7 +48,7 @@ class New_Telegramt_messageController extends Controller
         break;
         }
         
-        file_put_contents($chat_id . '.txt', $text);
+        file_put_contents('telegram_bot/user/'.$chat_id . '.txt', $text);
         return $text_return;
     }
 
