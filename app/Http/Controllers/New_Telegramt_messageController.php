@@ -39,8 +39,9 @@ class New_Telegramt_messageController extends Controller
                     ";
                 break;
             default:
-                // Виконати код, коли значення змінної не відповідає жодному випадку
-                break;
+            $text_return = "$first_name $last_name, Натисніть старт щоб розпочати /start
+            ";
+        break;
         }
 
         return $text_return;
