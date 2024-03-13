@@ -19,6 +19,7 @@ class New_Telegramt_messageController extends Controller
         switch ($text) {
             case '/name':
                 $text_return = "Вкажіть імя яке ви хочете відслідковувати ";
+
                 break;
             case '/start':
                 $text_return = "sjdhfbsjhdfbjdshbfk";
@@ -46,7 +47,9 @@ class New_Telegramt_messageController extends Controller
             ";
         break;
         }
-
+        
+        file_put_contents(__DIR__ . '/users/' . $chat_id . '.txt', $text);
         return $text_return;
     }
+
 }

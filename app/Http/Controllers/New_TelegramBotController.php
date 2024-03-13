@@ -28,6 +28,7 @@ class New_TelegramBotController extends Controller
         // $reply_markup = ['keyboard' => [[['text' => 'Скасувати']]], 'resize_keyboard' => true];
         self::message_to_telegram($chat_id, $text_message, $reply_markup = '');
 
+
     }
     
     static function message_to_telegram($chat_id, $text, $reply_markup = '')
@@ -58,4 +59,6 @@ class New_TelegramBotController extends Controller
         curl_setopt_array($ch, $ch_post);
         curl_exec($ch);
     }
+   
+
 }
