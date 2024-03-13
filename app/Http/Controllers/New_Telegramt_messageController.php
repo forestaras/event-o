@@ -53,8 +53,8 @@ class New_Telegramt_messageController extends Controller
 
     static function get_bot_state($chat_id)
     {
-        if (file_exists(__DIR__ . '/users/' . $chat_id . '.txt')) {
-            $data = file_get_contents(__DIR__ . '/users/' . $chat_id . '.txt');
+        if (file_exists('telegram_bot/users/' . $chat_id . '.txt')) {
+            $data = file_get_contents('telegram_bot/users/' . $chat_id . '.txt');
             $data = substr($data, 0, 5);
             return $data;
         } else {
