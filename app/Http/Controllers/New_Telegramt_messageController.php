@@ -24,6 +24,7 @@ class New_Telegramt_messageController extends Controller
             if ($bot_state == '/dele') {
                 $text_return = "Вкажіть імя яке ви хочете видалити зі списку";
             }
+            file_put_contents('telegram_bot/users/' . $chat_id . '.txt', " ");
         } else {
             switch ($text) {
                 case '/help':
