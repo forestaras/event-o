@@ -10,17 +10,16 @@ class New_TelegramBotController extends Controller
     public function handle(Request $request)
     {
         $bot_token = '6825994146:AAET1ztCSlWSKj1gNDDmk9FSemsaZWFpLoU'; // токен вашего бота
-
         $data = $request->getContent(); // весь ввод перенаправляем в $data
         $data = json_decode($data, true); // декодируем json-закодированные-текстовые данные в PHP-массив
         
-        // file_put_contents(__DIR__ . '/message.txt', print_r($data, true));
         $order_chat_id = '123456789';  //chat_id менеджера компании для заявок
         $bot_state = ''; // состояние бота, по-умолчанию пустое
         
         // Для отладки, добавим запись полученных декодированных данных в файл message.txt, 
         // который можно смотреть и понимать, что происходит при запросе к боту
         // Позже, когда все будет работать закомментируйте эту строку:
+        // file_put_contents(__DIR__ . '/message.txt', print_r($data, true));
         
         // Основной код: получаем сообщение, что юзер отправил боту и 
         // заполняем переменные для дальнейшего использования
