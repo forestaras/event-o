@@ -17,7 +17,7 @@ class New_Telegramt_messageController extends Controller
             $text_array = explode(" ", $text);
             $bot_state = self::get_bot_state($chat_id);
         }
-        if ($bot_state) {
+        // if ($bot_state) {
             if ($bot_state == '/name') {
                 $text_return = "Імя" . $text . "Було збережно";
             }
@@ -25,7 +25,7 @@ class New_Telegramt_messageController extends Controller
                 $text_return = "Вкажіть імя яке ви хочете видалити зі списку";
             }
             file_put_contents('telegram_bot/users/' . $chat_id . '.txt', "2222");
-        } 
+        // } 
             switch ($text) {
                 case '/help':
                     $text_return = "Доступні команди /name для добавлення імя до відслідковування
@@ -51,6 +51,7 @@ class New_Telegramt_messageController extends Controller
         return $text_return;
     }
 
+    
     static function get_bot_state($chat_id)
     {
         if (file_exists('telegram_bot/users/' . $chat_id . '.txt')) {
