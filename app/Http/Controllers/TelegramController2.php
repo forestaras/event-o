@@ -13,10 +13,7 @@ use App\Http\Middleware\VerifyCsrfToken;
 
 class TelegramController2 extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware(VerifyCsrfToken::class)->except('yourMethod');
-    }
+
 
     public function telegram(Request $request)
     {
