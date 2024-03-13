@@ -24,9 +24,9 @@ class New_TelegramBotController extends Controller
             $text_array = explode(" ", $text);         
         }
         $text_message=New_Telegramt_messageController::messge_to_telegram($data);
-        $text_message = 'Будь ласка, введіть своє ім\'я:';
+        // $text_message = 'Будь ласка, введіть своє ім\'я:';
         // $reply_markup = ['keyboard' => [[['text' => 'Скасувати']]], 'resize_keyboard' => true];
-        self::message_to_telegram($chat_id, $text_message, $reply_markup = null);
+        self::message_to_telegram($chat_id, $text_message, $reply_markup = '');
 
     }
     
