@@ -9,7 +9,7 @@ class New_TelegramBotController extends Controller
 {
     public function handle(Request $request)
     {
-        $bot_token = '6825994146:AAET1ztCSlWSKj1gNDDmk9FSemsaZWFpLo'; // токен вашего бота
+        $bot_token = '6825994146:AAET1ztCSlWSKj1gNDDmk9FSemsaZWFpLoU'; // токен вашего бота
         $data = $request->getContent(); // весь ввод перенаправляем в $data
         $data = json_decode($data, true); // декодируем json-закодированные-текстовые данные в PHP-массив
         
