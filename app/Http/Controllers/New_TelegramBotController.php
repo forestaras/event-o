@@ -34,7 +34,7 @@ class New_TelegramBotController extends Controller
             $text_array = explode(" ", $text);
         
             // получим текущее состояние бота, если оно есть
-            $bot_state = self::get_bot_state ($chat_id);
+            // $bot_state = self::get_bot_state ($chat_id);
             
             
         
@@ -63,7 +63,7 @@ class New_TelegramBotController extends Controller
         $text
         ";
         self::message_to_telegram($bot_token, $order_chat_id, $text_return);
-        self::set_bot_state ($chat_id, ''); // не забудем почистить состояние на пустоту, после отправки заявки
+        // self::set_bot_state ($chat_id, ''); // не забудем почистить состояние на пустоту, после отправки заявки
             }
             // если состояние бота пустое -- то обычные запросы
             else {
@@ -76,7 +76,7 @@ class New_TelegramBotController extends Controller
             /order - оставить заявку
             ";
             self::message_to_telegram($bot_token, $chat_id, $text_return);
-            self::set_bot_state ($chat_id, '/help');
+            // self::set_bot_state ($chat_id, '/help');
                 }
                 
                 // вывод информации о нас
@@ -87,7 +87,7 @@ class New_TelegramBotController extends Controller
             https://www.novelsite.ru/kak-sozdat-prostogo-bota-dlya-telegram-na-php.html
             ";
             self::message_to_telegram($bot_token, $chat_id, $text_return);
-            self::set_bot_state ($chat_id, '/about');
+            // self::set_bot_state ($chat_id, '/about');
                 }
                 
                 // переход в режим Заявки
@@ -100,7 +100,7 @@ class New_TelegramBotController extends Controller
         Наши специалисты свяжутся с вами в ближайшее время!
         ";
         self::message_to_telegram($bot_token, $chat_id, $text_return);
-        self::set_bot_state ($chat_id, '/order');
+        // self::set_bot_state ($chat_id, '/order');
                 }
             }
         }
@@ -130,6 +130,8 @@ class New_TelegramBotController extends Controller
         curl_setopt_array($ch, $ch_post);
         curl_exec($ch);
     }
+
+
     static function set_bot_state ($chat_id, $data)
     {
         file_put_contents(__DIR__ . '/users/'.$chat_id.'.txt', $data);
