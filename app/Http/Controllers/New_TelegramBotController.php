@@ -32,6 +32,13 @@ class New_TelegramBotController extends Controller
     
     static function message_to_telegram($chat_id, $text, $reply_markup = '')
     {
+        $keyboard = [
+            'inline_keyboard' => [
+                [
+                    ['text' => 'Введіть пароль', 'callback_data' => 'enter_password']
+                ]
+            ]
+        ];
         // $reply_markup = ['keyboard' => [[['text' => 'Скасувати']]], 'resize_keyboard' => true];
         $bot_token = '6825994146:AAET1ztCSlWSKj1gNDDmk9FSemsaZWFpLoU';
         $ch = curl_init();
@@ -44,7 +51,7 @@ class New_TelegramBotController extends Controller
                 'chat_id' => $chat_id,
                 'parse_mode' => 'HTML',
                 'text' => $text,
-                'reply_markup' => $reply_markup,
+                'reply_markup' => json_encode($keyboard),
             ]
         ];
 
