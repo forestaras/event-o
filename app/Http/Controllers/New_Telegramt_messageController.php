@@ -18,7 +18,7 @@ class New_Telegramt_messageController extends Controller
             $bot_state = self::get_bot_state($chat_id);
         }
         // if ($bot_state) {
-            if ($bot_state == '/name') {
+            if ($bot_state === '/name') {
                 $text_return = "Імя" . $text . "Було збережно";
             }
             if ($bot_state == '/dele') {
