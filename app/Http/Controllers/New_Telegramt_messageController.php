@@ -41,9 +41,9 @@ class New_Telegramt_messageController extends Controller
                     $text_return = "Введіть імя яке ви хочете зберегти";
                     break;
 
-                default:
-                    $text_return = $text;
-                    break;
+                // default:
+                //     $text_return = $text;
+                //     break;
             }
         
 
