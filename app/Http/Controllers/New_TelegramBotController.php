@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Middleware\VerifyCsrfToken;
+use App\Models\Mopcompetitor;
+use App\Models\Telegram;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
@@ -29,6 +31,17 @@ class New_TelegramBotController extends Controller
         self::message_to_telegram($chat_id, $text_message, $reply_markup = '');
 
 
+    }
+
+    public function rezult($cid){
+        $peoples = Mopcompetitor::where('cid', $cid)->where('rt', '>', 0)->get();
+        foreach ($peoples as $people)  $name[] = $people->name;
+        if ($name > 0) $telegram = Telegram::whereIn('name', $name)->get();// імена яким потріно відропавити результати
+        foreach ($telegram as $t) {
+            $text_message="Хтось ваш фінішував";
+            self::message_to_telegram($t->user_id, $text_message, $reply_markup = '');
+        }
+        
     }
     
     static function message_to_telegram($chat_id, $text, $reply_markup = '')
