@@ -123,8 +123,8 @@ class New_Telegramt_messageController extends Controller
         }
     }
     static function list_name($peoples){
+        $list_name=" ";
         foreach ($peoples as $people) {
-            $list_name=" ";
             $list_name="$list_name ($people->name)";
         }
         return $list_name;
