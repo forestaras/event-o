@@ -31,8 +31,14 @@ class New_Telegramt_messageController extends Controller
             }
             if ($bot_state == '/delet') {              
                 if($text!='/name' and $text!='/delet'){
-                    Telegram::where('user_id',$chat_id)->where('name',$text)->delete();
-                    $text_return = "Імя " . $text . "Було видалено";
+                    $rezult=Telegram::where('user_id',$chat_id)->where('name',$text)->delete();
+                    if ($rezult) {    
+                        $text_return = "Імя " . $text . "Було видалено";
+                    }
+                    else{
+                        $text_return="У вас не було такого імені у списку";
+
+                    }
                 }
             }
                 // $text_return = "Вкажіть імя яке ви хочете видалити зі списку";
