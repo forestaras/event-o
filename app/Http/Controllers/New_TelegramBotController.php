@@ -34,12 +34,17 @@ class New_TelegramBotController extends Controller
     }
 
     public function rezult($cid){
-        $peoples = Mopcompetitor::where('cid', $cid)->where('rt', '>', 0)->get();
+        $peoples=New_EventController::people_all_event($cid)->where('rt', '>', 0)->get();
         foreach ($peoples as $people)  $name[] = $people->name;
         if ($name > 0) $telegram = Telegram::whereIn('name', $name)->get();// імена яким потріно відропавити результати
         foreach ($telegram as $t) {
             $rezult=$peoples->where('name',$t->name)->first();
-            $text_message="Хтось ваш $rezult->name";
+            $text_message="«" . $rezult->name . ", вітаємо на фініші змагань: «dddd 💪
+            Твій результат оновлено: " . $rezult->rezult_stat . " поточне " . $rezult->plases . ", місце у групі " . $rezult->class_name . "
+            Слідкуй за результами Online👇
+            https://event-o.net/livess/rezult/". $cid ."#".$rezult->class_name." 
+            
+            Бажаємо подальших успіхів! 🏆";
             self::message_to_telegram($t->user_id, $text_message, $reply_markup = '');
         }
         
