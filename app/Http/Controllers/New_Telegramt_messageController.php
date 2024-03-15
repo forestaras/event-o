@@ -20,7 +20,7 @@ class New_Telegramt_messageController extends Controller
         }
         if ($bot_state) {
             if ($bot_state === '/name') {
-                if ($text != '/name' and $text != '/delet') {
+                if (strpos($text, '/') !== true) {
                     $name = new Telegram();
                     $name->name = $text;
                     $name->username = $user_name;
@@ -39,7 +39,7 @@ class New_Telegramt_messageController extends Controller
                 }
             }
             if ($bot_state == '/delet') {
-                if ($text != '/name' and $text != '/delet') {
+                if (strpos($text, '/') !== true) {
                     $rezult = Telegram::where('user_id', $chat_id)->where('name', $text)->delete();
                     if ($rezult) {
                         $text_return = "✅ Ви успішно видалили $text зі свого списку відстеження.
