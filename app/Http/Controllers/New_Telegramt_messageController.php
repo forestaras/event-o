@@ -29,9 +29,14 @@ class New_Telegramt_messageController extends Controller
                     $text_return = "Імя" . $text . "Було збережно";
                 }
             }
-            if ($bot_state == '/delet') {
-                $text_return = "Вкажіть імя яке ви хочете видалити зі списку";
+            if ($bot_state == '/delet') {              
+                if($text!='/name' or $text!='/delet'){
+                    Telegram::where('user_id',$chat_id)->where('name',$text)->delete();
+                    $text_return = "Імя" . $text . "Було збережно";
+                }
             }
+                // $text_return = "Вкажіть імя яке ви хочете видалити зі списку";
+            
             file_put_contents('telegram_bot/users/' . $chat_id . '.txt', "2222");
         } 
             switch ($text) {
