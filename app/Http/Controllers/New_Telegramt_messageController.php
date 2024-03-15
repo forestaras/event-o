@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Telegram;
 use Illuminate\Http\Request;
 
 class New_Telegramt_messageController extends Controller
@@ -19,8 +20,14 @@ class New_Telegramt_messageController extends Controller
         }
         if ($bot_state) {
             if ($bot_state === '/name') {
-                if($text!='/name' or $text!='/delet')
-                $text_return = "Імя" . $text . "Було збережно";
+                if($text!='/name' or $text!='/delet'){
+                    $name=new Telegram();
+                    $name->name=$text;
+                    $name->username=$user_name;
+                    $name->user_id=$chat_id;
+                    $name->save();
+                    $text_return = "Імя" . $text . "Було збережно";
+                }
             }
             if ($bot_state == '/delet') {
                 $text_return = "Вкажіть імя яке ви хочете видалити зі списку";
