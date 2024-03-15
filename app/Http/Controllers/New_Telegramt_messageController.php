@@ -19,6 +19,7 @@ class New_Telegramt_messageController extends Controller
         }
         if ($bot_state) {
             if ($bot_state === '/name') {
+                if($text!='/name' or $text!='/delet')
                 $text_return = "Імя" . $text . "Було збережно";
             }
             if ($bot_state == '/delet') {
