@@ -21,7 +21,7 @@ class New_Telegramt_messageController extends Controller
         if ($bot_state) {
             if ($bot_state === '/name') {
                 if (strpos($text, '/') !== true) {
-                    $people=Telegram::where('name',$text)->first();
+                    $people=Telegram::where('user_id', $chat_id)->where('name', $text)->first();
                     if(!$people){
                         $name = new Telegram();
                         $name->name = $text;
@@ -131,7 +131,8 @@ class New_Telegramt_messageController extends Controller
     static function list_name($peoples){
         $list_name=" ";
         foreach ($peoples as $people) {
-            $list_name="$list_name ($people->name)";
+            $list_name="$list_name 
+            ($people->name)";
         }
         return $list_name;
 
