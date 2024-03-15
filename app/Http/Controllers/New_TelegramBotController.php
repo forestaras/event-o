@@ -38,8 +38,8 @@ class New_TelegramBotController extends Controller
         foreach ($peoples as $people)  $name[] = $people->name;
         if ($name > 0) $telegram = Telegram::whereIn('name', $name)->get();// імена яким потріно відропавити результати
         foreach ($telegram as $t) {
-            $rezult=$peoples->where('name',$t->name);
-            $text_message="Хтось ваш $rezult";
+            $rezult=$peoples->where('name',$t->name)->first();
+            $text_message="Хтось ваш $rezult->name";
             self::message_to_telegram($t->user_id, $text_message, $reply_markup = '');
         }
         
