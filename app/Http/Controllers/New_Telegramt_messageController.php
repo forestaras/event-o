@@ -108,7 +108,7 @@ class New_Telegramt_messageController extends Controller
             case '/list_name':
                 $peoples=Telegram::where('user_id', $chat_id)->get();
                 $list_name=self::list_name($peoples);
-                $text_return = " 🧑‍💻У слідкуєте за:$list_name";
+                $text_return = " 🧑‍💻Ви слідкуєте за:$list_name";
                 break;
         }
 
