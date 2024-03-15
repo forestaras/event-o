@@ -36,7 +36,7 @@ class New_TelegramBotController extends Controller
         $keyboard = [
             'inline_keyboard' => [
                 [
-                    ['text' => 'Введіть пароль', 'callback_data' => 'enter_password']
+                    // ['text' => 'Введіть пароль', 'callback_data' => 'enter_password']
                 ]
             ]
         ];
