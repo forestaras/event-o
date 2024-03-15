@@ -34,7 +34,7 @@ class New_TelegramBotController extends Controller
     }
 
     public function rezult($cid){
-        $peoples=New_EventController::people_all_event($cid)->where('rt', '>', 0)->get();
+        $peoples=New_EventController::people_all_event($cid);
         foreach ($peoples as $people)  $name[] = $people->name;
         if ($name > 0) $telegram = Telegram::whereIn('name', $name)->get();// імена яким потріно відропавити результати
         foreach ($telegram as $t) {
