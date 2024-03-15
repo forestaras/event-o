@@ -20,19 +20,19 @@ class New_Telegramt_messageController extends Controller
         }
         if ($bot_state) {
             if ($bot_state === '/name') {
-                if($text!='/name' or $text!='/delet'){
+                if($text!='/name' and $text!='/delet'){
                     $name=new Telegram();
                     $name->name=$text;
                     $name->username=$user_name;
                     $name->user_id=$chat_id;
                     $name->save();
-                    $text_return = "Імя" . $text . "Було збережно";
+                    $text_return = "Імя " . $text . "Було збережно";
                 }
             }
             if ($bot_state == '/delet') {              
-                if($text!='/name' or $text!='/delet'){
+                if($text!='/name' and $text!='/delet'){
                     Telegram::where('user_id',$chat_id)->where('name',$text)->delete();
-                    $text_return = "Імя" . $text . "Було збережно";
+                    $text_return = "Імя " . $text . "Було видалено";
                 }
             }
                 // $text_return = "Вкажіть імя яке ви хочете видалити зі списку";
