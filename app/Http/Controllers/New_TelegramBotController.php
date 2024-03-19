@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Middleware\VerifyCsrfToken;
+use App\Models\Mopcompetition;
 use App\Models\Mopcompetitor;
 use App\Models\Telegram;
 use Illuminate\Http\Request;
@@ -35,14 +36,16 @@ class New_TelegramBotController extends Controller
 
     public function rezult($cid){
         
-        $peoples=New_EventController::people_all_event($cid);
+        $peoples=New_EventController::people_telegram($cid);
+        $event = Mopcompetition::where('cid', $cid)->first();
         $name=$peoples->pluck('name');
         // foreach ($peoples as $people)  $name[] = $people->name;
         if ($name > 0) $telegram = Telegram::whereIn('name', $name)->get();// імена яким потріно відропавити результати
         foreach ($telegram as $t) {
             $rezult=$peoples->where('name',$t->name)->first();
-            $text_message="«" . $rezult->name . ", вітаємо на фініші змагань: «dddd 💪
-            Твій результат оновлено: " . $rezult->rezult_stat . " поточне " . $rezult->plases . ", місце у групі " . $rezult->class_name . "
+            $text_message=
+            "«" . $rezult->name . ", вітаємо на фініші змагань:". $event->name." 💪
+            Твій результат оновлено: " . $rezult->rezult_stat . " Поточне " . $rezult->plases . ", місце у групі " . $rezult->class_name . "
             Слідкуй за результами Online👇
             https://event-o.net/livess/rezult/". $cid ."#".$rezult->class_name." 
             

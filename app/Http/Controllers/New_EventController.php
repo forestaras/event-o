@@ -40,13 +40,31 @@ class New_EventController extends Controller
            $people->rezult=New_FunctionController::formatTime($people->rt);
            $people->rezult_stat=New_FunctionController::rezult_stat($people);
            $people->plases=New_FunctionController::plases($people, $peoples);
-           $people->sort_plases=New_FunctionController::sort_plases($people->stat, $people->plases);
-           
-
-           
-           
+           $people->sort_plases=New_FunctionController::sort_plases($people->stat, $people->plases);     
         }
         $peoples=$peoples->sortBy('sort_plases');
+       
+        // dd($peoples);
+        return $peoples;
+    }
+
+    static function people_telegram($id)
+    {
+        $peoples = Mopcompetitor::where('cid', $id)->get();
+        $class = Mopclass::where('cid', $id)->get();
+        // $organization = Moporganization::where('cid', $id)->get();
+        foreach ($peoples as $people) {
+        //    $people->club_name=New_FunctionController::club_name($organization,$people);
+        //    $people->club_name_small=mb_substr($people->clyb_name, 0, 10, 'UTF-8') . '...';
+           $people->class_name=New_FunctionController::class_name($class,$people);
+        //    $people->status=New_FunctionController::status($people);
+           $people->start=New_FunctionController::formatTime($people->st);
+        //    $people->rezult=New_FunctionController::formatTime($people->rt);
+           $people->rezult_stat=New_FunctionController::rezult_stat($people);
+           $people->plases=New_FunctionController::plases($people, $peoples);
+        //    $people->sort_plases=New_FunctionController::sort_plases($people->stat, $people->plases);     
+        }
+        // $peoples=$peoples->sortBy('sort_plases');
        
         // dd($peoples);
         return $peoples;
