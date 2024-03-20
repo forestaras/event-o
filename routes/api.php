@@ -21,6 +21,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 Route::post('/telegram/handle', [New_TelegramBotController::class, 'handle']);
 Route::get('/telegram/rez/{cid}', [New_TelegramBotController::class, 'rezult']);
+Route::get('/telegram', [New_TelegramBotController::class, 'curl'])->name('curl');
+
 
 // Route::get('/admin/telegram/{event_id}/{pass}/{time}/{stat}', [TelegramController::class, 'search2'])->name('telegram_search');
 // Route::get('/admin/telegramm', [TelegramController::class, 'telegram'])->name('telegram');
