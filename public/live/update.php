@@ -88,9 +88,8 @@ foreach ($update->children() as $d) {
 }
 
 
+
 returnStatus('OK');
-$url = "https://event-o.net/api/telegram/rez/".$cmpId;       
-file_get_contents($url);
 
 
 
