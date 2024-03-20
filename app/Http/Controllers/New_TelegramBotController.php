@@ -44,8 +44,8 @@ class New_TelegramBotController extends Controller
         foreach ($telegram as $t) {
             $rezult=$peoples->where('name',$t->name)->first();
             $text_message=
-            "«" . $rezult->name . ", вітаємо на фініші змагань:". $event->name." 💪
-            Твій результат оновлено: " . $rezult->rezult_stat . " Поточне " . $rezult->plases . ", місце у групі " . $rezult->class_name . "
+             $rezult->name . ", вітаємо на фініші змагань:". $event->name." 💪
+            Твій результат  " . $rezult->rezult_stat . " gоточне " . $rezult->plases . ", місце у групі " . $rezult->class_name . "
             Слідкуй за результами Online👇
             https://event-o.net/livess/rezult/". $cid ."#".$rezult->class_name." 
             
