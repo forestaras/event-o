@@ -46,7 +46,7 @@ class New_TelegramBotController extends Controller
         foreach ($telegram as $t) {
             $rezult=$peoples->where('name',$t->name)->first();
 
-            $telegram_lo =  $telegram_log->where('user_id', $t->id)->first();
+            $telegram_lo=$telegram_log->where('user_id', $t->id)->first();
 
             if($rezult->rt != $telegram_lo->rt) {
 
