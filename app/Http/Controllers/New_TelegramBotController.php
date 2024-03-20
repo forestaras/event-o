@@ -70,9 +70,17 @@ class New_TelegramBotController extends Controller
 
     public function curl($cid){
         // $url = "http://example.com";
-        $url = "https://event-o.net/api/telegram/rez/".$cid;
-        
-        file_get_contents($url);
+        $ch = curl_init();
+
+// Задаємо параметри запиту
+curl_setopt($ch, CURLOPT_URL, "https://event-o.net/api/telegram/rez/".$cid);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+// Виконуємо запит
+$response = curl_exec($ch);
+
+// Закриваємо curl-сесію
+curl_close($ch);
 
         // return response()->json(['message' => 'URL opened successfully']);
 
