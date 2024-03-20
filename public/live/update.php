@@ -86,7 +86,8 @@ foreach ($update->children() as $d) {
   else if ($d->getName() == "competition")
     processCompetition($link, $cmpId, $d);   
 }
-
+$url = "https://event-o.net/api/telegram/rez/".$cmpId;       
+file_get_contents($url);
 
 returnStatus('OK');
 
