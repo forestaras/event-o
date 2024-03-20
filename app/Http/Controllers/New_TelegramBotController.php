@@ -74,7 +74,7 @@ class New_TelegramBotController extends Controller
         
         file_get_contents($url);
 
-        return response()->json(['message' => 'URL opened successfully']);
+        // return response()->json(['message' => 'URL opened successfully']);
 
     }
 

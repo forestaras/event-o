@@ -87,6 +87,7 @@ foreach ($update->children() as $d) {
     processCompetition($link, $cmpId, $d);   
 }
 
+
 returnStatus('OK');
 
 
