@@ -160,6 +160,6 @@ class New_Telegramt_messageController extends Controller
         // $telegram->user_id = $user_id;
         // $telegram->event_id = $event_id;
         $telegram->stat = $stat;
-        $telegram->save();
+        $telegram->update();
     }
 }

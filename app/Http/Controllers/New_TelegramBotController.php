@@ -49,7 +49,6 @@ class New_TelegramBotController extends Controller
             $telegram_lo=$telegram_log->where('user_id', $t->id)->first();
 
             if($rezult->rt != $telegram_lo->rt) {
-
             $text_message=
              $rezult->name . ", вітаємо на фініші змагань: " . $event->name." 💪
             Твій результат  " . $rezult->rezult_stat . " поточне " . $rezult->plases . ", місце у групі " . $rezult->class_name . "
@@ -57,7 +56,12 @@ class New_TelegramBotController extends Controller
             https://event-o.net/livess/rezult/". $cid ."#".$rezult->class_name." 
             
             Бажаємо подальших успіхів! 🏆";
-            New_Telegramt_messageController::create_log($t->name, $t->id, $cid,  $rezult->rt, $rezult->st, $rezult->stat);
+            if ($telegram_lo->rt){
+                New_Telegramt_messageController::edit_log($telegram_lo->id, $t->name , $rezult->rt, $rezult->st, $rezult->stat);
+            }
+            elseif(!$telegram_lo->rt){
+                New_Telegramt_messageController::create_log($t->name, $t->id, $cid,  $rezult->rt, $rezult->st, $rezult->stat);
+            }
             self::message_to_telegram($t->user_id, $text_message, $reply_markup = '');
             }
         }
