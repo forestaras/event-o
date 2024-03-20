@@ -6,6 +6,7 @@ use App\Http\Middleware\VerifyCsrfToken;
 use App\Models\Mopcompetition;
 use App\Models\Mopcompetitor;
 use App\Models\Telegram;
+use App\Models\Telegram_log;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
@@ -39,37 +40,41 @@ class New_TelegramBotController extends Controller
         $peoples=New_EventController::people_telegram($cid);
         $event = Mopcompetition::where('cid', $cid)->first();
         $name=$peoples->pluck('name');
+        $telegram_log = Telegram_log::where('event_id', $cid)->get();
         // foreach ($peoples as $people)  $name[] = $people->name;
         if ($name > 0) $telegram = Telegram::whereIn('name', $name)->get();// імена яким потріно відропавити результати
         foreach ($telegram as $t) {
             $rezult=$peoples->where('name',$t->name)->first();
+
+            $telegram_lo =  $telegram_log->where('user_id', $t->id)->first();
+
+            if($rezult->rt != $telegram_lo->rt) {
+
             $text_message=
-             $rezult->name . ", вітаємо на фініші змагань:". $event->name." 💪
-            Твій результат  " . $rezult->rezult_stat . " gоточне " . $rezult->plases . ", місце у групі " . $rezult->class_name . "
+             $rezult->name . ", вітаємо на фініші змагань: " . $event->name." 💪
+            Твій результат  " . $rezult->rezult_stat . " поточне " . $rezult->plases . ", місце у групі " . $rezult->class_name . "
             Слідкуй за результами Online👇
             https://event-o.net/livess/rezult/". $cid ."#".$rezult->class_name." 
             
             Бажаємо подальших успіхів! 🏆";
+            New_Telegramt_messageController::create_log($t->name, $t->id, $cid,  $rezult->rt, $rezult->st, $rezult->stat);
             self::message_to_telegram($t->user_id, $text_message, $reply_markup = '');
+            }
         }
         
     }
 
-    public function curl(){
+    public function curl($cid){
         // $url = "http://example.com";
-        $url = "https://event-o.net/api/telegram/rez/107";
-        // $response = file_get_contents($url);
+        $url = "https://event-o.net/api/telegram/rez/".$cid;
         
         file_get_contents($url);
-        
-        // Відкриття URL без збереження відповіді
-        
+
         return response()->json(['message' => 'URL opened successfully']);
-        // Обробка відповіді (опціонально)
-        
-        // return response()->json(['response' => $response]);
 
     }
+
+    
     
     static function message_to_telegram($chat_id, $text, $reply_markup = '')
     {
@@ -99,6 +104,8 @@ class New_TelegramBotController extends Controller
         curl_setopt_array($ch, $ch_post);
         curl_exec($ch);
     }
+
+
    
 
 }
