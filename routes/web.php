@@ -65,7 +65,7 @@ Route::prefix('livess')->group(function () {
     Route::get('/show/{id}', [LiveRezultsController::class, 'show_event'])->name('live_show');
     Route::get('/online/{id}/{cls}', [LiveRezultsController::class, 'live'])->name('live_online');
     Route::get('/rezult/{id}', [RezultController::class, 'rezult'])->name('rezult');
-    Route::get('/rezult2/{id}', [New_EventController::class, 'rezult'])->name('rezult');
+    // Route::get('/rezult2/{id}', [New_EventController::class, 'rezult'])->name('rezult');
     Route::get('/start/{id}', [RezultController::class, 'start'])->name('start');
     Route::get('/start_cloks/{id}', [RezultController::class, 'start_cloks'])->name('start_cloks');
     Route::get('/split/{id}', [RezultController::class, 'split'])->name('split');
