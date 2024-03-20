@@ -434,8 +434,7 @@ function returnStatus($stat) {
 //  $url = 'http://127.0.0.1:8000/telegram/';
 //  $content=file_get_contents($url);
  die('<?xml version="1.0"?><MOPStatus status="'.$stat.'"></MOPStatus>');
- $url = "https://event-o.net/api/telegram/rez/".$cmpId;       
-file_get_contents($url);
+ 
  
 
 }
