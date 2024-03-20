@@ -54,6 +54,14 @@ class New_TelegramBotController extends Controller
         }
         
     }
+
+    public function curl($url){
+        $url = "https://event-o.net/api/telegram/rez/107";
+$ch = curl_init($url);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+$response = curl_exec($ch);
+curl_close($ch);
+    }
     
     static function message_to_telegram($chat_id, $text, $reply_markup = '')
     {

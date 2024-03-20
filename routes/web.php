@@ -48,6 +48,7 @@ Route::get('/event/register/{registerid}', [SiteEventController::class, 'registe
 Route::resource('/protocols', ProtocolController::class);
 Route::get('/export/clubs.xml', [ProtocolController::class, 'export'])->name('register_proces');
 Route::get('atlet/{name}', [RezultController::class, 'atlet'])->name('atlet');
+Route::get('telegram', [New_TelegramBotController::class, 'curl'])->name('curl');
 //Сторніки сайту
 
 // Route::get('/admin/register/add', [AdminRegisterController::class, 'getAdd'])->name('register_proces');
