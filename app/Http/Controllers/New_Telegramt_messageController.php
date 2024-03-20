@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Telegram;
+use App\Models\Telegram_log;
 use Illuminate\Http\Request;
 
 class New_Telegramt_messageController extends Controller
@@ -136,5 +137,15 @@ class New_Telegramt_messageController extends Controller
         }
         return $list_name;
 
+    }
+    static function edit_log($id, $name , $rt, $st, $stat){
+        $telegram = Telegram_log::find($id);
+        $telegram->name = $name;
+        $telegram->rt = $rt;
+        $telegram->st = $st;
+        // $telegram->user_id = $user_id;
+        // $telegram->event_id = $event_id;
+        $telegram->stat = $stat;
+        $telegram->save();
     }
 }

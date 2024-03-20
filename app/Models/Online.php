@@ -45,7 +45,7 @@ class Online extends Model
      * @var array
      */
     protected $table ='online';
-    protected $fillable = ['eventid','userid','name','cod','starovi','comandni','rezult','rezult_formula_ball	','split','split_grafic','stop','datestart'];
+    protected $fillable = ['eventid','userid','name','cod','starovi','comandni','rezult','rezult_formula_ball	','split','split_grafic','stop','datestart','inf','detali'];
     
     public function mopcompetition()
     {
