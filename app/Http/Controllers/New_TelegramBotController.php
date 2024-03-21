@@ -79,7 +79,7 @@ class New_TelegramBotController extends Controller
             https://event-o.net/livess/rezult/" . $cid . "#" . $rezult->class_name ." 🚀🚀🚀";
                 if ($telegram_lo->st > 0) {
                     New_Telegramt_messageController::edit_log($telegram_lo->id, $t->name, $rezult->rt, $rezult->st, $rezult->stat);
-                } elseif (!$telegram_lo->rt) {
+                } elseif (!$telegram_lo->st) {
                     New_Telegramt_messageController::create_log($t->name, $t->id, $cid,  $rezult->rt, $rezult->st, $rezult->stat);
                 }
                 self::message_to_telegram($t->user_id, $text_message, $reply_markup = '');
