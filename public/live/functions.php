@@ -425,7 +425,7 @@ function processTeam($link, $cid, $team) {
   $rt = (int)$base['rt'];
   $si = (int)$team['card'];
   
-  $sqlupdate = "name='$name', org=$org, cls=$cls, stat=$stat, st=$st, rt=$rt,si=$si";
+  $sqlupdate = "name='$name', org=$org, cls=$cls, stat=$stat, st=$st, rt=$rt, si=$si";
   updateTable($link, "mopteam", $cid, $id, $sqlupdate);
   
   if (isset($team->r)) {
