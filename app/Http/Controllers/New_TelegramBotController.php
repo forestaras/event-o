@@ -49,18 +49,18 @@ class New_TelegramBotController extends Controller
 
             if ($rezult->rt != $telegram_lo->rt) {
                 $text_message =
-                    $rezult->name . ", вітаємо на фініші змагань: " . $event->name . " 💪
-            Твій результат  " . $rezult->rezult_stat . " поточне " . $rezult->plases . ", місце у групі " . $rezult->class_name . "
-            Слідкуй за результами Online👇
-            https://event-o.net/livess/rezult/" . $cid . "#" . $rezult->class_name . " 
-            
-            Бажаємо подальших успіхів! 🏆";
+$rezult->name . ", вітаємо на фініші змагань: " . $event->name . " 💪
+Твій результат  " . $rezult->rezult_stat . " поточне " . $rezult->plases . ", місце у групі " . $rezult->class_name . "
+Слідкуй за результами Online👇
+https://event-o.net/livess/rezult/" . $cid . "#" . $rezult->class_name . " 
+Бажаємо подальших успіхів! 🏆";
                 if ($telegram_lo->rt > 0) {
                     New_Telegramt_messageController::edit_log($telegram_lo->id, $t->name, $rezult->rt, $rezult->st, $rezult->stat);
+                    self::message_to_telegram($t->user_id, $text_message, $reply_markup = '');
                 } elseif ($telegram_lo->name==Null) {
                     New_Telegramt_messageController::create_log($t->name, $t->id, $cid,  $rezult->rt, $rezult->st, $rezult->stat);
+                    self::message_to_telegram($t->user_id, $text_message, $reply_markup = '');
                 }
-                self::message_to_telegram($t->user_id, $text_message, $reply_markup = '');
             }
 
 
@@ -71,12 +71,11 @@ class New_TelegramBotController extends Controller
                     $si = "( і компас з чіпом" . $rezult->si . " не забудь😉)";
                 }
                 $text_message =
-                    "🚀🚀🚀«" . $rezult->name . ", вітаємо на змаганнях: «" . $event->name . "» 🚀
-            Тобі присвоєно стартову хвилину: " . $rezult->start . "До зустрічі у стартовому коридорі😊." . $si . "
-            Бажаю вдалої дистанції💪
-
-            Усі протоколи  старту, а також  результати Online тут👇
-            https://event-o.net/livess/rezult/" . $cid . "#" . $rezult->class_name ." 🚀🚀🚀";
+"🚀🚀🚀«" . $rezult->name . ", вітаємо на змаганнях: «" . $event->name . "» 🚀
+Тобі присвоєно стартову хвилину: " . $rezult->start . "До зустрічі у стартовому коридорі😊." . $si . "
+Бажаю вдалої дистанції💪
+Усі протоколи  старту, а також  результати Online тут👇
+https://event-o.net/livess/rezult/" . $cid . "#" . $rezult->class_name ." 🚀🚀🚀";
                 if ($telegram_lo->st > 0) {
                     New_Telegramt_messageController::edit_log($telegram_lo->id, $t->name, $rezult->rt, $rezult->st, $rezult->stat);
                 } elseif (!$telegram_lo->st) {
