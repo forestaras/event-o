@@ -77,7 +77,7 @@ class New_TelegramBotController extends Controller
 
             Усі протоколи  старту, а також  результати Online тут👇
             https://event-o.net/livess/rezult/" . $cid . "#" . $rezult->class_name ." 🚀🚀🚀";
-                if ($telegram_lo->rt > 0) {
+                if ($telegram_lo->st > 0) {
                     New_Telegramt_messageController::edit_log($telegram_lo->id, $t->name, $rezult->rt, $rezult->st, $rezult->stat);
                 } elseif (!$telegram_lo->rt) {
                     New_Telegramt_messageController::create_log($t->name, $t->id, $cid,  $rezult->rt, $rezult->st, $rezult->stat);
