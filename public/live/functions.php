@@ -359,6 +359,7 @@ function processOrganization($link, $cid, $org) {
 /** Update competitor table */
 function processCompetitor($link, $cid, $cmp) {
   $base = $cmp->base;
+  
   $id = $link->real_escape_string($cmp['id']);
   
   if ($cmp['delete'] == 'true') { // MOP2.0 support
@@ -373,7 +374,7 @@ function processCompetitor($link, $cid, $cmp) {
   $stat = (int)$base['stat'];
   $st = (int)$base['st'];
   $rt = (int)$base['rt'];
-  $si = (int)$base['card'];
+  $si = (int)$cmp['card'];
 
   
   $sqlupdate = "name='$name', org=$org, cls=$cls, stat=$stat, st=$st, rt=$rt, si=$si";
@@ -422,7 +423,7 @@ function processTeam($link, $cid, $team) {
   $stat = (int)$base['stat'];
   $st = (int)$base['st'];
   $rt = (int)$base['rt'];
-  $si = (int)$base['card'];
+  $si = (int)$team['card'];
   
   $sqlupdate = "name='$name', org=$org, cls=$cls, stat=$stat, st=$st, rt=$rt,si=$si";
   updateTable($link, "mopteam", $cid, $id, $sqlupdate);
