@@ -373,7 +373,7 @@ function processCompetitor($link, $cid, $cmp) {
   $stat = (int)$base['stat'];
   $st = (int)$base['st'];
   $rt = (int)$base['rt'];
-  $si = (int)$base['si'];
+  $si = (int)$base['card'];
 
   
   $sqlupdate = "name='$name', org=$org, cls=$cls, stat=$stat, st=$st, rt=$rt, si=$si";
@@ -422,7 +422,7 @@ function processTeam($link, $cid, $team) {
   $stat = (int)$base['stat'];
   $st = (int)$base['st'];
   $rt = (int)$base['rt'];
-  $si = (int)$base['si'];
+  $si = (int)$base['card'];
   
   $sqlupdate = "name='$name', org=$org, cls=$cls, stat=$stat, st=$st, rt=$rt,si=$si";
   updateTable($link, "mopteam", $cid, $id, $sqlupdate);
