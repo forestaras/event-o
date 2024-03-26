@@ -319,8 +319,8 @@ class RezultController extends Controller
 		// $cls = array_column($peoplesa, 'plases');
 		// $st = array_column($peoplesa, 'st');
 		// array_multisort($cls, SORT_ASC, $st, SORT_ASC, $peoplesa);
-		$cls = array_column($peoplesa, 'cls');
-		$st = array_column($peoplesa, 'plases');
+		$cls = array_column($peoplesa, 'plases');
+		$st = array_column($peoplesa, 'st');
 		array_multisort($cls, SORT_ASC, $st, SORT_ASC, $peoplesa);
 
 		$x = 0;
