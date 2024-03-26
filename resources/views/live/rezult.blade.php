@@ -1,3 +1,4 @@
+<meta http-equiv="refresh" content="20">
 @extends('live.includ.index')
 @section('title')
     ---{{ $online->name }}---Результати

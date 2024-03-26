@@ -271,7 +271,7 @@
                 <td></td>
                 <td></td>
             </tr>
-            @foreach ($class_peoples as $clas)
+            @foreach ($class_peoples as $clas) 
             <?php $n_p_p = 0; ?>
                 <tr style="height: 20px">
                     <th id="1455815870R8" style="height: 20px;" class="row-headers-background">

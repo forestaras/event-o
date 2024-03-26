@@ -36,7 +36,7 @@ class AdminOnlineController extends \crocodicstudio\crudbooster\controllers\CBCo
 
 			# START COLUMNS DO NOT REMOVE THIS LINE
 			$this->col = [];
-			$this->col[] = ["label"=>"Id онлайну","name"=>"eventid"];
+			$this->col[] = ["label"=>"Id онлайну","name"=>"id"];
 			$this->col[] = ["label"=>"Пароль для meos","name"=>"cod"];
 			$this->col[] = ["label"=>"Створено","name"=>"userid","join"=>"cms_users,name"];
 			$this->col[] = ["label"=>"Назва події","name"=>"name"];

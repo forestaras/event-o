@@ -134,12 +134,12 @@ use Session;
 	        | 
 	        */
 			$this->col[] = ["label"=>"kom","name"=>"kom"];
-	        $this->addaction[] = ['label'=>'Переглянути протокол','url'=>'/protocols/[id]','icon'=>'fa fa-newspaper-o','color'=>'info'];
-	        $this->addaction[] = ['label'=>'ТЕСТ Переглянути протокол','url'=>'/livess/rezult/protocol_finish_test/[id]','icon'=>'fa fa-newspaper-o','color'=>'warning'];
+	        // $this->addaction[] = ['label'=>'Переглянути протокол','url'=>'/protocols/[id]','icon'=>'fa fa-newspaper-o','color'=>'info'];
+	        $this->addaction[] = ['label'=>'NEW Переглянути протокол','url'=>'/livess/rezult/protocol_finish_test/[id]','icon'=>'fa fa-newspaper-o','color'=>'warning'];
 			// if (Protocol::find($this->col::)) {
 			// 	# code...
 			// }
-	        $this->addaction[] = ['showIf'=>'[kom]==1','label'=>'ТЕСТ Переглянути командний протокол','url'=>'/livess/rezult/protocol_comand/[id]','icon'=>'fa fa-newspaper-o','color'=>'warning'];
+	        $this->addaction[] = ['showIf'=>'[kom]==1','label'=>'NEW Переглянути командний протокол','url'=>'/livess/rezult/protocol_comand/[id]','icon'=>'fa fa-newspaper-o','color'=>'warning'];
 
 			
 			// $this->addaction[] = ['label'=>'Деталі' ,'url'=>'/admin/event19/detail/[id]','icon'=>'fa fa-cogs','color'=>'success'];
