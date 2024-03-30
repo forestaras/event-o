@@ -19,6 +19,7 @@ class New_FunctionController extends Controller
 
 	static function class_name($grups, $people)
 	{ //Шукає рупу в базі даних з групами
+		// $grup=$grups->where('id',$people->cls)->first(); Внедрити після змагань
 		foreach ($grups as $grupa) {
 			if ($grupa->id == $people->cls) $grup = $grupa->name;
 		}

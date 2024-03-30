@@ -2,7 +2,7 @@
 $ch = curl_init();
 
 // Задаємо параметри запиту
-curl_setopt($ch, CURLOPT_URL, "https://event-o.net/api/telegram/rez/139");
+curl_setopt($ch, CURLOPT_URL, "https://event-o.net/api/telegram/rez/140");
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
 // Виконуємо запит

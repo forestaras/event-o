@@ -57,7 +57,7 @@ class New_EventController extends Controller
         //    $people->club_name=New_FunctionController::club_name($organization,$people);
         //    $people->club_name_small=mb_substr($people->clyb_name, 0, 10, 'UTF-8') . '...';
            $people->class_name=New_FunctionController::class_name($class,$people);
-        //    $people->status=New_FunctionController::status($people);
+        //    $people->status=New_FunctionController::status($people); 
            $people->start=New_FunctionController::formatTime($people->st);
         //    $people->rezult=New_FunctionController::formatTime($people->rt);
            $people->rezult_stat=New_FunctionController::rezult_stat($people);
