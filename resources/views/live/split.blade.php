@@ -105,14 +105,8 @@
                             <th>#</th>
                             <th>Імя</td>
                             <th>Результат</th>
-                            @php
-                            $n=0;                       
-                            @endphp
                             @foreach ($mopkp as $kp)
-                            @php
-                            $n=$n+1;                       
-                            @endphp
-                                <th>{{$n}} ({{ $kp->ctrl }})</th>
+                                <th>{{ $kp->ctrl }}</th>
                             @endforeach
 
                             <th>Фініш</th>
