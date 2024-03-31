@@ -112,7 +112,7 @@
                             @php
                             $n=$n+1;                       
                             @endphp
-                                <th>{{$n+1}} ({{ $kp->ctrl }})</th>
+                                <th>{{$n}} ({{ $kp->ctrl }})</th>
                             @endforeach
 
                             <th>Фініш</th>
