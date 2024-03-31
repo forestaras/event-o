@@ -528,11 +528,11 @@ class RezultController extends Controller
 			}
 			return $count;
 		}
-		function count_all($allsplit, $mopsplit)
+		function count_all($allsplit, $mopsplit, $all_count)
 		{
 			$count = 1;
 			foreach ($allsplit as $all) {
-				if ($all['ctrl'] == $mopsplit->ctrl and $all['rt'] < $mopsplit->rt) {
+				if ($all['ctrl'] == $mopsplit->ctrl and $all['rt'] < $mopsplit->rt and $all_count>0) {
 					$count = $count + 1;
 				}
 			}
@@ -552,19 +552,21 @@ class RezultController extends Controller
 
 			foreach ($mopkp as $kp) {
 				$kkk = 0;
+				$count_all=1;
 
 				foreach ($splitradio as $mopsplit) { //форичитьть всі спліти УЧАСНИКА	
 					if ($kp->ctrl == $mopsplit->ctrl) {
 						$splitperegon = $mopsplit->rt - $popsplit;
 						$z = min_rt_peregon($allsplit, $mopsplit->ctrl, $splitperegon) + $z;
 						$rttt = $rttt + $z;
+						
 						$splitpeople[] = [
 							'ord' => $kp->ord,
 							'ctrl' => $mopsplit->ctrl, //записує в масив номер КП
 							'rt' => $mopsplit->rt,
 							'rttt' => $rttt / 10,
 							'id' => $mopsplit->id,
-							'count_all' => count_all($allsplit, $mopsplit),
+							'count_all' => count_all($allsplit, $mopsplit, $count_all),
 							'rt_peregon' => $splitperegon,
 							'count_cp' => count_kp($allsplit, $mopsplit, $splitperegon),
 							'time' => self::formatTime($mopsplit->rt),
@@ -578,6 +580,7 @@ class RezultController extends Controller
 						$z = min_rt_peregon($allsplit, $mopsplit->ctrl, $splitperegon);
 						$x = $x + 1;
 						$kkk = 1;
+						$count_all=count_all($allsplit, $mopsplit,);/////////////
 					}
 				}
 				if ($kkk == 0) {
