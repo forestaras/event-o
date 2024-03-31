@@ -109,6 +109,9 @@
                             $n=0;                       
                             @endphp
                             @foreach ($mopkp as $kp)
+                            @php
+                            $n=$n+1;                       
+                            @endphp
                                 <th>{{$n+1}} ({{ $kp->ctrl }})</th>
                             @endforeach
 
