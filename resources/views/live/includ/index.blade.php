@@ -16,6 +16,9 @@
     <link rel="stylesheet" href="/dist/css/adminlte.css">
 
 </head>
+{{-- <a href="URL_ПОСИЛАННЯ_НА_ЗОБРАЖЕННЯ"> --}}
+    <img src="{{ CRUDBooster::getSetting('logo') }}"  id="hiddenImage" hidden>
+{{-- </a> --}}
 
 <body class="sidebar-collapse hold-transition layout-fixed layout-navbar-fixed layout-footer-fixed text-sm">
     <div class="wrapper">
