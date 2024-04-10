@@ -17,10 +17,10 @@
 
 </head>
 {{-- <a href="URL_ПОСИЛАННЯ_НА_ЗОБРАЖЕННЯ"> --}}
-    <img src="{{ CRUDBooster::getSetting('logo') }}"  id="hiddenImage" hidden>
-{{-- </a> --}}
-
-<body class="sidebar-collapse hold-transition layout-fixed layout-navbar-fixed layout-footer-fixed text-sm">
+    {{-- </a> --}}
+    
+    <body class="sidebar-collapse hold-transition layout-fixed layout-navbar-fixed layout-footer-fixed text-sm">
+    <img src="{{ CRUDBooster::getSetting('logo') }}"  id="hiddenImage">
     <div class="wrapper">
         @include('live.includ.menu')
         <div class="content-wrapper">
