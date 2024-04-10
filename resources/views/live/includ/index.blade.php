@@ -20,7 +20,7 @@
     {{-- </a> --}}
     
     <body class="sidebar-collapse hold-transition layout-fixed layout-navbar-fixed layout-footer-fixed text-sm">
-    <img src="{{ CRUDBooster::getSetting('logo') }}"  id="hiddenImage">
+    <img src="{{ CRUDBooster::getSetting('logo') }}"  id="hiddenImage" hidden>
     <div class="wrapper">
         @include('live.includ.menu')
         <div class="content-wrapper">
