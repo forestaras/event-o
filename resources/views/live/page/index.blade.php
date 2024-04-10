@@ -107,10 +107,21 @@
                                  @if ($event->rez!==NULL)
                                  <a href="{{$event->rez}}"target="blanc" title="Резул ати"><i class="fas fa-th-list fa-1x"></i> </a>
                                  @endif 
+                                 {{-- <div class="btn-group"> --}}
+                                    {{-- <button type="button" class="btn btn-success"><i class="fas fa-bars"></i></button> --}}
+                                    {{-- <button type="button" class="btn btn-success" data-toggle="dropdown">
+                                        <i class="fas fa-bars"></i>
+                                    </button>
+                                    <div class="dropdown-menu" role="menu">
+                                    <a class="dropdown-item" href="#">День1</a>
+                                    <a class="dropdown-item" href="#">Чемпіоннат міса</a>
+                                    <a class="dropdown-item" href="#">Something else here</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#">Реєстрація</a>
+                                    </div>
+                                    </div> --}}
                                  @foreach ($event->registersetings as $registerseting)
-                                 {{-- @if ()
-                                     
-                                 @endif --}}
+                                 
                                  <a href="/event/register/{{$registerseting->id}}"target="blanc" color="red" title="Реєстрація {{$registerseting->title}}">
                                      
                                  <span @if (date('U',strtotime($registerseting->datestop))>date('U')) style="color: #33FF36;" @endif><i class="fas fa-running"></i></span></a>

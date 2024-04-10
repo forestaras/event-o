@@ -32,6 +32,8 @@ class New_EventController extends Controller
         $class = Mopclass::where('cid', $id)->get();
         $organization = Moporganization::where('cid', $id)->get();
         foreach ($peoples as $people) {
+
+           $people->cid=$people->cid;
            $people->club_name=New_FunctionController::club_name($organization,$people);
            $people->club_name_small=mb_substr($people->clyb_name, 0, 10, 'UTF-8') . '...';
            $people->class_name=New_FunctionController::class_name($class,$people);
@@ -73,7 +75,7 @@ class New_EventController extends Controller
     static function protocol_people($cid)
     {
         $peoples=New_FunctionController::protocol($cid);
-        foreach ($peoples as $people) {
+        foreach ($peoples as $people) {    
            $people->club_name_small=mb_substr($people->club_name, 0, 10, 'UTF-8') . '...';
            $people->status=New_FunctionController::status($people);
            $people->start=New_FunctionController::formatTime($people->st);
@@ -123,19 +125,24 @@ class New_EventController extends Controller
         $all_people_grup=$all_people->groupBy(['grup','name']);
         foreach ($all_people_grup as $group) {
             foreach ($group as $item) {
-                if ($protocol->sort===NULL) {
+                if ($protocol->sort==0) {
                  $iteme=$item->sortByDesc('bali')->take($protocol->sort_count);   ///// більші значення сума
                 }
                 if ($protocol->sort==1) {
                     $iteme=$item->sortBy('bali')->take($protocol->sort_count);   /////менші значення сума
                 }
-                
                 $item->sum_bali = $iteme->sum('bali');
+            }
+            $all_people_grup=$all_people_grup->sortByDesc('sum_bali');
+        }
+        foreach ($all_people_grup as $key => $peoples) {
+            foreach ($peoples as $name => $peoples) {
+                # code...
             }
         }
 
         // dd($all_people_grup);
-        return view('live.protocol.protocol_finish_summa', compact('all_people_grup','protocol_dani','events'));
+        return view('live.protocol.protocol_finish_summa', compact('all_people_grup','protocol_dani','events','cids_all'));
     }
 
     public function protocol_finish_test($cid){

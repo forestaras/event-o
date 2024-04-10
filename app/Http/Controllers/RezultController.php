@@ -918,12 +918,14 @@ class RezultController extends Controller
 	}
 
 
-	static function rez_stat($people)
-	{ //зєднрує статус та результат
+	static function rez_stat($people){
+	$controller = new SiteOnlineController();
+    
+	 //зєднрує статус та результат
 		if ($people->stat != 1)
-			return SiteOnlineController::statussearh($people);
+			return $controller->statussearh($people);
 		else
-			return SiteOnlineController::formatTime($people->rt);
+			return $controller->formatTime($people->rt);
 	}
 
 	static function tip_event($grups)

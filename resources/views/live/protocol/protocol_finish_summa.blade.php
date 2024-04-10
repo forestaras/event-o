@@ -4,12 +4,12 @@
     .ritz .waffle a {
         color: inherit;
     }
-    
+
     .ritz .waffle .s5 {
         border-bottom: 1px SOLID #000000;
         background-color: #ffffff;
     }
-    
+
     .ritz .waffle .s9 {
         background-color: #ffffff;
         text-align: center;
@@ -21,7 +21,7 @@
         direction: ltr;
         padding: 2px 3px 2px 3px;
     }
-    
+
     .ritz .waffle .s2 {
         background-color: #ffffff;
         text-align: center;
@@ -35,7 +35,7 @@
         direction: ltr;
         padding: 2px 3px 2px 3px;
     }
-    
+
     .ritz .waffle .s3 {
         background-color: #ffffff;
         text-align: center;
@@ -50,7 +50,7 @@
         direction: ltr;
         padding: 2px 3px 2px 3px;
     }
-    
+
     .ritz .waffle .s6 {
         border-bottom: 1px SOLID #000000;
         border-right: 1px SOLID #000000;
@@ -64,7 +64,7 @@
         direction: ltr;
         padding: 2px 3px 2px 3px;
     }
-    
+
     .ritz .waffle .s11 {
         background-color: #ffffff;
         text-align: right;
@@ -76,7 +76,7 @@
         direction: ltr;
         padding: 2px 3px 2px 3px;
     }
-    
+
     .ritz .waffle .s4 {
         border-bottom: 1px SOLID #000000;
         background-color: #ffffff;
@@ -91,7 +91,7 @@
         direction: ltr;
         padding: 2px 3px 2px 3px;
     }
-    
+
     .ritz .waffle .s10 {
         background-color: #ffffff;
         text-align: right;
@@ -106,7 +106,7 @@
         direction: ltr;
         padding: 2px 3px 2px 3px;
     }
-    
+
     .ritz .waffle .s8 {
         background-color: #ffffff;
         text-align: left;
@@ -120,7 +120,7 @@
         direction: ltr;
         padding: 2px 3px 2px 3px;
     }
-    
+
     .ritz .waffle .s0 {
         background-color: #ffffff;
         text-align: center;
@@ -134,7 +134,7 @@
         direction: ltr;
         padding: 2px 3px 2px 3px;
     }
-    
+
     .ritz .waffle .s7 {
         border-bottom: 1px SOLID #000000;
         border-right: 1px SOLID #000000;
@@ -150,7 +150,7 @@
         direction: ltr;
         padding: 2px 3px 2px 3px;
     }
-    
+
     .ritz .waffle .s1 {
         background-color: #ffffff;
         text-align: center;
@@ -189,28 +189,34 @@
                 <th id="1054664409R0" style="height: 20px;" class="row-headers-background">
                     <div class="row-header-wrapper" style="line-height: 20px">1</div>
                 </th>
-                <td class="s0" dir="ltr" colspan="10">КЗ &quot;Волинський обласний центр національно-патріотичного виховання, туризму і краєзнавства учнівської молоді Волинської обласної ради&quot;</td>
+                <td class="s0" dir="ltr" colspan="10">КЗ &quot;Волинський обласний центр
+                    національно-патріотичного виховання, туризму і краєзнавства учнівської молоді Волинської обласної
+                    ради&quot;</td>
                 <td></td>
             </tr>
             <tr style="height: 20px">
                 <th id="1054664409R1" style="height: 20px;" class="row-headers-background">
                     <div class="row-header-wrapper" style="line-height: 20px">2</div>
                 </th>
-                <td class="s0" dir="ltr" colspan="10">КЗ &quot;Волинський обласний центр національно-патріотичного виховання, туризму і краєзнавства учнівської молоді Волинської обласної ради&quot;</td>
+                <td class="s0" dir="ltr" colspan="10">КЗ &quot;Волинський обласний центр
+                    національно-патріотичного виховання, туризму і краєзнавства учнівської молоді Волинської обласної
+                    ради&quot;</td>
                 <td></td>
             </tr>
             <tr style="height: 20px">
                 <th id="1054664409R2" style="height: 20px;" class="row-headers-background">
                     <div class="row-header-wrapper" style="line-height: 20px">3</div>
                 </th>
-                <td class="s0" dir="ltr" colspan="10">КЗ &quot;Волинський обласний центр національно-патріотичного виховання, туризму</td>
+                <td class="s0" dir="ltr" colspan="10">КЗ &quot;Волинський обласний центр
+                    національно-патріотичного виховання, туризму</td>
                 <td></td>
             </tr>
             <tr style="height: 20px">
                 <th id="1054664409R3" style="height: 20px;" class="row-headers-background">
                     <div class="row-header-wrapper" style="line-height: 20px">4</div>
                 </th>
-                <td class="s1" dir="ltr" colspan="10">XXI обласні змагання зі спортивного орієнтування серед учнівської та студентської молоді</td>
+                <td class="s1" dir="ltr" colspan="10">XXI обласні змагання зі спортивного орієнтування серед
+                    учнівської та студентської молоді</td>
                 <td></td>
             </tr>
             <tr style="height: 20px">
@@ -227,61 +233,77 @@
                 <td class="s3" dir="ltr" colspan="10">ПРОТОКОЛ РЕЗУЛЬТАТІВ ОСОБИСТА СУМА</td>
                 <td></td>
             </tr>
-            
+
             @foreach ($all_people_grup as $key => $peoples)
-                
-            {{-- @endforeach --}}
-            <tr style="height: 20px">
-                <th id="1054664409R6" style="height: 20px;" class="row-headers-background">
-                    <div class="row-header-wrapper" style="line-height: 20px">7</div>
-                </th>
-                <td class="s4" dir="ltr"></td>
-                <td class="s4" dir="ltr" colspan="3">Вікова група <span style="font-weight:bold;">{{$key}} </span></td>
-                <td class="s4" dir="ltr" colspan="4">17.09.2023</td>
-                <td class="s4" dir="ltr"></td>
-                <td class="s4" dir="ltr"></td>
-                <td class="s5"></td>
-            </tr>
-            <tr style="height: 20px">
-                <th id="1054664409R7" style="height: 20px;" class="row-headers-background">
-                    <div class="row-header-wrapper" style="line-height: 20px">8</div>
-                </th>
-                <td class="s6" dir="ltr">№ п\п</td>
-                <td class="s6" dir="ltr">Прізвище, ім‘я учасника</td>
-                <td class="s6" dir="ltr">Дата народження</td>
-                <td class="s6" dir="ltr">Клуб/Команда</td>
-                <td class="s6" dir="ltr">Тренер</td>
-                <td class="s6" dir="ltr">Кваліф.</td>
-                @foreach ($events as $event)                 
-                <td class="s7" dir="ltr">Етап {{$event['x']}}<br/> {{$event['inf_data']}}</td>
+                {{-- @endforeach --}}
+                <tr style="height: 20px">
+                    <th id="1054664409R6" style="height: 20px;" class="row-headers-background">
+                        <div class="row-header-wrapper" style="line-height: 20px">7</div>
+                    </th>
+                    <td class="s4" dir="ltr"></td>
+                    <td class="s4" dir="ltr" colspan="3">Вікова група <span
+                            style="font-weight:bold;">{{ $key }} </span></td>
+                    <td class="s4" dir="ltr" colspan="4">17.09.2023</td>
+                    <td class="s4" dir="ltr"></td>
+                    <td class="s4" dir="ltr"></td>
+                    <td class="s5"></td>
+                </tr>
+                <tr style="height: 20px">
+                    <th id="1054664409R7" style="height: 20px;" class="row-headers-background">
+                        <div class="row-header-wrapper" style="line-height: 20px">8</div>
+                    </th>
+                    <td class="s6" dir="ltr">№ п\п</td>
+                    <td class="s6" dir="ltr">Прізвище, ім‘я учасника</td>
+                    <td class="s6" dir="ltr">Дата народження</td>
+                    <td class="s6" dir="ltr">Клуб/Команда</td>
+                    <td class="s6" dir="ltr">Тренер</td>
+                    <td class="s6" dir="ltr">Кваліф.</td>
+                    @foreach ($events as $event)
+                        <td class="s7" dir="ltr">Етап {{ $event['x'] }}<br /> {{ $event['inf_data'] }}</td>
+                    @endforeach
+                    <td class="s7" dir="ltr">Сума двох кращих етапів</td>
+                    <td class="s6" dir="ltr">Місце</td>
+                </tr>
+                {{-- $all_people_grup=$all_people->groupBy(['grup','name']); --}}
+                @php
+                    if ($protocol_dani->sort == 0) {
+                        $peoples = $peoples->sortByDesc('sum_bali');
+                    } else {
+                        $peoples = $peoples->sortBy('sum_bali');
+                    }
+                @endphp
+                @foreach ($peoples as $name => $peoples)
+                    <tr style="height: 20px">
+                        <th id="1054664409R8" style="height: 20px;" class="row-headers-background">
+                            <div class="row-header-wrapper" style="line-height: 20px">9</div>
+                        </th>
+                        <td class="s0" dir="ltr">1</td>
+                        <td class="s8" dir="ltr">{{ $name }}</td>
+                        <td class="s0" dir="ltr">2013</td>
+                        <td class="s8" dir="ltr">Старовижівський ЦДЮТ</td>
+                        <td class="s8" dir="ltr">Оксенчук Тетяна</td>
+                        <td class="s0" dir="ltr">б/р</td>
+
+                        @foreach ($cids_all as $cid)
+                            @php
+                                $x = 0;
+                            @endphp
+                            @foreach ($peoples as $people)
+                                @if ($people->cid == $cid)
+                                    <td class="s0" dir="ltr">{{ $people->bali }}</td>
+                                    @php
+                                        $x = 1;
+                                    @endphp
+                                @endif
+                            @endforeach
+                            @if ($x == 0)
+                                <td class="s0" dir="ltr"></td>
+                            @endif
+                        @endforeach
+                        <td class="s0" dir="ltr">{{ $peoples->sum_bali }}</td>
+                        <td class="s9" dir="ltr">1</td>
+                    </tr>
                 @endforeach
-                <td class="s7" dir="ltr">Сума двох кращих етапів</td>
-                <td class="s6" dir="ltr">Місце</td>
-            </tr>
-        {{-- $all_people_grup=$all_people->groupBy(['grup','name']); --}}
-        @foreach ($peoples as $name=>$peoples)  
-            <tr style="height: 20px">
-                <th id="1054664409R8" style="height: 20px;" class="row-headers-background">
-                    <div class="row-header-wrapper" style="line-height: 20px">9</div>
-                </th>
-                <td class="s0" dir="ltr">1</td>
-                <td class="s8" dir="ltr">{{$name}}</td>
-                <td class="s0" dir="ltr">2013</td>
-                <td class="s8" dir="ltr">Старовижівський ЦДЮТ</td>
-                <td class="s8" dir="ltr">Оксенчук Тетяна</td>
-                <td class="s0" dir="ltr">б/р</td>         
-                @foreach ($peoples as $people)      
-                @if (!$people)
-                <td class="s0" dir="ltr">rrrrr</td>
-                @else
-                    
-                <td class="s0" dir="ltr">{{$people->bali}}</td>
-                @endif
-                @endforeach
-                <td class="s0" dir="ltr">{{$peoples['sum_bali']}}</td>
-                <td class="s9" dir="ltr">1</td>
-            </tr>
-            @endforeach
             @endforeach
             <tr style="height: 20px">
                 <th id="1054664409R49" style="height: 20px;" class="row-headers-background">
@@ -381,7 +403,8 @@
                 <th id="1054664409R55" style="height: 20px;" class="row-headers-background">
                     <div class="row-header-wrapper" style="line-height: 20px">56</div>
                 </th>
-                <td class="s10" dir="ltr" colspan="6"><a target="_blank" href="https://event-o.net/">https://event-o.net/</a></td>
+                <td class="s10" dir="ltr" colspan="6"><a target="_blank"
+                        href="https://event-o.net/">https://event-o.net/</a></td>
                 <td class="s11" dir="ltr"></td>
                 <td class="s11" dir="ltr"></td>
                 <td class="s11" dir="ltr"></td>

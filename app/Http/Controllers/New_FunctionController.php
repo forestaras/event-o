@@ -277,6 +277,8 @@ class New_FunctionController extends Controller
 			}
 
 			$people_rezult->class_name = $people_rezult->grup;
+			$people_rezult->cid = $protocol_id;
+
 			$people_rezult->cls = $people_rezult->grup;
 			$people_rezult->club_name = $people_rezult->comanda;
 			$people_rezult->name = $people_rezult->name;
